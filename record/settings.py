@@ -37,6 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'musics',
+    'playlists',
+    'users',
+    'django.contrib.sites',
+
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # provider
+    'allauth.socialaccount.providers.google',
+
+    # django-taggit
+    'taggit',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +141,35 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'record', 'media')
+
+AUTH_USER_MODEL = 'users.User'
+
+ACCOUNT_ALLOW_REGISTRATION = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+# 로그인 시 유저네임으로 로그인 (or email)
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+# 회원가입 시 이메일 입력 필수 여부
+ACCOUNT_EMAIL_REQUIRED = False
+# 회원가입 시 이메일 인증 관련 코드
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+AUTHENTICATION_BACKENDS = (
+    # 쟝고 superuser로 로그인 가능
+    "django.contrib.auth.backends.ModelBackend",
+    
+    # 이메일 등으로 로그인 가능
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+
+LOGIN_URL = 'account_login'
+
+LOGIN_REDIRECT_URL = 'main'
+
+LOGOUT_REDIRECT_URL = 'main'
+
+# 해시태그 검색할 때 대소문자 구별 안함
+TAGGIT_CASE_INSENSITIVE = True
