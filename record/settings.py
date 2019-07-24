@@ -135,7 +135,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'record', 'templates')
+    os.path.join(BASE_DIR, 'record', 'static')
 ]
 
 MEDIA_URL = '/media/'
