@@ -24,7 +24,7 @@ def update(request, id):
         playlist.music = request.POST.get('music')
         playlist.kinds = request.POST.get('kinds')
         playlist.tags = request.POST.get('tags')
-        playlist.cover = request.POST.get('cover')
+        playlist.cover = request.FILES['cover']
         playlist.title = request.POST.get('title')
         playlist.save()
 
