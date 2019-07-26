@@ -13,7 +13,6 @@
         {{ playlist.title }}<br>
 
         {% if user == playlist.creator %}
-        <!-- <a href ="{% url 'playlists:edit' playlist.pk %}"> 수정 </a> -->
         <a href ="{% url 'playlists:delete' playlist.pk %}"> 삭제 </a>
         {% endif %}
 
