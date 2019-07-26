@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Playlist,Comment
+from .models import Playlist, Comment
 
 # 플레이리스트 메인페이지
 def main(request):
     playlists = Playlist.objects.all()
     return render(request, 'playlists/main.html', {'playlists': playlists})
 
+
 # 상세보기페이지
 def show(request, id):
     playlist = get_object_or_404(Playlist, pk=id)
     return render(request, 'playlists/show.html', {'playlist':playlist})
+
 
 # 플레이리스트 수정하기
 # def edit(request, id):
@@ -36,7 +38,7 @@ def delete(request, id):
     return redirect('playlists:show')
 
 
-# #댓글보기
+# 댓글보기
 def show_comment(request, playlist_id):
     comments = get_object_or_404(Comment, pk = playlist_id)
     return render(request,'playlists/show.html', {'comments':comments})
@@ -54,7 +56,7 @@ def create_comment(request, playlist_id):
         return redirect('playlists:show/playlist_id' )
 
 
-# #댓글삭제
+# 댓글삭제
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
