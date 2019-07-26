@@ -2,5 +2,20 @@
 {% load staticfiles %}
 
 {% block content %}
-
+<div style="margin-top: 200px;">
+    {% for playlist in playlists %}
+        <a href ="{% url 'playlists:show' playlist.id %}">show</a>
+        <p>{{ playlist.title }}</p>
+    {% endfor %}
+    <form action="{% url 'playlists:search' %}">
+        <div class="input-group col-12">     
+            <input type="text" class="form-control" placeholder="검색어" name="search">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">
+                    검색
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}
