@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Playlist, Comment
+from django.http import HttpResponseRedirect
 
 # 플레이리스트 메인페이지
 def main(request):
@@ -49,18 +50,18 @@ def create_comment(request, playlist_id):
     if request.method =="POST":
         user = request.user
         if user.is_anonymous:
-            return redirect('playlists:main') #이거 account_login으로 수정해야함 <지금계정이없어서 안됨>
+            return redirect('account_login') #이거 account_login으로 수정해야함 <지금계정이없어서 안됨>
         playlist = get_object_or_404(Playlist, pk = playlist_id)
         message = request.POST.get('message')
         Comment.objects.create(writer=user, playlist = playlist, message=message)
-        return redirect('playlists:show/playlist_id' )
+        return redirect('playlists:show')
 
 
 # 댓글삭제
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
-    return redirect('playlists:show/comment_id')
+    return HttpResponseRedirect('playlists/show/%d/' % comment.id)
 
 
 #좋아요
@@ -77,7 +78,7 @@ def like_toggle(request, playlist_id):
     else:
         playlist.likes.add(user)
         
-    return redirect('playlists:main')
+    return HttpResponseRedirect('playlists/show/%d/' % playlist.id)
 
 # 검색
 def search(request):
