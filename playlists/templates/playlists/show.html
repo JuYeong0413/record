@@ -4,6 +4,7 @@
 {% block content %}
 <div style="margin-top: 200px; margin-bottom:200px;">
         
+    <!--플레이리스트 데이터-->
     {{ playlist.creator }}<br>
     {{ playlist.musics }}<br>
     {{ playlist.kinds }}<br>
@@ -12,11 +13,12 @@
     {{ playlist.cover }}<br>
     {{ playlist.title }}<br>
 
+    <!-- 플레이리스트 수정, 삭제 -->
     {% if user == playlist.creator %}
-        <!-- <a href ="{% url 'playlists:edit' playlist.pk %}"> 수정 </a> -->
         <a href ="{% url 'playlists:delete' playlist.pk %}"> 삭제 </a>
     {% endif %}
 
+    <!-- 댓글달기 -->
     <form method = "POST" action ="{% url 'playlists:create_comment' playlist.pk %}">
         {% csrf_token %}
         <input type ="text" name = "message">
@@ -29,5 +31,12 @@
         {% endif %}
         {{ comment.message }} 
     {% endfor %}
+
+    <!-- 좋아요 -->
+    {% if user in playlist.likes.all %}
+        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 취소 </a>
+    {% else %}
+        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 </a>    
+    {% endif %}
 </div>
 {% endblock %}

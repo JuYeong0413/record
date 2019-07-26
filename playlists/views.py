@@ -62,6 +62,23 @@ def delete_comment(request, comment_id):
     comment.delete()
     return redirect('playlists:show/comment_id')
 
+
+#좋아요
+def like_toggle(request, playlist_id):
+    user = request.user
+    if user.is_anonymous:
+        return redirect('account_login')
+    playlist = get_object_or_404(Playlist, pk = playlist_id)
+
+    is_like = user in playlist.likes.all()
+
+    if is_like:
+        playlist.likes.remove(user)
+    else:
+        playlist.likes.add(user)
+        
+    return redirect('playlists:main')
+
 # 검색
 def search(request):
     search = request.GET.get('search')
