@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Playlist, Comment
-from django.http import HttpResponseRedirect
 
 # 플레이리스트 메인페이지
 def main(request):
@@ -25,10 +24,9 @@ def update(request, id):
         playlist.music = request.POST.get('music')
         playlist.kinds = request.POST.get('kinds')
         playlist.tags = request.POST.get('tags')
-        playlist.cover = request.POST.get('cover')
+        playlist.cover = request.FILES'cover')
         playlist.title = request.POST.get('title')
         playlist.save()
-
     return redirect('playlists:show',playlist_id)
 
 
@@ -36,12 +34,13 @@ def update(request, id):
 def delete(request, id):
     playlist = get_object_or_404(Playlist, pk = id)
     playlist.delete()
-    return redirect('playlists:show',playlist_id)
+    return redirect('playlists:main')
 
 # 댓글보기
 # def show_comment(request, playlist_id):
-#     comments = Comment.objects.filter(playlist_id=playlist_id).all()
+#     comments = Comment.objects.filter(playlist_id = playlist_id)
 #     return render(request,'playlists/show.html', {'comments': comments})
+
 
 # 댓글생성
 def create_comment(request, playlist_id):
@@ -57,10 +56,10 @@ def create_comment(request, playlist_id):
 
 
 # 댓글삭제
-def delete_comment(request, comment_id, playlist_id):
+def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
-    return redirect('playlists:show',playlist_id)
+    return redirect('playlists:main')
 
 
 #좋아요
@@ -82,5 +81,5 @@ def like_toggle(request, playlist_id):
 # 검색
 def search(request):
     search = request.GET.get('search')
-    search_result = Playlist.objects.filter(title_contains=search)
+    search_result = Playlist.objects.filter(title__contains=search)
     return render(request, 'playlists/search.html', {'search_result':search_result})

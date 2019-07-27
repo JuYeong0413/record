@@ -42,13 +42,15 @@
 
     
     <!-- 팔로우.팔로잉 -->
-    <!-- {% if user != playlist.creator %} -->
-        <!-- {% if user in playlist.creator.followers.all %} -->
-        <a href="{% url 'users : follow_toggle' playlist.creator.id %}">팔로우 취소 </a>
-        <!-- {% else %} -->
-        <a href ="{% url 'users : follow_toggle' playlist.creator.id %}">팔로우 </a>
-        <!-- {% endif %} -->
-    <!-- {% endif %} -->
+    {% if request.user != playlist.creator %}
+        {% if user in playlist.creator.followers.all %}
+        <br>
+        <a href="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 취소 </a>
+        {% else %}
+        <br>
+        <a href ="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 </a>
+        {% endif %}
+    {% endif %}
 </div>
 
 {% endblock %}

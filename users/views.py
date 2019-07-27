@@ -15,4 +15,4 @@ def follow_toggle(request, id):
     else:
         user.followings.add(followed_user)
 
-        return redirect('playlist:main')
+    return redirect('playlists:main')
