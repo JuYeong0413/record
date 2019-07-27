@@ -2,5 +2,15 @@
 {% load staticfiles %}
 
 {% block content %}
+<div style ="margin-top:200px;">
+    <a href="{% url 'musics:main'%}">MAIN</a>
 
+    <!--검색 결과-->
+    {% for result in search_result %}
+
+       <a href="{% url 'musics:show_detail' result.id %}">{{result.title}} </a>     
+
+
+    {% endfor %}
+</div>
 {% endblock %}
