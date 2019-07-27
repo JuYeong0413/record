@@ -7,6 +7,9 @@
         {% csrf_token %}
         <input type="text" name ="title">{{playlist.title}}
         <input type="file" name ="cover">{{playlist.cover}}
+        <input type="chceckbox" name = "kinds" value ="private">private
+        <input type="checkbox" name="kinds" value ="public">public
+        <input type="text" name ="tags">{{playlist.tags}}
         <input type="submit" value ="제출" class = "btn btn-primary">
     </form>
 </div>
