@@ -5,7 +5,7 @@
 
 <div style="margin-top: 200px;">
     {% for playlist in playlists %}
-        {% if playlist.kinds == 0 %}
+        {% if playlist.kinds == 0 or playlist.kinds == 1 %}
             <a href ="{% url 'playlists:show' playlist.id %}">show</a>
             <p>{{ playlist.title }}</p>
         {% endif %}
