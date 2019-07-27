@@ -7,11 +7,17 @@
         
     <!-- 플레이리스트 데이터 -->          
         {{ playlist.creator }}<br>
-        {{ playlist.musics }}<br>
-        {{ playlist.kinds }}<br>
-        {{ playlist.tags }}<br>
-        {{ playlist.likes }}<br>
-        {{ playlist.cover }}<br>
+        {{ playlist.musics}}<br>
+
+        {% for tag in playlist.tags.all %}
+        ♪{{ tag }}
+        {% endfor %}
+        <br>
+
+        {% if playlist.cover %}
+        <img src= "{{ playlist.cover.url}}" alt="사진없음"><br>
+        {% endif %}
+
         {{ playlist.title }}<br>
 
     <!-- /플레이리스트 데이터 -->
