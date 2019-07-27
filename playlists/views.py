@@ -10,7 +10,7 @@ def main(request):
 # 상세보기페이지
 def show(request, id):
     playlist = get_object_or_404(Playlist, pk=id)
-    return render(request, 'playlists/show.html', {'playlist':playlist})
+    return render(request, 'playlists/show.html', {'playlist': playlist})
 
 
 # 플레이리스트 수정하기
@@ -24,22 +24,18 @@ def update(request, id):
         playlist.music = request.POST.get('music')
         playlist.kinds = request.POST.get('kinds')
         playlist.tags = request.POST.get('tags')
-        playlist.cover = request.FILES'cover')
+        playlist.cover = request.FILES['cover']
         playlist.title = request.POST.get('title')
         playlist.save()
-    return redirect('playlists:show',playlist_id)
+
+    return redirect('playlists:show', id)
 
 
 # 플레이리스트 삭제하기
 def delete(request, id):
-    playlist = get_object_or_404(Playlist, pk = id)
+    playlist = get_object_or_404(Playlist, pk=id)
     playlist.delete()
     return redirect('playlists:main')
-
-# 댓글보기
-# def show_comment(request, playlist_id):
-#     comments = Comment.objects.filter(playlist_id = playlist_id)
-#     return render(request,'playlists/show.html', {'comments': comments})
 
 
 # 댓글생성
@@ -58,11 +54,12 @@ def create_comment(request, playlist_id):
 # 댓글삭제
 def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, pk=comment_id)
+    playlist_id = comment.playlist.id
     comment.delete()
-    return redirect('playlists:main')
+    return redirect('playlists:show', playlist_id)
 
 
-#좋아요
+# 좋아요
 def like_toggle(request, playlist_id):
     user = request.user
     if user.is_anonymous:
@@ -75,11 +72,14 @@ def like_toggle(request, playlist_id):
         playlist.likes.remove(user)
     else:
         playlist.likes.add(user)
-        
-    return redirect('playlists:show',playlist_id)
+
+    return redirect('playlists:show', playlist_id)
+
 
 # 검색
 def search(request):
     search = request.GET.get('search')
     search_result = Playlist.objects.filter(title__contains=search)
-    return render(request, 'playlists/search.html', {'search_result':search_result})
+
+    return render(request, 'playlists/search.html', {'search_result': search_result})
+

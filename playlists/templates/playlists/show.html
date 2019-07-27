@@ -5,7 +5,7 @@
 
 <div style="margin-top: 200px; margin-bottom:200px;">
         
-    <!--플레이리스트 데이터-->
+    <!-- 플레이리스트 데이터 -->
     {{ playlist.creator }}<br>
     {{ playlist.musics }}<br>
     {{ playlist.kinds }}<br>
@@ -13,11 +13,33 @@
     {{ playlist.likes }}<br>
     {{ playlist.cover }}<br>
     {{ playlist.title }}<br>
+    <!-- /플레이리스트 데이터 -->
 
     <!-- 플레이리스트 수정, 삭제 -->
     {% if user == playlist.creator %}
         <a href ="{% url 'playlists:delete' playlist.pk %}"> 삭제 </a>
     {% endif %}
+    <!-- 플레이리스트 수정, 삭제-->
+
+    <!-- 등록된 댓글 -->
+    {% if post.comments %}
+        <div>
+            <ul class="list-group">
+                {% for comment in playlist.comments %}
+                <li class="list-group-item">
+                    <p>
+                        <a class="text-decoration-none" href="{% url 'users:profile' comment.user.id %}"><b>{{ comment.user.username }}</b></a>
+                        {% if user == comment.writer %}
+                            <a href="{% url 'playlists:delete_comment' comment.id %}" style="float: right;">삭제</a></span>
+                        {% endif %}
+                    </p>
+                    <p>{{ comment.message }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <!-- /등록된 댓글 -->
 
     <!-- 댓글달기 -->
     <form method = "POST" action ="{% url 'playlists:create_comment' playlist.pk %}">
@@ -25,13 +47,8 @@
         <input type ="text" name = "message">
         <input type ="submit" value = "submit">
     </form>
+    <!-- /댓글달기 -->
 
-    {% for comment in playlist. %}
-        <p>{{ comment.message }}</p> 
-        {% if user == comment.writer %}
-            <a href="{% url 'playlists:delete_comment' comment.id %}">댓글 삭제</a>
-        {% endif %}
-    {% endfor %}
 
     <!-- 좋아요 -->
     {% if user in playlist.likes.all %}
@@ -39,9 +56,10 @@
     {% else %}
         <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 </a>    
     {% endif %}
+    <!-- 좋아요 -->
 
     
-    <!-- 팔로우.팔로잉 -->
+    <!-- 팔로우, 팔로잉 -->
     {% if request.user != playlist.creator %}
         {% if user in playlist.creator.followers.all %}
         <br>
@@ -51,6 +69,8 @@
         <a href ="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 </a>
         {% endif %}
     {% endif %}
+    <!-- 팔로우, 팔로잉 -->
+
 </div>
 
 {% endblock %}
