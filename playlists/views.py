@@ -63,7 +63,7 @@ def delete_comment(request, comment_id):
 def like_toggle(request, playlist_id):
     user = request.user
     if user.is_anonymous:
-        return redirect('playlists:main')
+        return redirect('account_login')
     playlist = get_object_or_404(Playlist, pk = playlist_id)
 
     is_like = user in playlist.likes.all()
