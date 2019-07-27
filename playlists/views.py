@@ -14,9 +14,10 @@ def show(request, id):
 
 
 # 플레이리스트 수정하기
-# def edit(request, id):
-#     playlists = get_object_or_404(Playlist, pk = id)
-#     return render(request, 'playlists/edit.html', {"playlists":playlists})
+def edit(request, id):
+    playlists = get_object_or_404(Playlist, pk=id)
+    return render(request, 'playlists/edit.html', {"playlists":playlists})
+
 
 def update(request, id):
     playlist = get_object_or_404(Playlist, pk=id)
@@ -27,7 +28,6 @@ def update(request, id):
         playlist.cover = request.FILES['cover']
         playlist.title = request.POST.get('title')
         playlist.save()
-
     return redirect('playlists:show', id)
 
 
@@ -80,6 +80,5 @@ def like_toggle(request, playlist_id):
 def search(request):
     search = request.GET.get('search')
     search_result = Playlist.objects.filter(title__contains=search)
-
     return render(request, 'playlists/search.html', {'search_result': search_result})
 

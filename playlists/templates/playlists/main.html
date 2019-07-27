@@ -2,10 +2,13 @@
 {% load staticfiles %}
 
 {% block content %}
+
 <div style="margin-top: 200px;">
     {% for playlist in playlists %}
-        <a href ="{% url 'playlists:show' playlist.id %}">show</a>
-        <p>{{ playlist.title }}</p>
+        {% if playlist.kinds == 0 %}
+            <a href ="{% url 'playlists:show' playlist.id %}">show</a>
+            <p>{{ playlist.title }}</p>
+        {% endif %}
     {% endfor %}
     <form action="{% url 'playlists:search' %}">
         <div class="input-group col-12">     

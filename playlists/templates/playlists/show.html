@@ -2,22 +2,24 @@
 {% load staticfiles %}
 
 {% block content %}
-
+ 
 <div style="margin-top: 200px; margin-bottom:200px;">
         
-    <!-- 플레이리스트 데이터 -->
-    {{ playlist.creator }}<br>
-    {{ playlist.musics }}<br>
-    {{ playlist.kinds }}<br>
-    {{ playlist.tags }}<br>
-    {{ playlist.likes }}<br>
-    {{ playlist.cover }}<br>
-    {{ playlist.title }}<br>
+    <!-- 플레이리스트 데이터 -->          
+        {{ playlist.creator }}<br>
+        {{ playlist.musics }}<br>
+        {{ playlist.kinds }}<br>
+        {{ playlist.tags }}<br>
+        {{ playlist.likes }}<br>
+        {{ playlist.cover }}<br>
+        {{ playlist.title }}<br>
+
     <!-- /플레이리스트 데이터 -->
 
     <!-- 플레이리스트 수정, 삭제 -->
     {% if user == playlist.creator %}
         <a href ="{% url 'playlists:delete' playlist.pk %}"> 삭제 </a>
+        <a href="{% url 'playlists:update' playlist.pk %}"> 수정</a>
     {% endif %}
     <!-- 플레이리스트 수정, 삭제-->
 
@@ -28,7 +30,7 @@
                 {% for comment in playlist.comments %}
                 <li class="list-group-item">
                     <p>
-                        <a class="text-decoration-none" href="{% url 'users:profile' comment.user.id %}"><b>{{ comment.user.username }}</b></a>
+                        <a class="text-decoration-none" href="#"><b>{{ comment.user.username }}</b></a>
                         {% if user == comment.writer %}
                             <a href="{% url 'playlists:delete_comment' comment.id %}" style="float: right;">삭제</a></span>
                         {% endif %}
@@ -72,5 +74,4 @@
     <!-- 팔로우, 팔로잉 -->
 
 </div>
-
 {% endblock %}

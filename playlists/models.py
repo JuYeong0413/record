@@ -21,6 +21,9 @@ class Playlist(TimeStampedModel):
     cover = models.ImageField(_('커버이미지'), null=True, upload_to="playlist_cover/",  default="images/default_cover.jpg")
     title = models.CharField(_('제목'), max_length=200)
 
+    def comments(self):
+        return Comment.objects.filter(playlist=self)
+
     class Meta:
         verbose_name = '플레이리스트'
         verbose_name_plural = "플레이리스트"
