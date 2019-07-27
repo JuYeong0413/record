@@ -3,4 +3,20 @@
 
 {% block content %}
 
+<div style ="margin-top:200px;">
+    {%  for music in musics %}
+
+    제목: <a href="{% url 'musics:show_detail' music.id %}">{{music.title}}</a>
+    작성자: {{music.writer}}
+    가수: {{music.singer}}
+
+    <a href="{% url 'musics:new' %}">글쓰기</a>
+
+    <form action ="{% url 'musics:search' %}">
+        <input type="text" placeholder="검색어" name="search">
+        <input type="submit" value="검색" class ="btn btn-primary">
+    </form>
+
+    {% endfor %}
+</div>
 {% endblock %}
