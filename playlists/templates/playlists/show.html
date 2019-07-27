@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block content %}
+
 <div style="margin-top: 200px; margin-bottom:200px;">
         
     <!--플레이리스트 데이터-->
@@ -25,11 +26,11 @@
         <input type ="submit" value = "submit">
     </form>
 
-    {% for comment in comments %}
+    {% for comment in playlist. %}
+        <p>{{ comment.message }}</p> 
         {% if user == comment.writer %}
             <a href="{% url 'playlists:delete_comment' comment.id %}">댓글 삭제</a>
         {% endif %}
-        {{ comment.message }} 
     {% endfor %}
 
     <!-- 좋아요 -->
@@ -38,5 +39,16 @@
     {% else %}
         <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 </a>    
     {% endif %}
+
+    
+    <!-- 팔로우.팔로잉 -->
+    <!-- {% if user != playlist.creator %} -->
+        <!-- {% if user in playlist.creator.followers.all %} -->
+        <a href="{% url 'users : follow_toggle' playlist.creator.id %}">팔로우 취소 </a>
+        <!-- {% else %} -->
+        <a href ="{% url 'users : follow_toggle' playlist.creator.id %}">팔로우 </a>
+        <!-- {% endif %} -->
+    <!-- {% endif %} -->
 </div>
+
 {% endblock %}

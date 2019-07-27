@@ -29,21 +29,19 @@ def update(request, id):
         playlist.title = request.POST.get('title')
         playlist.save()
 
-    return redirect('playlists:show/id')
+    return redirect('playlists:show',playlist_id)
 
 
 # 플레이리스트 삭제하기
 def delete(request, id):
     playlist = get_object_or_404(Playlist, pk = id)
     playlist.delete()
-    return redirect('playlists:show')
-
+    return redirect('playlists:show',playlist_id)
 
 # 댓글보기
-def show_comment(request, playlist_id):
-    comments = get_object_or_404(Comment, pk = playlist_id)
-    return render(request,'playlists/show.html', {'comments':comments})
-
+# def show_comment(request, playlist_id):
+#     comments = Comment.objects.filter(playlist_id=playlist_id).all()
+#     return render(request,'playlists/show.html', {'comments': comments})
 
 # 댓글생성
 def create_comment(request, playlist_id):
@@ -51,24 +49,25 @@ def create_comment(request, playlist_id):
         user = request.user
         if user.is_anonymous:
             return redirect('account_login') #이거 account_login으로 수정해야함 <지금계정이없어서 안됨>
-        playlist = get_object_or_404(Playlist, pk = playlist_id)
-        message = request.POST.get('message')
-        Comment.objects.create(writer=user, playlist = playlist, message=message)
-        return redirect('playlists:show')
+        else:
+            playlist = get_object_or_404(Playlist, pk = playlist_id)
+            message = request.POST.get('message')
+            Comment.objects.create(writer=user, playlist = playlist, message=message)
+            return redirect('playlists:show', playlist_id)
 
 
 # 댓글삭제
-def delete_comment(request, comment_id):
+def delete_comment(request, comment_id, playlist_id):
     comment = get_object_or_404(Comment, pk=comment_id)
     comment.delete()
-    return HttpResponseRedirect('playlists/show/%d/' % comment.id)
+    return redirect('playlists:show',playlist_id)
 
 
 #좋아요
 def like_toggle(request, playlist_id):
     user = request.user
     if user.is_anonymous:
-        return redirect('account_login')
+        return redirect('playlists:main')
     playlist = get_object_or_404(Playlist, pk = playlist_id)
 
     is_like = user in playlist.likes.all()
@@ -78,7 +77,7 @@ def like_toggle(request, playlist_id):
     else:
         playlist.likes.add(user)
         
-    return HttpResponseRedirect('playlists/show/%d/' % playlist.id)
+    return redirect('playlists:show',playlist_id)
 
 # 검색
 def search(request):

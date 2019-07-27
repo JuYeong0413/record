@@ -13,7 +13,7 @@ urlpatterns = [
     path('<int:playlist_id>/like_toggle/', views.like_toggle, name="like_toggle"),
 
     # comment
-    path('show_comment/<int:playlist_id>/', views.show_comment, name="show_comment"),
+    # path('show_comment/<int:playlist_id>/', views.show_comment, name="show_comment"),
     path('create_comment/<int:playlist_id>/', views.create_comment, name ="create_comment"),
     path('delete_comment/<int:comment_id>/', views.delete_comment, name="delete_comment"),
 ]
