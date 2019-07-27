@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Playlist, Comment
+from django.core.paginator import Paginator
 
 # 플레이리스트 메인페이지
 def main(request):
     playlists = Playlist.objects.all()
-    return render(request, 'playlists/main.html', {'playlists': playlists})
+    paginator = Paginator(playlists,2)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
+    return render(request, 'playlists/main.html', {'playlists': playlists, 'posts':posts})
 
 
 # 상세보기페이지
@@ -15,8 +19,8 @@ def show(request, id):
 
 # 플레이리스트 수정하기
 def edit(request, id):
-    playlists = get_object_or_404(Playlist, pk=id)
-    return render(request, 'playlists/edit.html', {"playlists":playlists})
+    playlist = get_object_or_404(Playlist, pk=id)
+    return render(request, 'playlists/edit.html', {"playlist":playlist})
 
 
 def update(request, id):

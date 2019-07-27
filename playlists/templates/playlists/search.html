@@ -4,7 +4,7 @@
 {% block content %}
 <div style="margin-top: 200px;">
     {% for result in search_result %}
-        <a href="{% url 'playlsit:show' result.id %}">{{ result.title }}</a>
+        <a href="{% url 'playlists:show' result.id %}">{{ result.title }}</a>
     {% endfor %}
 </div>
 {% endblock %}

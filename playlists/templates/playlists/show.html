@@ -7,7 +7,15 @@
         
     <!-- 플레이리스트 데이터 -->          
         {{ playlist.creator }}<br>
-        {{ playlist.musics}}<br>
+
+        {% for music in playlist.musics.all %}
+            <br>
+            {{ music.title }}
+            {{ music.singer }}
+            {{ music.link }}
+            {{ music.genre}}
+
+        {% endfor %}
 
         {% for tag in playlist.tags.all %}
         ♪{{ tag }}
@@ -25,7 +33,7 @@
     <!-- 플레이리스트 수정, 삭제 -->
     {% if user == playlist.creator %}
         <a href ="{% url 'playlists:delete' playlist.pk %}"> 삭제 </a>
-        <a href="{% url 'playlists:update' playlist.pk %}"> 수정</a>
+        <a href="{% url 'playlists:edit' playlist.pk %}"> 수정</a>
     {% endif %}
     <!-- 플레이리스트 수정, 삭제-->
 
@@ -79,5 +87,6 @@
     {% endif %}
     <!-- 팔로우, 팔로잉 -->
 
+    <a href="{% url 'playlists:main'%}">main</a>
 </div>
 {% endblock %}
