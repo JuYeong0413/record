@@ -2,5 +2,26 @@
 {% load staticfiles %}
 
 {% block content %}
+<a href="{% url 'musics:main'%}">MAIN</a>
 
+<!--음악 등록-->
+<div class="container">
+        <h1>음악 등록</h1>
+        <form action="{% url 'musics:create' %}" method="POST">
+            {% csrf_token %}
+            <h3>제목</h3>
+            <input type="text" name="title" >
+            <h3>가수</h3>
+            <input type="text" name="singer">
+            <h3>장르</h3>
+            <input type="text" name="genre" >
+            <h3>가사</h3>
+            <input type="text" name="lyrics">
+            <h3>링크</h3>
+            <input type="text" name="link">
+            <input class="btn btn-light" type="submit" value="제출">
+        </form>
+    </div>
+    
+</form>
 {% endblock %}
