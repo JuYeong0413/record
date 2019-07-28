@@ -20,7 +20,11 @@ def show(request, id):
 # 플레이리스트 수정하기
 def edit(request, id):
     playlist = get_object_or_404(Playlist, pk=id)
-    return render(request, 'playlists/edit.html', {"playlist":playlist})
+    tags = playlist.tags.all()
+    content=""
+    for tag in tags:
+        content += "♬" + str(tag)
+    return render(request, 'playlists/edit.html', {"playlist":playlist,'content':content })
 
 
 def update(request, id):
@@ -29,8 +33,14 @@ def update(request, id):
         playlist.music = request.POST.get('music')
         playlist.kinds = request.POST.get('kinds')
         playlist.tags = request.POST.get('tags')
-        playlist.cover = request.FILES['cover']
+        playlist.cover = request.FILES.get('cover')
         playlist.title = request.POST.get('title')
+        
+        if playlist.kinds == "public":
+            playlist.kinds = 0
+        else:
+            playlist.kinds = 1
+
         playlist.save()
     return redirect('playlists:show', id)
 
