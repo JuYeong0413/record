@@ -10,6 +10,22 @@
             <p>{{ playlist.title }}</p>
         {% endif %}
     {% endfor %}
+
+
+   {% if playlists.has_previous%}
+   <a href="?page=1">first</a>
+   <a href="?page={{playlists.previous_page_number}}">Preivous</a>
+   {% endif %}
+
+   <span>{{playlists.number}}</span>
+   <span>of</span>
+   <span>{{playlists.paginator.num_pages}}</span>
+
+   {% if playlists.has_next %}
+   <a href = "?page={{playlists.next_page_number}}">Next</a>
+   <a href="?page={{playlists.paginator.num_pages}}}">Last</a>
+   {% endif %}
+
     <form action="{% url 'playlists:search' %}">
         <div class="input-group col-12">     
             <input type="text" class="form-control" placeholder="검색어" name="search">

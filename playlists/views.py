@@ -4,11 +4,11 @@ from django.core.paginator import Paginator
 
 # 플레이리스트 메인페이지
 def main(request):
-    playlists = Playlist.objects.all()
-    paginator = Paginator(playlists,2)
+    playlists_list = Playlist.objects.all()
+    paginator = Paginator(playlists_list,3)
     page = request.GET.get('page')
-    posts = paginator.get_page(page)
-    return render(request, 'playlists/main.html', {'playlists': playlists, 'posts':posts})
+    playlists = paginator.get_page(page)
+    return render(request, 'playlists/main.html', {'playlists': playlists})
 
 
 # 상세보기페이지
