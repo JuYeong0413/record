@@ -52,6 +52,9 @@ INSTALLED_APPS = [
 
     # django-taggit
     'taggit',
+
+    # crispy forms
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
