@@ -12,19 +12,19 @@
         <form action="{% url 'musics:update' music.id %}" method="POST">
             {% csrf_token %}
             <h3>제목</h3>
-            <input type="text" name="title" value="{{music.title}}">
+            <input type="text" name="title" value="{{ music.title }}">
 
             <h3>가수</h3>
-            <input type="text" name="singer" value="{{music.singer}}">
+            <input type="text" name="singer" value="{{ music.singer }}">
 
             <h3>장르</h3>
-            <input type="text" name="genre" value="{{music.genre}}">
+            <input type="text" name="genre" value="{{ music.genre }}">
 
             <h3>가사</h3>
-            <input type="text" name="lyrics" value="{{music.lyrics}}">
+            <input type="text" name="lyrics" value="{{ music.lyrics }}">
             
             <h3>링크</h3>
-            <input type="text" name="link" value="{{music.link}}">    
+            <input type="text" name="link" value="{{ music.link }}">    
 
             <input class="btn btn-light" type="submit" value="제출">
         </form>

@@ -2,5 +2,91 @@
 {% load staticfiles %}
 
 {% block content %}
+ 
+<div style="margin-top: 200px; margin-bottom:200px;">
+        
+    <!-- 플레이리스트 데이터 -->          
+        {{ playlist.creator }}<br>
 
+        {% for music in playlist.musics.all %}
+            <br>
+            {{ music.title }}
+            {{ music.singer }}
+            {{ music.link }}
+            {{ music.genre}}
+
+        {% endfor %}
+
+        {% for tag in playlist.tags.all %}
+        ♪{{ tag }}
+        {% endfor %}
+        <br>
+
+        {% if playlist.cover %}
+        <img src= "{{ playlist.cover.url}}" alt="사진없음"><br>
+        {% endif %}
+
+        {{ playlist.title }}<br>
+
+    <!-- /플레이리스트 데이터 -->
+
+    <!-- 플레이리스트 수정, 삭제 -->
+    {% if user == playlist.creator %}
+        <a href ="{% url 'playlists:delete' playlist.pk %}"> 삭제 </a>
+        <a href="{% url 'playlists:edit' playlist.pk %}"> 수정</a>
+    {% endif %}
+    <!-- 플레이리스트 수정, 삭제-->
+
+    <!-- 등록된 댓글 -->
+    {% if playlist.comments %}
+        <div>
+            <ul class="list-group">
+                {% for comment in playlist.comments %}
+                <li class="list-group-item">
+                    <p>
+                        <a class="text-decoration-none" href="#"><b>{{ comment.user.username }}</b></a>
+                        {% if user == comment.writer %}
+                            <a href="{% url 'playlists:delete_comment' comment.id %}" style="float: right;">삭제</a></span>
+                        {% endif %}
+                    </p>
+                    <p>{{ comment.message }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    <!-- /등록된 댓글 -->
+
+    <!-- 댓글달기 -->
+    <form method = "POST" action ="{% url 'playlists:create_comment' playlist.pk %}">
+        {% csrf_token %}
+        <input type ="text" name = "message">
+        <input type ="submit" value = "submit">
+    </form>
+    <!-- /댓글달기 -->
+
+
+    <!-- 좋아요 -->
+    {% if user in playlist.likes.all %}
+        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 취소 </a>
+    {% else %}
+        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 </a>    
+    {% endif %}
+    <!-- 좋아요 -->
+
+    
+    <!-- 팔로우, 팔로잉 -->
+    {% if request.user != playlist.creator %}
+        {% if user in playlist.creator.followers.all %}
+        <br>
+        <a href="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 취소 </a>
+        {% else %}
+        <br>
+        <a href ="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 </a>
+        {% endif %}
+    {% endif %}
+    <!-- 팔로우, 팔로잉 -->
+
+    <a href="{% url 'playlists:main'%}">main</a>
+</div>
 {% endblock %}

@@ -6,12 +6,12 @@
 <a href="{% url 'musics:main'%}">MAIN</a>
 
   <!--곡 상세정보-->
-  {{music.title}}
-  {{music.singer}}
-  {{music.writer}}
-  {{music.lyrics}}
-  {{music.link}}
-  {{music.genre}}
+  {{ music.title }}
+  {{ music.singer }}
+  {{ music.writer }}
+  {{ music.lyrics }}
+  {{ music.link }}
+  {{ music.genre }}
 
 
   {% if user == music.writer %}
