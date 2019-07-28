@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Music
+from django.core.paginator import Paginator
 
 # Create your views here.
 # 노래 메인 페이지
 def main(request):
-    musics = Music.objects.all()
-    return render(request, 'musics/main.html', {'musics': musics})
+    music_list = Music.objects.all()
+    paginator = Paginator(music_list, 3)
+    page = request.GET.get('page')
+    musics = paginator.get_page(page)
+    return render(request, 'musics/main.html', {'musics':musics})
    
 
 # 노래 게시글 상세보기
