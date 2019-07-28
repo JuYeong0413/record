@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Music
+from django.core.paginator import Paginator
 
 # Create your views here.
     
 def main(request):
-    musics = Music.objects.all()
+    music_list = Music.objects.all()
+    paginator = Paginator(music_list, 3)
+    page = request.GET.get('page')
+    musics = paginator.get_page(page)
     return render(request, 'musics/main.html', {'musics':musics})
    
 

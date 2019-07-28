@@ -5,56 +5,31 @@
 
 <div style ="margin-top:200px;">
     
-    <!--곡 목록-->
-    {%  for music in musics %}
+    <!--Pagination-->
 
-    제목: <a href="{% url 'musics:show' music.id %}">{{music.title}}</a>
-    작성자: {{music.writer}}
-    가수: {{music.singer}}
-    <br>
-     
-    {% endfor %}
-        <!--Pagination-->
- 
-        {% if is_paginated %}
-        <nav>
-            <ul class="pagination">
-            {% if page_obj.has_previous %}
-                <li>
-                <a href="?page={{ page_obj.previous_page_number }}">
-                    <span>Prev</span>
-                </a>
-                </li>
-            {% else %}
-                <li class="disabled">
-                <a href="#">
-                    <span>Previous</span>
-                </a>
-                </li>
-            {% endif %}
+        <!--곡 목록-->
+        {%  for music in musics %}
 
-            {% for page in page_range %}
-            <li {% if page == page_obj.number %}class="active"{% endif %}>
-              <a href="?page={{ page }}">{{ page }}</a>
-            </li>
-          {% endfor %}
+        제목: <a href="{% url 'musics:show' music.id %}">{{music.title}}</a>
+        작성자: {{music.writer}}
+        가수: {{music.singer}}
+        <br>
+
+        {% endfor %}
+       
+        {% if musics.has_previous %}
+            <a href = "?page=1">맨 앞으로</a>
+            <a href="?page={{ musics.previous_page_number }}"> 이전으로</a>
+        {% endif %}            
+            <span>{{ musics.number }}</span>
+            <span> / </span>    
+            <span>{{musics.paginator.num_pages}}</span>    
+        {% if musics.has_next %}
+            <a href="?page={{musics.next_page_number}}">다음으로</a>
+            <a href="?page={{musics.paginator.num_page}}">맨 뒤로</a>        
+
+        {% endif %}  
     
-          {% if page_obj.has_next %}
-            <li>
-              <a href="?page={{ page_obj.next_page_number }}">
-                <span>Next</span>
-              </a>
-            </li>
-          {% else %}
-            <li {% if not page_obj.has_next %}class="disabled"{% endif %}>
-              <a href="#">
-                <span>Next</span>
-              </a>
-            </li>
-          {% endif %}
-        </ul>
-      </nav>
-    {% endif %}
 
     <!--곡 검색-->
     <form action ="{% url 'musics:search' %}">
