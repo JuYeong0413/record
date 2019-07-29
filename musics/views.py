@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # Create your views here.
 # 노래 메인 페이지
 def main(request):
-    music_list = Music.objects.all()
+    music_list = Music.objects.all().order_by('-id')
     paginator = Paginator(music_list, 10)
     page = request.GET.get('page')
     musics = paginator.get_page(page)

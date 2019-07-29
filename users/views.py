@@ -6,7 +6,7 @@ def follow_toggle(request, id):
     if user.is_anonymous:
         return redirect('account_login')
     
-    followed_user = get_object_or_404(User, pk =id)
+    followed_user = get_object_or_404(User, pk=id)
 
     is_follower = user in followed_user.followers.all()
 

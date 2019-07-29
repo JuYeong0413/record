@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 
 # 플레이리스트 메인페이지
 def main(request):
-    playlists_list = Playlist.objects.all()
+    playlists_list = Playlist.objects.all().order_by('-id')
     paginator = Paginator(playlists_list, 10)
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
