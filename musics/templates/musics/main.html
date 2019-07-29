@@ -45,7 +45,7 @@
             <a href="?page={{ musics.previous_page_number }}"> 이전으로</a>
         {% endif %}            
             <span>{{ musics.number }}</span>
-            <span> / </span>    
+            <span> of </span>    
             <span>{{ musics.paginator.num_pages }}</span>    
         {% if musics.has_next %}
             <a href="?page={{ musics.next_page_number }}">다음으로</a>
