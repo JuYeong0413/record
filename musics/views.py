@@ -6,10 +6,10 @@ from django.core.paginator import Paginator
 # 노래 메인 페이지
 def main(request):
     music_list = Music.objects.all()
-    paginator = Paginator(music_list, 3)
+    paginator = Paginator(music_list, 10)
     page = request.GET.get('page')
     musics = paginator.get_page(page)
-    return render(request, 'musics/main.html', {'musics':musics})
+    return render(request, 'musics/main.html', {'musics': musics})
    
 
 # 노래 게시글 상세보기
@@ -31,8 +31,6 @@ def create(request):
         music.writer = user
         music.title = request.POST.get('title')
         music.singer = request.POST.get('singer')
-        music.genre = request.POST.get('genre')
-        music.lyrics = request.POST.get('lyrics')
         music.link = request.POST.get('link')
         music.save()
 
@@ -45,8 +43,6 @@ def update(request, music_id):
         music = get_object_or_404(Music, pk=music_id)
         music.title = request.POST.get('title')
         music.singer = request.POST.get('singer')
-        music.lyrics = request.POST.get('lyrics')
-        music.genre = request.POST.get('genre')
         music.link = request.POST.get('link')
         music.save()
 
@@ -67,6 +63,6 @@ def edit(request, music_id):
 
 # 노래 검색
 def search(request):
-    search = request.GET.get('search')
-    search_result = Music.objects.filter(title__contains=search)
-    return render(request,'musics/search.html', {'search_result': ssearch_result})
+    query = request.GET.get('query')
+    search_result = Music.objects.filter(title__contains=query)
+    return render(request,'musics/search.html', {'search_result': search_result})

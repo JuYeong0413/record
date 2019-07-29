@@ -28,14 +28,15 @@
 <!-- End Head Section -->
 
 <div>
-    <a href="{% url 'musics:main'%}">MAIN</a>
-
-    <!--검색 결과-->
     {% for result in search_result %}
 
-       <a href="{% url 'musics:show_detail' result.id %}">{{ result.title }} </a>     
-
+       <a href="{% url 'musics:show' result.id %}">{{ result.title }} </a>     
 
     {% endfor %}
+
+    {% if search_result is None %}
+        <h3>검색 결과가 없습니다.</h3>
+    {% endif %}
 </div>
+
 {% endblock %}

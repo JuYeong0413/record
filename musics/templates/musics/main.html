@@ -33,9 +33,9 @@
         <!--곡 목록-->
         {%  for music in musics %}
 
-        제목: <a href="{% url 'musics:show' music.id %}">{{music.title}}</a>
-        작성자: {{music.writer}}
-        가수: {{music.singer}}
+        제목: <a href="{% url 'musics:show' music.id %}">{{ music.title }}</a>
+        작성자: {{ music.writer }}
+        가수: {{ music.singer }}
         <br>
 
         {% endfor %}
@@ -46,17 +46,17 @@
         {% endif %}            
             <span>{{ musics.number }}</span>
             <span> / </span>    
-            <span>{{musics.paginator.num_pages}}</span>    
+            <span>{{ musics.paginator.num_pages }}</span>    
         {% if musics.has_next %}
-            <a href="?page={{musics.next_page_number}}">다음으로</a>
-            <a href="?page={{musics.paginator.num_page}}">맨 뒤로</a>        
+            <a href="?page={{ musics.next_page_number }}">다음으로</a>
+            <a href="?page={{ musics.paginator.num_page }}">맨 뒤로</a>        
 
         {% endif %}
     
 
     <!--곡 검색-->
     <form action ="{% url 'musics:search' %}">
-        <input type="text" placeholder="검색어" name="search">
+        <input type="text" placeholder="검색어" name="query">
         <input type="submit" value="검색" class ="btn btn-primary">
     </form>
     <br><br>
