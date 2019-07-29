@@ -63,12 +63,25 @@ def musics(request, id):
 
 # 생성한 플레이리스트 게시글
 def playlists(request, id):
-    playlists = Playlist.objects.filter(creator__id=id)
+    current_user = request.user
+    user = get_object_or_404(User, pk=id)
+
+    if user == current_user:
+        playlists = Playlist.objects.filter(creator__id=id)
+    else:
+        playlists = Playlist.objects.filter(creator__id=id).filter(kinds=0)
+
     return render(request, 'users/playlists.html', {'playlists': playlists})
 
 
 # 좋아하는 플레이리스트 목록
 def likes(request, id):
+    current_user = request.user
     user = get_object_or_404(User, pk=id)
-    playlists = Playlist.objects.filter(likes = user)
+
+    if user == current_user:
+        playlists = Playlist.objects.filter(likes=user)
+    else:
+        playlists = Playlist.objects.filter(likes=user).filter(kinds=0)
+
     return render(request, 'users/likes.html', {'playlists': playlists})
