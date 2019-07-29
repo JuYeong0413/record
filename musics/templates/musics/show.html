@@ -69,31 +69,35 @@
 	
 	<br>
 	
-	<!-- 플레이리스트에 곡 추가 -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPlaylist">
-		플레이리스트에 추가하기
-	</button>
-		
-	<!-- 플레이리스트에 곡 추가 Modal -->
-	<div class="modal" id="addPlaylist" tabindex="-1" role="dialog" aria-labelledby="addPlaylistLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-			<h5 class="modal-title" id="addPlaylistLabel">플레이리스트에 추가하기</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
+	{% if user.is_authenticated %}
+		<!-- 플레이리스트에 곡 추가 -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPlaylist">
+			플레이리스트에 추가하기
+		</button>
+			
+		<!-- 플레이리스트에 곡 추가 Modal -->
+		<div class="modal" id="addPlaylist" tabindex="-1" role="dialog" aria-labelledby="addPlaylistLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="addPlaylistLabel">플레이리스트에 추가하기</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				...
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-primary">확인</button>
+				</div>
 			</div>
-			<div class="modal-body">
-			...
-			</div>
-			<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-			<button type="button" class="btn btn-primary">확인</button>
 			</div>
 		</div>
-		</div>
-	</div>
+	{% else %}
+		<h3>플레이리스트에 곡을 추가하려면 <a href="{% url 'account_login' %}">로그인</a> 하세요.</h3>
+	{% endif %}
 	  
 </div>
 
