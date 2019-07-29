@@ -19,12 +19,17 @@ def show(request, id):
 
 # 플레이리스트 수정하기
 def edit(request, id):
+    user = request.user
     playlist = get_object_or_404(Playlist, pk=id)
-    tags = playlist.tags.all()
-    content = ""
-    for tag in tags:
-        content += "♬" + str(tag)
-    return render(request, 'playlists/edit.html', {"playlist": playlist, 'content': content })
+
+    if user == playlist.creator:
+        tags = playlist.tags.all()
+        content = ""
+        for tag in tags:
+            content += "♬" + str(tag)
+        return render(request, 'playlists/edit.html', {"playlist": playlist, 'content': content })
+    else:
+        return redirect('playlists:show', id)
 
 
 def update(request, id):

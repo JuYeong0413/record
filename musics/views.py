@@ -101,8 +101,13 @@ def delete(request, music_id):
 
 # 노래 게시글 수정 페이지
 def edit(request, music_id):
+    user = request.user
     music = get_object_or_404(Music, pk=music_id)
-    return render(request, 'musics/edit.html', {'music': music})
+
+    if user == music.writer:
+        return render(request, 'musics/edit.html', {'music': music})
+    else:
+        return redirect('musics:show', music_id)
 
 
 # 노래 검색
