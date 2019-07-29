@@ -28,9 +28,9 @@
 <!-- End Head Section -->
 
 <div>
-    <!--Pagination-->
+    <!-- Pagination -->
 
-        <!--곡 목록-->
+        <!-- 곡 목록 -->
         {%  for music in musics %}
 
         제목: <a href="{% url 'musics:show' music.id %}">{{ music.title }}</a>
@@ -54,15 +54,22 @@
         {% endif %}
     
 
-    <!--곡 검색-->
+    <!-- 곡 검색 -->
     <form action ="{% url 'musics:search' %}">
-        <input type="text" placeholder="검색어" name="query">
-        <input type="submit" value="검색" class ="btn btn-primary">
+        <div class="form-group">
+            <select class="form-control col-md-2" name="option">
+                <option value="title">제목</option>
+                <option value="singer">가수명</option>
+            </select>
+            
+            <input type="text" class="form-control col-md-4" placeholder="검색어" name="query">
+            <input type="submit" value="검색" class ="btn btn-primary">
+        </div>
     </form>
     <br><br>
 
 
-     <!--곡 등록-->
+     <!-- 곡 등록 -->
      <a href="{% url 'musics:new' %}">곡 등록하기 </a>
 
     

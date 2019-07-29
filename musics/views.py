@@ -107,6 +107,12 @@ def edit(request, music_id):
 
 # 노래 검색
 def search(request):
+    option = request.GET.get('option')
     query = request.GET.get('query')
-    search_result = Music.objects.filter(title__contains=query)
+
+    if option == "title":
+        search_result = Music.objects.filter(title__contains=query)
+    else:
+        search_result = Music.objects.filter(singer__contains=query)
+
     return render(request,'musics/search.html', {'search_result': search_result})
