@@ -21,15 +21,15 @@ def show(request, id):
 def edit(request, id):
     playlist = get_object_or_404(Playlist, pk=id)
     tags = playlist.tags.all()
-    content=""
+    content = ""
     for tag in tags:
         content += "♬" + str(tag)
-    return render(request, 'playlists/edit.html', {"playlist": playlist,'content': content })
+    return render(request, 'playlists/edit.html', {"playlist": playlist, 'content': content })
 
 
 def update(request, id):
     playlist = get_object_or_404(Playlist, pk=id)
-    if request.method =="POST":
+    if request.method == "POST":
         playlist.music = request.POST.get('music')
         playlist.kinds = request.POST.get('kinds')
         playlist.tags = request.POST.get('tags')
@@ -57,7 +57,7 @@ def delete(request, id):
 
 # 댓글생성
 def create_comment(request, playlist_id):
-    if request.method =="POST":
+    if request.method == "POST":
         user = request.user
         if user.is_anonymous:
             return redirect('account_login')
