@@ -69,7 +69,7 @@ def playlists(request, id):
     if user == current_user:
         playlists = Playlist.objects.filter(creator__id=id)
     else:
-        playlists = Playlist.objects.filter(creator__id=id).filter(kinds=0)
+        playlists = Playlist.objects.filter(creator__id=id, kinds=0)
 
     return render(request, 'users/playlists.html', {'playlists': playlists})
 
@@ -82,6 +82,6 @@ def likes(request, id):
     if user == current_user:
         playlists = Playlist.objects.filter(likes=user)
     else:
-        playlists = Playlist.objects.filter(likes=user).filter(kinds=0)
+        playlists = Playlist.objects.filter(likes=user, kinds=0)
 
     return render(request, 'users/likes.html', {'playlists': playlists})
