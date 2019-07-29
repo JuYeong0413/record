@@ -2,5 +2,43 @@
 {% load staticfiles %}
 
 {% block content %}
+<!-- Head Section -->
+<section class="small-section bg-gray-lighter">
+        <div class="relative container align-left">
+            
+            <div class="row">
+                
+                <div class="col-md-8">
+                    <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Users</h1>
+                    <div class="hs-line-4 font-alt black">
+                        Record your music
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mt-30">
+                    <div class="mod-breadcrumbs font-alt align-right">
+                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">뭐넣지</a>&nbsp;/&nbsp;<span>Users</span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+<!-- End Head Section -->
+
+<div>
+    <img src="{{ user_profile.image.url }}" alt=""><br>
+    username : {{ user_profile.username }}<br>
+    {{ user_profile.introduction }}<br>
+    팔로우 <a href="#">{{ user.followers.count }}</a>명<br>
+    팔로잉 <a href="#">{{ user.followings.count }}</a>명<br>
+
+    {% if user == user_profile %}
+        <a href="{% url 'users:musics' user.id %}">내가 작성한 노래 게시글</a><br>
+        <a href="{% url 'users:playlists' user.id %}">내가 좋아하는 플레이리스트</a><br>
+        <a href="{% url 'users:edit' user.id %}">회원정보 수정</a>
+    {% endif %}
+</div>
 
 {% endblock %}

@@ -56,8 +56,8 @@
 
     <!-- 플레이리스트 수정, 삭제 -->
     {% if user == playlist.creator %}
-        <a href ="{% url 'playlists:delete' playlist.pk %}"> 삭제 </a>
-        <a href="{% url 'playlists:edit' playlist.pk %}"> 수정</a>
+        <a href="{% url 'playlists:edit' playlist.pk %}">수정</a>
+        <a href ="{% url 'playlists:delete' playlist.pk %}">삭제</a>
     {% endif %}
     <!-- 플레이리스트 수정, 삭제-->
 

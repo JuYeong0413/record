@@ -2,5 +2,42 @@
 {% load staticfiles %}
 
 {% block content %}
+<!-- Head Section -->
+<section class="small-section bg-gray-lighter">
+        <div class="relative container align-left">
+            
+            <div class="row">
+                
+                <div class="col-md-8">
+                    <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Users</h1>
+                    <div class="hs-line-4 font-alt black">
+                        Record your music
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mt-30">
+                    <div class="mod-breadcrumbs font-alt align-right">
+                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">Users</a>&nbsp;/&nbsp;<span>Edit</span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+<!-- End Head Section -->
+
+<div>
+    <form action="{% url 'users:update' user.pk %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>프로필사진</label>
+        <input type="file" name="image"><br>
+        <label>닉네임</label>
+        <input type="text" name="username" value="{{ user.username }}"><br>
+        <label>한줄소개</label>
+        <input type="text" name="introduction" value="{{ user.introduction }}"><br>
+        <input type="submit" class="btn btn-primary" value="수정">
+    </form>
+</div>
 
 {% endblock %}

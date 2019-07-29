@@ -436,14 +436,18 @@
                             
                             {% if user.is_authenticated %}
                             <li>
-                                <a href="{% url 'account_logout' %}">Log out</a>
+                                <a href="{% url 'account_logout' %}">Logout</a>
+                            </li>
+
+                            <li>
+                                <a href="{% url 'users:main' user.id %}">Mypage</a>
                             </li>
 
                             {% else %}
 
                             <!-- Item With Sub -->
                             <li>
-                                <a href="{% url 'account_login' %}" class="mn-has-sub">Log in <i class="fa fa-angle-down"></i></a>
+                                <a href="{% url 'account_login' %}" class="mn-has-sub">Login <i class="fa fa-angle-down"></i></a>
                                 
                                 <!-- Sub -->
                                 <ul class="mn-sub">
@@ -640,7 +644,7 @@
                             
                             <!-- Item With Sub -->
                             <li>
-                                <a href="{% url 'account_signup' %}" class="mn-has-sub">Sign up <i class="fa fa-angle-down"></i></a>
+                                <a href="{% url 'account_signup' %}" class="mn-has-sub">Signup <i class="fa fa-angle-down"></i></a>
                                 
                                 <!-- Sub -->
                                 <ul class="mn-sub">
