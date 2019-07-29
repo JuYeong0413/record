@@ -24,7 +24,7 @@ def edit(request, id):
     content=""
     for tag in tags:
         content += "♬" + str(tag)
-    return render(request, 'playlists/edit.html', {"playlist":playlist,'content':content })
+    return render(request, 'playlists/edit.html', {"playlist": playlist,'content': content })
 
 
 def update(request, id):
