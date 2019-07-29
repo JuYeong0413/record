@@ -247,7 +247,7 @@
                             
                             <!-- Item With Sub -->
                             <li>
-                                <a href="#" class="mn-has-sub">Musics <i class="fa fa-angle-down"></i></a>
+                                <a href="{% url 'musics:main' %}" class="mn-has-sub">Musics <i class="fa fa-angle-down"></i></a>
                                 
                                 <!-- Sub Multilevel -->
                                 <ul class="mn-sub mn-has-multi">
@@ -434,6 +434,13 @@
                             </li>
                             <!-- End Item With Sub -->
                             
+                            {% if user.is_authenticated %}
+                            <li>
+                                <a href="{% url 'account_logout' %}">Log out</a>
+                            </li>
+
+                            {% else %}
+
                             <!-- Item With Sub -->
                             <li>
                                 <a href="{% url 'account_login' %}" class="mn-has-sub">Log in <i class="fa fa-angle-down"></i></a>
@@ -712,6 +719,7 @@
                                 
                             </li>
                             <!-- End Item With Sub -->
+                            {% endif %}
                             
                             <!-- Item With Sub -->
                             <li>
