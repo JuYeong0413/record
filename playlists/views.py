@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 # 플레이리스트 메인페이지
 def main(request):
     playlists_list = Playlist.objects.all()
-    paginator = Paginator(playlists_list,3)
+    paginator = Paginator(playlists_list, 10)
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
     return render(request, 'playlists/main.html', {'playlists': playlists})
@@ -33,7 +33,10 @@ def update(request, id):
         playlist.music = request.POST.get('music')
         playlist.kinds = request.POST.get('kinds')
         playlist.tags = request.POST.get('tags')
-        playlist.cover = request.FILES.get('cover')
+        
+        if request.FILES.get('cover'):
+            playlist.cover = request.FILES.get('cover')
+
         playlist.title = request.POST.get('title')
         
         if playlist.kinds == "public":
@@ -57,11 +60,11 @@ def create_comment(request, playlist_id):
     if request.method =="POST":
         user = request.user
         if user.is_anonymous:
-            return redirect('account_login') #이거 account_login으로 수정해야함 <지금계정이없어서 안됨>
+            return redirect('account_login')
         else:
-            playlist = get_object_or_404(Playlist, pk = playlist_id)
+            playlist = get_object_or_404(Playlist, pk=playlist_id)
             message = request.POST.get('message')
-            Comment.objects.create(writer=user, playlist = playlist, message=message)
+            Comment.objects.create(writer=user, playlist=playlist, message=message)
             return redirect('playlists:show', playlist_id)
 
 
@@ -78,7 +81,7 @@ def like_toggle(request, playlist_id):
     user = request.user
     if user.is_anonymous:
         return redirect('account_login')
-    playlist = get_object_or_404(Playlist, pk = playlist_id)
+    playlist = get_object_or_404(Playlist, pk=playlist_id)
 
     is_like = user in playlist.likes.all()
 
@@ -92,7 +95,7 @@ def like_toggle(request, playlist_id):
 
 # 검색
 def search(request):
-    search = request.GET.get('query')
+    query = request.GET.get('query')
     search_result = Playlist.objects.filter(title__contains=query)
     return render(request, 'playlists/search.html', {'search_result': search_result})
 
