@@ -92,7 +92,7 @@ def like_toggle(request, playlist_id):
 
 # 검색
 def search(request):
-    search = request.GET.get('search')
-    search_result = Playlist.objects.filter(title__contains=search)
+    search = request.GET.get('query')
+    search_result = Playlist.objects.filter(title__contains=query)
     return render(request, 'playlists/search.html', {'search_result': search_result})
 

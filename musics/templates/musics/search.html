@@ -17,7 +17,7 @@
             
             <div class="col-md-4 mt-30">
                 <div class="mod-breadcrumbs font-alt align-right">
-                    <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="{% url 'musics:main' %}">Musics</a>&nbsp;/&nbsp;<span>Main</span>
+                    <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="{% url 'musics:main' %}">Musics</a>&nbsp;/&nbsp;<span>Search</span>
                 </div>
                 
             </div>
@@ -28,11 +28,11 @@
 <!-- End Head Section -->
 
 <div>
-    {% for result in search_result %}
-       <a href="{% url 'musics:show' result.id %}">{{ result.title }}</a>
-    {% endfor %}
-
-    {% if search_result is None %}
+    {% if search_result.exists %}
+        {% for result in search_result %}
+        <a href="{% url 'musics:show' result.id %}">{{ result.title }}</a>
+        {% endfor %}
+    {% else %}
         <h3>검색 결과가 없습니다.</h3>
     {% endif %}
 </div>

@@ -2,7 +2,32 @@
 {% load staticfiles %}
 
 {% block content %}
-<div style="margin-top:200px;">
+<!-- Head Section -->
+<section class="small-section bg-gray-lighter">
+        <div class="relative container align-left">
+            
+            <div class="row">
+                
+                <div class="col-md-8">
+                    <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Playlists</h1>
+                    <div class="hs-line-4 font-alt black">
+                        Record your music
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mt-30">
+                    <div class="mod-breadcrumbs font-alt align-right">
+                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="{% url 'playlists:main' %}">Playlists</a>&nbsp;/&nbsp;<span>Edit</span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+<!-- End Head Section -->
+
+<div>
     <form action="{% url 'playlists:update' playlist.id %}" method ="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="text" name ="title" value="{{playlist.title}}"><br>
@@ -18,4 +43,5 @@
 
     <a href="{% url 'playlists:main'%}">main</a>
 </div>
+
 {% endblock %}

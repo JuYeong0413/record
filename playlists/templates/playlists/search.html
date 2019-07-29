@@ -2,9 +2,39 @@
 {% load staticfiles %}
 
 {% block content %}
-<div style="margin-top: 200px;">
-    {% for result in search_result %}
-        <a href="{% url 'playlists:show' result.id %}">{{ result.title }}</a>
-    {% endfor %}
+<!-- Head Section -->
+<section class="small-section bg-gray-lighter">
+        <div class="relative container align-left">
+            
+            <div class="row">
+                
+                <div class="col-md-8">
+                    <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Playlists</h1>
+                    <div class="hs-line-4 font-alt black">
+                        Record your music
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mt-30">
+                    <div class="mod-breadcrumbs font-alt align-right">
+                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="{% url 'playlists:main' %}">Playlists</a>&nbsp;/&nbsp;<span>Search</span>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </section>
+<!-- End Head Section -->
+
+<div>
+    {% if search_result.exists %}
+        {% for result in search_result %}
+            <a href="{% url 'playlists:show' result.id %}">{{ result.title }}</a>
+        {% endfor %}
+    {% else %}
+        <h3>검색 결과가 없습니다.</h3>
+    {% endif %}
 </div>
+
 {% endblock %}
