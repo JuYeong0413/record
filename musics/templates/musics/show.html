@@ -27,9 +27,9 @@
 </section>
 <!-- End Head Section -->
 
-<div style ="margin-footer:200px;">
+<div>
 
-	<!--곡 상세정보-->
+	<!-- 곡 상세정보 -->
 	노래 제목 : {{ music.title }}<br>
 	가수 : {{ music.singer }}<br>
 	장르 : {{ music.genre }}<br>
@@ -38,24 +38,48 @@
 	링크 : {{ music.link }}<br>
 
 	{% if user == music.writer %}
-		<a href="{% url 'musics:edit' music.id %}">수정</a>
-		<a href="{% url 'musics:delete' music.id %}">삭제</a>
+		<a class="btn btn-primary" href="{% url 'musics:edit' music.id %}">수정</a>
+		<!-- deleteModal -->
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+			삭제
+		</button>
+
+		<!-- deleteModal -->
+		<div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="deletModalLabel">게시글 삭제하기</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+					정말로 게시글을 삭제하시겠습니까?<br>
+					삭제된 글은 복구할 수 없습니다.
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+				<a class="btn btn-primary" href="{% url 'musics:delete' music.id %}">확인</a>
+				</div>
+			</div>
+			</div>
+		</div>
 	{% endif %}
-
-
-	<!--플레이리스트에 곡 추가-->
-
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+	
+	<br>
+	
+	<!-- 플레이리스트에 곡 추가 -->
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPlaylist">
 		플레이리스트에 추가하기
 	</button>
 		
-	<!-- Modal -->
-	<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<!-- 플레이리스트에 곡 추가 Modal -->
+	<div class="modal" id="addPlaylist" tabindex="-1" role="dialog" aria-labelledby="addPlaylistLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+			<h5 class="modal-title" id="addPlaylistLabel">플레이리스트에 추가하기</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -64,8 +88,8 @@
 			...
 			</div>
 			<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-primary">Save changes</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+			<button type="button" class="btn btn-primary">확인</button>
 			</div>
 		</div>
 		</div>

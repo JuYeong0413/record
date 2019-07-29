@@ -30,18 +30,16 @@
 <div>
     <form action="{% url 'playlists:update' playlist.id %}" method ="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" name ="title" value="{{playlist.title}}"><br>
-        <input type="file" name ="cover">{{playlist.cover}}<br>
-        <input type ="radio" name="kinds"  value = "private">private
-        <input type ="radio" name ="kinds"  value ="public">public
+        <input type="text" name ="title" value="{{ playlist.title }}"><br>
+        <input type="file" name ="cover">{{ playlist.cover }}<br>
+        <input type ="radio" name="kinds" value = "private">private
+        <input type ="radio" name ="kinds" value ="public">public
         
         <br>
         <input type="text" name ="tags" value ="{{ content }}">
 
         <input type="submit" value ="제출" class = "btn btn-primary">
     </form>
-
-    <a href="{% url 'playlists:main'%}">main</a>
 </div>
 
 {% endblock %}

@@ -47,7 +47,7 @@
         <br>
 
         {% if playlist.cover %}
-        <img src= "{{ playlist.cover.url}}" alt="사진없음"><br>
+        <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
         {% endif %}
 
         {{ playlist.title }}<br>
@@ -92,9 +92,9 @@
 
     <!-- 좋아요 -->
     {% if user in playlist.likes.all %}
-        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 취소 </a>
+        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 취소</a>
     {% else %}
-        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 </a>    
+        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요</a>    
     {% endif %}
     <!-- 좋아요 -->
 
@@ -103,14 +103,13 @@
     {% if request.user != playlist.creator %}
         {% if user in playlist.creator.followers.all %}
         <br>
-        <a href="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 취소 </a>
+        <a href="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 취소</a>
         {% else %}
         <br>
-        <a href ="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 </a>
+        <a href ="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우</a>
         {% endif %}
     {% endif %}
     <!-- 팔로우, 팔로잉 -->
-
-    <a href="{% url 'playlists:main'%}">main</a>
 </div>
+
 {% endblock %}
