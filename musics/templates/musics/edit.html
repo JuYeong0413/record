@@ -28,8 +28,6 @@
 <!-- End Head Section -->
 
 <div>
-    <a href="{% url 'musics:main' %}">메인으로</a>
-    
     <!--음악 수정-->
     <div class="container">
         <h1>음악 수정</h1>
@@ -42,19 +40,14 @@
             <h3>가수</h3>
             <input type="text" name="singer" value="{{ music.singer }}">
 
-            <h3>장르</h3>
-            <input type="text" name="genre" value="{{ music.genre }}">
-
-            <h3>가사</h3>
-            <input type="text" name="lyrics" value="{{ music.lyrics }}">
-            
             <h3>링크</h3>
-            <input type="text" name="link" value="{{ music.link }}">    
+            <input type="text" name="link" value="{{ music.link }}">
 
-            <input class="btn btn-light" type="submit" value="제출">
+            <input class="btn btn-light" type="submit" value="수정">
         </form>
     </div>
    
 
 </div>
+
 {% endblock %}
