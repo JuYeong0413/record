@@ -35,7 +35,12 @@
 	장르 : {{ music.genre }}<br>
 	글 작성자 : {{ music.writer }}<br>
 	가사<br>{{ music.lyrics|linebreaks }}<br>
-	링크 : {{ music.link }}<br>
+	{% if url == "None" %}
+        <p>영상이 없습니다.</p>
+    {% else %}
+        <iframe width="560" height="315" src="{{ music.link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+    {% endif %}
 
 	{% if user == music.writer %}
 		<a class="btn btn-primary" href="{% url 'musics:edit' music.id %}">수정</a>
