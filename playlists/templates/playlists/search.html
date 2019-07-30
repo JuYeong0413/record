@@ -28,7 +28,7 @@
 <!-- End Head Section -->
 
 <div>
-    {% if search_result.exists %}
+    {% if search_list.exists %}
         {% for result in search_result %}
         {% if result.kinds == 0 or result.kinds == 1 %}
             <a href ="{% url 'playlists:show' result.id %}">show</a>
