@@ -22,6 +22,10 @@
                     
                 </div>
             </div>
+            {% for playlist in sorted_playlists %}
+            <a href ="{% url 'playlists:show' playlist.id %}">show</a>
+            {{playlist.title}}<br>
+            {% endfor %}
             
         </div>
     </section>
