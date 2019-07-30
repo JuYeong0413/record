@@ -42,7 +42,7 @@
         {% endfor %}
 
         {% for tag in playlist.tags.all %}
-        ♪<a href="{% url playlist.id 'playlists:tag' tag.id %}">{{ tag }}</a>
+        ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>
         {% endfor %}
         <br>
 
