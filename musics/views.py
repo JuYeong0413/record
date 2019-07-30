@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+from playlists.models import Playlist
+from django.http import HttpResponse
 
 # Create your views here.
 # 노래 메인 페이지
@@ -270,5 +272,14 @@ def search(request):
     paginator = Paginator(search_list, 10)
     page = request.GET.get('page')
     search_result = paginator.get_page(page)
-
     return render(request,'musics/search.html', {'search_result': search_result, 'search_list':search_list})
+
+
+# 기존 플레이리스트 생성 플레이리스트 보여주기
+def show_playlists(request):
+    user = request.user
+    playlists = Playlist.objects.filter(creator=user)
+    return render(request, 'musics/show_playlists.html', {'playlists':playlists})
+
+def add_music(request, playlist_id):
+    playlist = Playlist.objects.get(pk=playlist_id)
