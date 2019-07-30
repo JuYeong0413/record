@@ -27,7 +27,7 @@
     </section>
 <!-- End Head Section -->
 
-{% if playlists.exists %}
+{% if playlist_lists.exists %}
     {% for playlist in playlists %}
         <a href="{% url 'playlists:show' playlist.pk %}">{{ playlist.title }}</a><br>
     {% endfor %}

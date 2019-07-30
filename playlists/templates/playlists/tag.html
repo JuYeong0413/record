@@ -22,6 +22,17 @@
                     
                 </div>
             </div>
+            {% for playlist in sorted_playlists %}
+                {% if playlist.kinds == 0 or playlist.kinds == 1 %}
+                <br>
+                <a href ="{% url 'playlists:show' playlist.id %}">show</a>
+                <p>{{ playlist.title }}</p>
+                <p>{{ playlist.creator}}</p>
+                    {% if playlist.cover %}
+                        <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
             
         </div>
     </section>

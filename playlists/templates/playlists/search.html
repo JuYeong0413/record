@@ -28,9 +28,16 @@
 <!-- End Head Section -->
 
 <div>
-    {% if search_result.exists %}
+    {% if search_list.exists %}
         {% for result in search_result %}
-            <a href="{% url 'playlists:show' result.id %}">{{ result.title }}</a>
+        {% if result.kinds == 0 or result.kinds == 1 %}
+            <a href ="{% url 'playlists:show' result.id %}">show</a>
+            <p>{{ result.title }}</p>
+            <p>{{ result.creator}}</p>
+            {% if result.cover %}
+                <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+            {% endif %}
+    {% endif %}
         {% endfor %}
     {% else %}
         <h3>검색 결과가 없습니다.</h3>
