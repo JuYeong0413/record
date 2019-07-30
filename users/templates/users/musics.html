@@ -28,7 +28,7 @@
 <!-- End Head Section -->
 
 <div>
-    {% if musics.exists %}
+    {% if music_lists.exists %}
         {% for music in musics %}
             <a href="{% url 'musics:show' music.pk %}">{{ music.title }}</a><br>
         {% endfor %}
