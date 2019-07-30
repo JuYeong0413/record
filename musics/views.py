@@ -3,6 +3,8 @@ from .models import Music
 from django.core.paginator import Paginator
 import requests
 from bs4 import BeautifulSoup
+from playlists.models import Playlist
+from django.http import HttpResponse
 
 # Create your views here.
 # 노래 메인 페이지
@@ -121,3 +123,13 @@ def search(request):
         search_result = Music.objects.filter(singer__contains=query)
 
     return render(request,'musics/search.html', {'search_result': search_result})
+
+# 기존 플레이리스트 생성 플레이리스트 보여주기
+def show_playlists(request):
+    user = request.user
+    playlists = Playlist.objects.filter(creator=user)
+    return render(request, 'musics/show_playlists.html', {'playlists':playlists})
+
+def add_music(request, playlist_id):
+    playlist = Playlist.objects.get(pk=playlist_id)
+

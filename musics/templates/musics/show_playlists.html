@@ -1,0 +1,10 @@
+{% for playlist in playlists %}
+    {{playlist.title}}
+    <form action ="{% url 'musics:add_music' playlist.id %}?music={{music.id}}" method ="POST">
+        {% csrf_token %}
+        <input type ="radio" name="music_id" value = "{}">
+        {% endfor %}
+        <input type="submit" class ="btn btn-primary">
+    </form>
+
+

@@ -9,7 +9,8 @@ urlpatterns = [
     path('update/<int:id>/', views.update, name="update"),
     path('delete/<int:id>/', views.delete, name="delete"),
     path('edit/<int:id>/', views.edit, name="edit"),
-
+    
+    
     # likes
     path('<int:playlist_id>/like_toggle/', views.like_toggle, name="like_toggle"),
 

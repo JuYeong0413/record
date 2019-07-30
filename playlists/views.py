@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Playlist, Comment
 from django.core.paginator import Paginator
+from musics.models import Music
 
 # 플레이리스트 메인페이지
 def main(request):
@@ -15,6 +16,8 @@ def main(request):
 def show(request, id):
     playlist = get_object_or_404(Playlist, pk=id)
     return render(request, 'playlists/show.html', {'playlist': playlist})
+
+
 
 
 # 플레이리스트 수정하기
@@ -34,8 +37,8 @@ def edit(request, id):
 
 def update(request, id):
     playlist = get_object_or_404(Playlist, pk=id)
+
     if request.method == "POST":
-        playlist.music = request.POST.get('music')
         playlist.kinds = request.POST.get('kinds')
         playlist.tags = request.POST.get('tags')
         
@@ -50,6 +53,7 @@ def update(request, id):
             playlist.kinds = 1
 
         playlist.save()
+
     return redirect('playlists:show', id)
 
 
@@ -103,4 +107,9 @@ def search(request):
     query = request.GET.get('query')
     search_result = Playlist.objects.filter(title__contains=query)
     return render(request, 'playlists/search.html', {'search_result': search_result})
+
+
+
+
+
 
