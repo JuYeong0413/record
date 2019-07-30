@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Playlist, Comment
+from musics.models import Music
 from django.core.paginator import Paginator
 
 # 플레이리스트 메인페이지
@@ -116,9 +117,44 @@ def delete_music(request, playlist_id, music_id):
 def search(request):
     query = request.GET.get('query')
     search_list = Playlist.objects.filter(title__contains=query)
-
     paginator = Paginator(search_list, 10)
     page = request.GET.get('page')
     search_result = paginator.get_page(page)
     return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list':search_list})
+
+
+#새 플레이리스트 생성
+def new(request):
+    user = request.user
+    if user.is_anonymous:
+        return redirect('account_login')
+
+    if request.method == "POST":
+        playlist = Playlist()
+        playlist.creator = user
+        playlist.title = request.POST.get('title')
+        playlist.description = request.POST.get('description')
+        playlist.tags = request.POST.get('tags')
+        playlist.kinds = request.POST.get('kinds')
+
+        if request.FILES.get('cover'):
+            playlist.cover = request.FILES.get('cover')
+
+        if playlist.kinds == "public":
+            playlist.kinds = 0
+        else:
+            playlist.kinds = 1
+        
+        playlist.save()
+
+        music_id = request.POST.get('music_id')
+        music = Music.objects.get(pk=music_id)
+        playlist.musics.add(music)
+        
+        return redirect('playlists:show', playlist.id)
+    else:
+        return render(request,'playlists/new.html')
+
+    
+
 

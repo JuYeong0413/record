@@ -86,6 +86,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 				<h5 class="modal-title" id="addPlaylistLabel">플레이리스트에 추가하기</h5>
+				<a href ="{% url 'playlists:new' %}?music={{ music.id }}">새 플레이리스트 </a>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
