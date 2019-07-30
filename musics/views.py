@@ -263,8 +263,12 @@ def search(request):
     query = request.GET.get('query')
 
     if option == "title":
-        search_result = Music.objects.filter(title__contains=query)
+        search_list = Music.objects.filter(title__contains=query)
     else:
-        search_result = Music.objects.filter(singer__contains=query)
+        search_list = Music.objects.filter(singer__contains=query)
 
-    return render(request,'musics/search.html', {'search_result': search_result})
+    paginator = Paginator(search_list, 10)
+    page = request.GET.get('page')
+    search_result = paginator.get_page(page)
+
+    return render(request,'musics/search.html', {'search_result': search_result, 'search_list':search_list})

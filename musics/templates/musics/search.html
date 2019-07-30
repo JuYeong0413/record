@@ -28,7 +28,7 @@
 <!-- End Head Section -->
 
 <div>
-    {% if search_result.exists %}
+    {% if search_list.exists %}
         {% for result in search_result %}
         <a href="{% url 'musics:show' result.id %}">{{ result.title }}</a>
         {% endfor %}

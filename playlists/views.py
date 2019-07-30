@@ -115,6 +115,10 @@ def delete_music(request, playlist_id, music_id):
 # 검색
 def search(request):
     query = request.GET.get('query')
-    search_result = Playlist.objects.filter(title__contains=query)
-    return render(request, 'playlists/search.html', {'search_result': search_result})
+    search_list = Playlist.objects.filter(title__contains=query)
+
+    paginator = Paginator(search_list, 10)
+    page = request.GET.get('page')
+    search_result = paginator.get_page(page)
+    return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list':search_list})
 
