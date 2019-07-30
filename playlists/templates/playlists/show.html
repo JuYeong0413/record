@@ -38,8 +38,10 @@
             {{ music.singer }}
             {{ music.link }}
             {{ music.genre}}
+            <a href ="{% url 'playlists:delete_music' playlist.id  music.id %}">음악삭제</a>
 
         {% endfor %}
+        <br><br>
 
         {% for tag in playlist.tags.all %}
         ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>

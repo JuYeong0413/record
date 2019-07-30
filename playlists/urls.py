@@ -10,6 +10,9 @@ urlpatterns = [
     path('delete/<int:id>/', views.delete, name="delete"),
     path('edit/<int:id>/', views.edit, name="edit"),
 
+    #음악 삭제
+    path('delete_music/<int:playlist_id>/<int:music_id>/', views.delete_music, name = "delete_music"),
+    
     #tag
     path('tag/<int:playlist_id>/<int:tag_id>/', views.tag, name="tag"),
 
