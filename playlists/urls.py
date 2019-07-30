@@ -12,7 +12,10 @@ urlpatterns = [
 
     #음악 삭제
     path('delete_music/<int:playlist_id>/<int:music_id>/', views.delete_music, name = "delete_music"),
-    
+
+    #새플레이리스트 생성
+    path('new/', views.new, name="new"),
+
     #tag
     path('tag/<int:playlist_id>/<int:tag_id>/', views.tag, name="tag"),
 
