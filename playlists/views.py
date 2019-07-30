@@ -99,7 +99,7 @@ def like_toggle(request, playlist_id):
 
 
 #태그 검색
-def tag(request, playlist_id, tag_id ):
+def tag(request, playlist_id, tag_id):
     playlist = get_object_or_404(Playlist, pk=playlist_id)
     tag = playlist.tags.get(pk=tag_id)
     sorted_playlists = Playlist.objects.filter(tags__name__in=[tag])
