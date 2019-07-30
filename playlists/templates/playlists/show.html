@@ -42,6 +42,7 @@
 
         {% endfor %}
         <br><br>
+        {{ playlist.description }}
 
         {% for tag in playlist.tags.all %}
         ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>
