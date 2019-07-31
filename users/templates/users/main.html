@@ -31,6 +31,15 @@
     <img src="{{ user_profile.image.url }}" alt=""><br>
     username : {{ user_profile.username }}<br>
     {{ user_profile.introduction }}<br>
+    <!-- 팔로우, 팔로잉 -->
+    {% if user != user_profile %}
+        {% if user in user_profile.followers.all %}
+            <a href="{% url 'users:follow_toggle' user_profile.id %}" class="btn btn-info">팔로우 취소</a><br>
+        {% else %}
+            <a href ="{% url 'users:follow_toggle' user_profile.id %}" class="btn btn-info">팔로우</a><br>
+        {% endif %}
+    {% endif %}
+    <!-- /팔로우, 팔로잉 -->
     팔로우 <a href="#">{{ user_profile.followers.count }}</a>명<br>
     팔로잉 <a href="#">{{ user_profile.followings.count }}</a>명<br>
 

@@ -3,6 +3,7 @@ from .models import Playlist, Comment
 from musics.models import Music
 from django.core.paginator import Paginator
 from musics.models import Music
+from users.models import User
 
 # 플레이리스트 메인페이지
 def main(request):
@@ -104,7 +105,7 @@ def like_toggle(request, playlist_id):
     return redirect('playlists:show', playlist_id)
 
 
-#태그 검색
+# 태그 검색
 def tag(request, playlist_id, tag_id):
     playlist = get_object_or_404(Playlist, pk=playlist_id)
     tag = playlist.tags.get(pk=tag_id)
@@ -112,7 +113,7 @@ def tag(request, playlist_id, tag_id):
     return render(request, 'playlists/tag.html', {'sorted_playlists':sorted_playlists})
 
 
-#음악삭제하기
+# 음악 삭제하기
 def delete_music(request, playlist_id, music_id):
     playlist = get_object_or_404(Playlist, pk = playlist_id)
     music = playlist.musics.get(pk=music_id)
@@ -129,7 +130,7 @@ def search(request):
     return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list':search_list})
 
 
-#새 플레이리스트 생성
+# 새 플레이리스트 생성
 def new(request):
     user = request.user
     if user.is_anonymous:
@@ -164,10 +165,19 @@ def new(request):
         return render(request,'playlists/new.html')
 
     
+# 팔로우, 언팔로우
+def follow_toggle(request, id):
+    user = request.user
+    if user.is_anonymous:
+        return redirect('account_login')
+    
+    followed_user = get_object_or_404(User, pk=id)
 
+    is_follower = user in followed_user.followers.all()
 
+    if is_follower:
+        user.followings.remove(followed_user)
+    else:
+        user.followings.add(followed_user)
 
-
-
-
-
+    return redirect('playlists:main')

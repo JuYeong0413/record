@@ -53,7 +53,7 @@ def follow_toggle(request, id):
     else:
         user.followings.add(followed_user)
 
-    return redirect('playlists:main')
+    return redirect('users:main', id)
 
 
 # 작성한 노래 게시글

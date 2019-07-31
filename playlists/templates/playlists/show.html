@@ -30,7 +30,7 @@
 <div style="margin-bottom:200px;">
         
     <!-- 플레이리스트 데이터 -->          
-        {{ playlist.creator }}<br>
+        <a href="{% url 'users:main' playlist.creator.id %}">{{ playlist.creator }}</a><br>
 
         {% for music in playlist.musics.all %}
             <br>
@@ -98,20 +98,20 @@
     {% else %}
         <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요</a>    
     {% endif %}
-    <!-- 좋아요 -->
+    <!-- /좋아요 -->
 
     
     <!-- 팔로우, 팔로잉 -->
     {% if request.user != playlist.creator %}
         {% if user in playlist.creator.followers.all %}
         <br>
-        <a href="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우 취소</a>
+        <a href="{% url 'playlists:follow_toggle' playlist.creator.id %}">팔로우 취소</a>
         {% else %}
         <br>
-        <a href ="{% url 'users:follow_toggle' playlist.creator.id %}">팔로우</a>
+        <a href ="{% url 'playlists:follow_toggle' playlist.creator.id %}">팔로우</a>
         {% endif %}
     {% endif %}
-    <!-- 팔로우, 팔로잉 -->
+    <!-- /팔로우, 팔로잉 -->
 </div>
 
 {% endblock %}
