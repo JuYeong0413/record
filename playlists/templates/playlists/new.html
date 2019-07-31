@@ -34,8 +34,8 @@
         <input type="hidden" name="music_id" value="{{ request.GET.music }}">
         제목: <input type="text" name ="title"><br>
         커버사진: <input type="file" name ="cover"><br>
-        <input type ="radio" name="kinds" value = "private">private
-        <input type ="radio" name ="kinds" value ="public">public
+        <input type ="radio" name ="kinds" value ="0" checked>공개
+        <input type ="radio" name="kinds" value="1">비공개
         <br>
         설명: <input type ="text" name = "description"><br>
         태그 입력: <input type = "text" name = "tags"><br>

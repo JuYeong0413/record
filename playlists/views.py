@@ -19,8 +19,6 @@ def show(request, id):
     return render(request, 'playlists/show.html', {'playlist': playlist})
 
 
-
-
 # 플레이리스트 수정하기
 def edit(request, id):
     user = request.user
@@ -144,11 +142,6 @@ def new(request):
 
         if request.FILES.get('cover'):
             playlist.cover = request.FILES.get('cover')
-
-        if playlist.kinds == "public":
-            playlist.kinds = 0
-        else:
-            playlist.kinds = 1
         
         playlist.save()
 

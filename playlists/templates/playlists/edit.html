@@ -32,8 +32,13 @@
         {% csrf_token %}
         <input type="text" name ="title" value="{{ playlist.title }}"><br>
         <input type="file" name ="cover">{{ playlist.cover }}<br>
-        <input type ="radio" name="kinds" value = "private">private
-        <input type ="radio" name ="kinds" value ="public">public
+        {% if playlist.kinds == 0 %}
+            <input type ="radio" name ="kinds" value ="0" checked>공개
+            <input type ="radio" name="kinds" value="1">비공개
+            {% else %}
+            <input type ="radio" name ="kinds" value ="0">공개
+            <input type ="radio" name="kinds" value="1" checked>비공개
+        {% endif %}
         
         <br>
         <input type="text" name ="tags" value ="{{ content }}">
