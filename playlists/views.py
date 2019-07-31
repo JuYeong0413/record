@@ -6,7 +6,7 @@ from musics.models import Music
 
 # 플레이리스트 메인페이지
 def main(request):
-    playlists_list = Playlist.objects.all().order_by('-id')
+    playlists_list = Playlist.objects.filter(kinds=0).order_by('-id')
     paginator = Paginator(playlists_list, 10)
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
