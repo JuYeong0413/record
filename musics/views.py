@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+import os
 from playlists.models import Playlist
 from django.http import HttpResponse
 
@@ -70,7 +71,11 @@ def create(request):
         music.lyrics = lyrics
 
         # crawling video link
-        driver = webdriver.Chrome(executable_path='./chromedriver')
+        if os.name == 'nt':
+            driver = webdriver.Chrome(executable_path='./chromedriver.exe')
+        else:
+            driver = webdriver.Chrome(executable_path='./chromedriver')
+
         driver.set_window_position(-10000,0)
         driver.get('https://music.youtube.com/search?q={}+{}'.format(singer, title))
         time.sleep(2)
@@ -175,6 +180,11 @@ def update(request, music_id):
         music.lyrics = lyrics
 
         # crawling video link
+        if os.name == 'nt':
+            driver = webdriver.Chrome(executable_path='./chromedriver.exe')
+        else:
+            driver = webdriver.Chrome(executable_path='./chromedriver')
+            
         driver = webdriver.Chrome(executable_path='./chromedriver')
         driver.set_window_position(-10000,0)
         driver.get('https://music.youtube.com/search?q={}+{}'.format(singer, title))
