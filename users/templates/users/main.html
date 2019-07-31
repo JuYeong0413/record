@@ -31,6 +31,7 @@
     <img src="{{ user_profile.image.url }}" alt=""><br>
     username : {{ user_profile.username }}<br>
     {{ user_profile.introduction }}<br>
+
     <!-- 팔로우, 팔로잉 -->
     {% if user != user_profile %}
         {% if user in user_profile.followers.all %}
@@ -40,8 +41,16 @@
         {% endif %}
     {% endif %}
     <!-- /팔로우, 팔로잉 -->
-    팔로우 <a href="#">{{ user_profile.followers.count }}</a>명<br>
-    팔로잉 <a href="#">{{ user_profile.followings.count }}</a>명<br>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#followModal">
+        팔로우 {{ user_profile.followers.count }}명
+    </button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#followingModal">
+        팔로잉 {{ user_profile.followings.count }}명
+    </button>
+
+    <br>
 
     <a href="{% url 'users:musics' user_profile.id %}">작성한 노래 게시글</a><br>
     <a href="{% url 'users:playlists' user_profile.id %}">생성한 플레이리스트</a><br>
@@ -51,5 +60,50 @@
         <a href="{% url 'users:edit' user_profile.id %}">회원정보 수정</a>
     {% endif %}
 </div>
+
+
+<!-- Follow Modal -->
+<div class="modal" id="followModal" tabindex="-1" role="dialog" aria-labelledby="followModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="followModalLabel">팔로우 목록</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% for follower in user_profile.followers.all %}
+                    <a href="{% url 'users:main' follower.id %}">{{ follower.username }}</a>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Following Modal -->
+<div class="modal" id="followingModal" tabindex="-1" role="dialog" aria-labelledby="followingModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="followingModalLabel">팔로잉 목록</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% for following in user_profile.followings.all %}
+                        <a href="{% url 'users:main' following.id %}">{{ following.username }}</a>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
