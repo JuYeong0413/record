@@ -9,7 +9,6 @@ import time
 from playlists.models import Playlist
 from django.http import HttpResponse
 
-# Create your views here.
 # 노래 메인 페이지
 def main(request):
     music_list = Music.objects.all().order_by('-id')
