@@ -36,9 +36,9 @@
 
     <a href="{% url 'users:musics' user.id %}">작성한 노래 게시글</a><br>
     <a href="{% url 'users:playlists' user.id %}">생성한 플레이리스트</a><br>
-    
+    <a href="{% url 'users:likes' user.id %}">좋아하는 플레이리스트</a><br>
+
     {% if user == user_profile %}
-        <a href="{% url 'users:likes' user.id %}">내가 좋아하는 플레이리스트</a><br>
         <a href="{% url 'users:edit' user.id %}">회원정보 수정</a>
     {% endif %}
 </div>
