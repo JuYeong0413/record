@@ -69,6 +69,10 @@ def delete(request, id):
 
 # 댓글생성
 def create_comment(request, playlist_id):
+    user = request.user
+    if user.is_anonymous:
+        return redirect('account_login')
+
     if request.method == "POST":
         user = request.user
         if user.is_anonymous:

@@ -37,7 +37,9 @@
             {{ music.title }}
             {{ music.singer }}
             {{ music.genre}}
-            <a href ="{% url 'playlists:delete_music' playlist.id  music.id %}">음악삭제</a>
+            {% if user == playlist.creator %}
+                <a href ="{% url 'playlists:delete_music' playlist.id  music.id %}">음악삭제</a>
+            {% endif %}
 
         {% endfor %}
         <br><br>

@@ -27,6 +27,10 @@ def show(request, music_id):
 
 # 노래 게시글 작성 페이지
 def new(request):
+    user = request.user
+    if user.is_anonymous:
+        return redirect('account_login')
+        
     return render(request, 'musics/new.html')
 
 
