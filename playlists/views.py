@@ -54,12 +54,6 @@ def update(request, id):
             playlist.cover = request.FILES.get('cover')
 
         playlist.title = request.POST.get('title')
-        
-        if playlist.kinds == "public":
-            playlist.kinds = 0
-        else:
-            playlist.kinds = 1
-
         playlist.save()
 
     return redirect('playlists:show', id)
