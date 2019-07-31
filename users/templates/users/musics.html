@@ -30,7 +30,10 @@
 <div>
     {% if music_lists.exists %}
         {% for music in musics %}
-            <a href="{% url 'musics:show' music.pk %}">{{ music.title }}</a><br>
+            <a href="{% url 'musics:show' music.pk %}">
+                {{ music.title }} - {{ music.singer }}
+            </a>
+            <br>
         {% endfor %}
     {% else %}
         <h3>작성한 노래 게시글이 없습니다.</h3>

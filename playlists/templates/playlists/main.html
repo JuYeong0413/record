@@ -30,12 +30,13 @@
 <div>
     {% for playlist in playlists %}
         {% if playlist.kinds == 0 or playlist.kinds == 1 %}
-            <a href ="{% url 'playlists:show' playlist.id %}">show</a>
-            <p>{{ playlist.title }}</p>
-            <p>{{ playlist.creator}}</p>
-            {% if playlist.cover %}
-                <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
-            {% endif %}
+            <a href ="{% url 'playlists:show' playlist.id %}">
+                {{ playlist.title }}<br>
+                {{ playlist.creator }}<br>
+                {% if playlist.cover %}
+                    <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+                {% endif %}
+            </a>
         {% endif %}
     {% endfor %}
 

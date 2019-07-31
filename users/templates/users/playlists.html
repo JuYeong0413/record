@@ -29,7 +29,13 @@
 
 {% if playlist_lists.exists %}
     {% for playlist in playlists %}
-        <a href="{% url 'playlists:show' playlist.pk %}">{{ playlist.title }}</a><br>
+        <a href ="{% url 'playlists:show' playlist.id %}">
+            {{ playlist.title }}<br>
+            {{ playlist.creator }}<br>
+            {% if playlist.cover %}
+                <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+            {% endif %}    
+        </a>
     {% endfor %}
 {% else %}
     <h3>생성한 플레이리스트가 없습니다.</h3>
