@@ -29,8 +29,11 @@ def edit(request, id):
     if user == playlist.creator:
         tags = playlist.tags.all()
         content = ""
+        
         for tag in tags:
-            content += "♬" + str(tag)
+            content += str(tag)+','
+            playlist.tags.remove(tag)
+
         return render(request, 'playlists/edit.html', {"playlist": playlist, 'content': content })
     else:
         return redirect('playlists:show', id)
@@ -41,7 +44,13 @@ def update(request, id):
 
     if request.method == "POST":
         playlist.kinds = request.POST.get('kinds')
-        playlist.tags = request.POST.get('tags')
+        tags = request.POST.get('tags')
+        
+        list=[]
+        list = tags.split(',') or tags.split(' ') 
+        
+        for tag in list:
+            playlist.tags.add(tag)
         
         if request.FILES.get('cover'):
             playlist.cover = request.FILES.get('cover')
@@ -139,9 +148,9 @@ def new(request):
         playlist.creator = user
         playlist.title = request.POST.get('title')
         playlist.description = request.POST.get('description')
-        playlist.tags = request.POST.get('tags')
         playlist.kinds = request.POST.get('kinds')
-
+        tags = request.POST.get('tags')
+        
         if request.FILES.get('cover'):
             playlist.cover = request.FILES.get('cover')
 
@@ -151,6 +160,13 @@ def new(request):
             playlist.kinds = 1
         
         playlist.save()
+    
+        list=[]
+        list = tags.split(',') 
+        
+        for tag in list:
+            playlist.tags.add(tag)
+
 
         music_id = request.POST.get('music_id')
         music = Music.objects.get(pk=music_id)
