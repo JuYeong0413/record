@@ -115,7 +115,7 @@ def tag(request, playlist_id, tag_id):
 def delete_music(request, playlist_id, music_id):
     playlist = get_object_or_404(Playlist, pk = playlist_id)
     music = playlist.musics.get(pk=music_id)
-    music.delete()
+    playlist.musics.remove(music)
     return redirect('playlists:show', playlist_id)
 
 # 검색
