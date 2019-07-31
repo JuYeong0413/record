@@ -106,6 +106,7 @@ def tag(request, playlist_id, tag_id):
     sorted_playlists = Playlist.objects.filter(tags__name__in=[tag])
     return render(request, 'playlists/tag.html', {'sorted_playlists':sorted_playlists})
 
+
 #음악삭제하기
 def delete_music(request, playlist_id, music_id):
     playlist = get_object_or_404(Playlist, pk = playlist_id)

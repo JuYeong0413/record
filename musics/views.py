@@ -4,7 +4,6 @@ from django.core.paginator import Paginator
 import requests
 from bs4 import BeautifulSoup
 
-# Create your views here.
 # 노래 메인 페이지
 def main(request):
     music_list = Music.objects.all().order_by('-id')
