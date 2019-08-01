@@ -1,0 +1,35 @@
+/*전체적인 폰트 */
+@font-face { 
+    font-family: 'GyeonggiBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*navbar.html css*/
+.main-nav.dark {
+    background-color: #FFF8E5;
+}
+.main-nav.dark .mobile-nav {
+    color: #34495E;
+}
+.main-nav.dark .inner-nav ul > li > a.active {
+    color: #34495E;
+}
+.main-nav.dark .inner-nav ul > li > a {
+    color: #34495E;
+}
+
+/*base.html css*/
+.slogan {
+    background-color: #E8E5D2;
+    height:100px;
+    text-align: center;
+    font-family: 'GyeonggiBatang';
+    font-size: x-large
+}
+hr {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    height: 10px;
+}
