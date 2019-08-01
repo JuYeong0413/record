@@ -27,21 +27,91 @@
     </section>
 <!-- End Head Section -->
 
-<div>
-    {% if search_list.exists %}
-        {% for result in search_result %}
-        {% if result.kinds == 0 or result.kinds == 1 %}
-            <a href ="{% url 'playlists:show' result.id %}">show</a>
-            <p>{{ result.title }}</p>
-            <p>{{ result.creator}}</p>
-            {% if result.cover %}
-                <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+<!-- Search Section -->
+<section class="small-section">
+        <div class="container relative">
+            
+            <!-- Search -->
+          
+
+            <form class="form-inline form" action="{% url 'playlists:search' %}" role="form">
+                <div class="search-wrap">
+                    <button class="search-button animate" type="submit" title="Start Search">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <input type="text" class="form-control search-field" placeholder="검색어" name="query">
+                </div>
+            </form>
+            
+            <!-- End Search -->
+            
+        </div>
+    </section>
+<!-- End Search Section -->
+
+<!-- Divider -->
+<hr class="mt-0 mb-0"/>
+<!-- End Divider -->
+
+
+<!-- Section -->
+<section class="page-section">
+        <div class="container relative">
+            
+            <div class="row masonry">
+                {% if search_list.exists %}
+                    {% for result in search_result %}
+                        {% if result.kinds == 0 or result.kinds == 1 %}
+                        <a href ="{% url 'playlists:show' result.id %}">
+                        <!-- Post Item -->
+                        <div class="col-sm-6 col-md-4 col-lg-4 mb-60 mb-xs-40">
+                            
+                            <div class="post-prev-img">
+                                {% if result.cover %}
+                                    <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+                                {% endif %}
+                            </div>
+                        
+                            <div class="post-prev-title font-alt">
+                                {{ result.title }}  
+                            </div>
+                            
+                            <div class="post-prev-info font-alt">
+                                {{ result.creator }}
+                            </div>
+                            
+                            
+                        </div>
+                        <!-- End Post Item -->
+                        </a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <h3>검색 결과가 없습니다.</h3>
+                {% endif %}
+                        
+                        
+            </div>
+                    
+            <!-- Pagination -->
+            {% if playlists.has_previous%}
+            <a href="?page=1">first</a>
+            <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
             {% endif %}
-    {% endif %}
-        {% endfor %}
-    {% else %}
-        <h3>검색 결과가 없습니다.</h3>
-    {% endif %}
-</div>
+
+            <span>{{ playlists.number }}</span>
+            <span>of</span>
+            <span>{{ playlists.paginator.num_pages }}</span>
+
+            {% if playlists.has_next %}
+            <a href = "?page={{ playlists.next_page_number }}">Next</a>
+            <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+            {% endif %}
+            <!-- End Pagination -->
+            
+            
+        </div>
+    </section>
+<!-- End Section -->
 
 {% endblock %}

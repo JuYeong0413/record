@@ -27,41 +27,86 @@
     </section>
 <!-- End Head Section -->
 
-<div>
-    {% for playlist in playlists %}
-        {% if playlist.kinds == 0 or playlist.kinds == 1 %}
-            <a href ="{% url 'playlists:show' playlist.id %}">
-                {{ playlist.title }}<br>
-                {{ playlist.creator }}<br>
-                {% if playlist.cover %}
-                    <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
-                {% endif %}
-            </a>
-        {% endif %}
-    {% endfor %}
+<!-- Search Section -->
+<section class="small-section">
+        <div class="container relative">
+            
+            <!-- Search -->
+          
 
-
-   {% if playlists.has_previous%}
-   <a href="?page=1">first</a>
-   <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
-   {% endif %}
-
-   <span>{{ playlists.number }}</span>
-   <span>of</span>
-   <span>{{ playlists.paginator.num_pages }}</span>
-
-   {% if playlists.has_next %}
-   <a href = "?page={{ playlists.next_page_number }}">Next</a>
-   <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
-   {% endif %}
-
-    <form action="{% url 'playlists:search' %}">
-        <div class="input-group col-12">     
-            <input type="text" class="form-control" placeholder="검색어" name="query">
-            <div class="input-group-append">
-                <input type="submit" class="btn btn-primary" value="검색">
-            </div>
+            <form class="form-inline form" action="{% url 'playlists:search' %}" role="form">
+                <div class="search-wrap">
+                    <button class="search-button animate" type="submit" title="Start Search">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <input type="text" class="form-control search-field" placeholder="검색어" name="query">
+                </div>
+            </form>
+            
+            <!-- End Search -->
+            
         </div>
-    </form>
-</div>
+    </section>
+<!-- End Search Section -->
+
+<!-- Divider -->
+<hr class="mt-0 mb-0"/>
+<!-- End Divider -->
+
+
+<!-- Section -->
+<section class="page-section">
+        <div class="container relative">
+            
+            <div class="row masonry">
+                {% for playlist in playlists %}
+                    {% if playlist.kinds == 0 or playlist.kinds == 1 %}
+                        <a href ="{% url 'playlists:show' playlist.id %}">
+                        <!-- Post Item -->
+                        <div class="col-sm-6 col-md-4 col-lg-4 mb-60 mb-xs-40">
+                            
+                            <div class="post-prev-img">
+                                {% if playlist.cover %}
+                                    <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+                                {% endif %}
+                            </div>
+                        
+                            <div class="post-prev-title font-alt">
+                                {{ playlist.title }}  
+                            </div>
+                            
+                            <div class="post-prev-info font-alt">
+                                {{ playlist.creator }}
+                            </div>
+                            
+                        </div>
+                        <!-- End Post Item -->
+                        </a>
+                    {% endif %}
+                {% endfor %}
+                        
+                        
+            </div>
+                    
+            <!-- Pagination -->
+            {% if playlists.has_previous%}
+            <a href="?page=1">first</a>
+            <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+            {% endif %}
+
+            <span>{{ playlists.number }}</span>
+            <span>of</span>
+            <span>{{ playlists.paginator.num_pages }}</span>
+
+            {% if playlists.has_next %}
+            <a href = "?page={{ playlists.next_page_number }}">Next</a>
+            <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+            {% endif %}
+            <!-- End Pagination -->
+            
+            
+        </div>
+    </section>
+<!-- End Section -->
+
 {% endblock %}
