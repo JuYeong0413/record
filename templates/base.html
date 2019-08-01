@@ -21,7 +21,8 @@
         <link rel="stylesheet" href="{% static 'rhythm/css/animate.min.css' %}">
         <link rel="stylesheet" href="{% static 'rhythm/css/vertical-rhythm.min.css' %}">
         <link rel="stylesheet" href="{% static 'rhythm/css/owl.carousel.css' %}">
-        <link rel="stylesheet" href="{% static 'rhythm/css/magnific-popup.css' %}">        
+        <link rel="stylesheet" href="{% static 'rhythm/css/magnific-popup.css' %}"> 
+        <link rel="stylesheet" type="text/css" href="{% static 'bobae/css/bobae.css' %}">        
         
         <!-- bootstrap4 -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
@@ -30,14 +31,15 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
            
     </head>
-    <body class="appear-animate">
+    <body class="appear-animate" style="background-color: #FFF8E5;">
         
         <!-- Page Loader -->        
         <div class="page-loader">
             <div class="loader">Loading...</div>
         </div>
         <!-- End Page Loader -->
-        
+        <!--record slogan-->
+        <div class="slogan"><img src="{% static 'bobae/images/logoimage.png' %}" alt="" />내가 좋아하는 음악을 RECORD에 RE:CORD하다.</div>
         <!-- Page Wrap -->
         <div class="page" id="top">
                  
@@ -47,7 +49,6 @@
 
             {% endblock %}
             <br>
-        
         </div>
         <!-- End Page Wrap -->
 
