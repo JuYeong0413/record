@@ -8,7 +8,6 @@ from selenium.webdriver.common.keys import Keys
 import time
 import os
 from playlists.models import Playlist
-from django.http import HttpResponse
 
 # 노래 메인 페이지
 def main(request):
@@ -294,5 +293,11 @@ def show_playlists(request):
     playlists = Playlist.objects.filter(creator=user)
     return render(request, 'musics/show_playlists.html', {'playlists':playlists})
 
+# 기존 플레이리스트에 곡 추가
 def add_music(request, playlist_id):
-    playlist = Playlist.objects.get(pk=playlist_id)
+    if request.method == "POST":
+        playlist = get_object_or_404(Playlist, pk=playlist_id)
+        music_id = request.POST.get('music_id')
+        music = Music.objects.get(pk=music_id)
+        playlist.musics.add(music)
+        return redirect('playlists:show', playlist_id)
