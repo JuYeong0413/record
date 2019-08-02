@@ -27,14 +27,124 @@
 </section>
 <!-- End Head Section -->
 
-<div>
-    {% if search_list.exists %}
-        {% for result in search_result %}
-        <a href="{% url 'musics:show' result.id %}">{{ result.title }}</a>
-        {% endfor %}
-    {% else %}
-        <h3>검색 결과가 없습니다.</h3>
-    {% endif %}
-</div>
+<!-- Search Section -->
+<section class="small-section">
+        <div class="container relative">
+
+            <!-- Search -->
+            <form class="form-inline form" action="{% url 'musics:search' %}" role="form">
+                <div class="search-wrap">
+                        <div class="form-group">
+                                <select class="form-control col-md-2" name="option">
+                                    <option value="title">제목</option>
+                                    <option value="singer">가수명</option>
+                                </select>
+                                <div class="search-wrap">
+                                        <button class="search-button animate" type="submit" title="Start Search">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                        <input type="text" class="form-control search-field" placeholder="검색어" name="query">
+                                </div>
+                                
+                        </div>
+
+                </div>
+            </form>
+            
+            <!-- End Search -->
+            
+        </div>
+</section>
+<!-- End Search Section -->
+
+<!-- Section -->
+<section class="page-section">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    {% if search_list.exists %}
+                    <table class="table table-striped shopping-cart-table">
+                        <tr>
+                            <th class="hidden-xs">
+                                
+                            </th>
+                            <th>
+                                제목
+                            </th>
+                            <th>
+                                가수
+                            </th>
+                            <th>
+                                작성자
+                            </th>
+                            <th>
+                                삭제
+                            </th>
+                        </tr>
+                        
+
+                        {% for result in search_result %}
+                        
+                        <tr>
+                            <td class="hidden-xs">
+                                <img src="{% static 'hyojeong/images/lp.png' %}" alt="" width=50px height=50px style="margin-left: auto; margin-right: auto; display: block;"/>
+                            </td>
+                            <td>
+                                <a href="{% url 'musics:show' result.id %}">{{ result.title }}</a>
+                            </td>
+                            <td>
+                                {{ result.singer }}
+                            </td>
+                            <td>
+                                {{ result.writer }}
+                            </td>
+                            <td>
+                                <a href=""><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                            </td>
+                        </tr>
+                        
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                        <h3>검색 결과가 없습니다.</h3>
+                    {% endif %}
+
+                    <hr />
+                    <div class="col-sm-8">
+                            
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-sm-4 text align-right">
+                            
+                            <div>
+                                <a href="{% url 'musics:new' %}" class="btn btn-mod btn-gray btn-round btn-small">곡 등록하기</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <!--pagination-->
+                    <hr class="mb-60" />
+                    {% if musics.has_previous %}
+                        <a href = "?page=1">맨 앞으로</a>
+                        <a href="?page={{ musics.previous_page_number }}"> 이전으로</a>
+                    {% endif %}            
+                        <span>{{ musics.number }}</span>
+                        <span> of </span>    
+                        <span>{{ musics.paginator.num_pages }}</span>    
+                    {% if musics.has_next %}
+                        <a href="?page={{ musics.next_page_number }}">다음으로</a>
+                        <a href="?page={{ musics.paginator.num_page }}">맨 뒤로</a>        
+
+                    {% endif %}
+                </div>
+            </div>
+        
+        </div>
+    </section>
+<!-- End Section -->
+
 
 {% endblock %}
