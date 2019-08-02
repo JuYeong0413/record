@@ -17,7 +17,7 @@
                 
                 <div class="col-md-4 mt-30">
                     <div class="mod-breadcrumbs font-alt align-right">
-                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">Users</a>&nbsp;/&nbsp;<span>Musics</span>
+                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">My Page</a>&nbsp;/&nbsp;<span>Musics</span>
                     </div>
                     
                 </div>
@@ -27,17 +27,114 @@
     </section>
 <!-- End Head Section -->
 
-<div>
-    {% if music_lists.exists %}
-        {% for music in musics %}
-            <a href="{% url 'musics:show' music.pk %}">
-                {{ music.title }} - {{ music.singer }}
-            </a>
-            <br>
-        {% endfor %}
-    {% else %}
-        <h3>작성한 노래 게시글이 없습니다.</h3>
-    {% endif %}
-</div>
+<!-- Section -->
+<section class="page-section">
+        <div class="container relative">
+            
+            <div class="row">
+                
+                
+                <!-- Sidebar -->
+                <div class="col-sm-4 col-md-3 sidebar">
+                    
+                    
+                    <!-- Widget -->
+                    <div class="widget">
+                        
+                        <h5 class="widget-title font-alt">Categories</h5>
+                        
+                        <div class="widget-body">
+                            <ul class="clearlist widget-menu">
+                                <li>
+                                    <a href="#" title="">Profile</a>
+                                    <small>
+                                        
+                                    </small>
+                                </li>
+                                <li>
+                                    <a href="#" title="">My Music</a>
+                                    <small>
+                                        
+                                    </small>
+                                </li>
+                                <li>
+                                    <a href="#" title="">My Playlists</a>
+                                    <small>
+                                        
+                                    </small>
+                                </li>
+                                <li>
+                                    <a href="#" title="">Playlists I Like</a>
+                                    <small>
+                                        
+                                    </small>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    <!-- End Widget -->
+                    
+                </div>
+                <!-- End Sidebar -->
+                
+                <!-- Content -->
+                <div class="col-sm-8 col-md-offset-1">
+                    
+                    <!-- Post -->
+                    <div class="blog-item">
+                        
+                        <!-- Post Title -->
+                        <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">My Music</a></h2>
+                        {% if music_lists.exists %}
+                        <table class="table table-striped shopping-cart-table">
+                                {% for music in musics %}
+                                <a href="{% url 'musics:show' music.pk %}">
+                                <tr>
+                                    <th class="hidden-xs">
+                                        
+                                    </th>
+                                    <th>
+                                        제목
+                                    </th>
+                                    <th>
+                                        가수
+                                    </th>
+                                    <th>
+                                        
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td class="hidden-xs">
+                                        <img src="{% static 'hyojeong/images/lp.png' %}" alt=""/>
+                                    </td>
+                                    <td>
+                                        {{ music.title }}
+                                    </td>
+                                    <td>
+                                        {{ music.singer }}
+                                    </td>
+                                    <td>
+                                        <a href=""><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                                    </td>
+                                </tr>
+                                </a>
+                                {% endfor %}
+                            </table>                            
+                            <hr />
+                        {% else %}
+                        <h3>작성한 노래 게시글이 없습니다.</h3>
+                        {% endif %}
+                    </div>
+                    <!-- End Post -->
+                    
+                </div>
+                <!-- End Content -->
+                
+            </div>
+            
+        </div>
+    </section>
+<!-- End Section -->
 
 {% endblock %}

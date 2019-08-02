@@ -17,7 +17,7 @@
                 
                 <div class="col-md-4 mt-30">
                     <div class="mod-breadcrumbs font-alt align-right">
-                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">Users</a>&nbsp;/&nbsp;<span>Edit</span>
+                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">My Page</a>&nbsp;/&nbsp;<span>Edit</span>
                     </div>
                     
                 </div>
@@ -27,17 +27,95 @@
     </section>
 <!-- End Head Section -->
 
-<div>
-    <form action="{% url 'users:update' user.pk %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <label>프로필사진</label>
-        <input type="file" name="image"><br>
-        <label>닉네임</label>
-        <input type="text" name="username" value="{{ user.username }}"><br>
-        <label>한줄소개</label>
-        <input type="text" name="introduction" value="{{ user.introduction }}"><br>
-        <input type="submit" class="btn btn-primary" value="수정">
-    </form>
-</div>
+
+<!-- Section -->
+ <section class="page-section">
+        <div class="container relative">
+           
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-sm-4 col-md-3 sidebar">
+    
+                    <!-- Widget -->
+                    <div class="widget">
+                        
+                            <h5 class="widget-title font-alt">Categories</h5>
+                            
+                            <div class="widget-body">
+                                <ul class="clearlist widget-menu">
+                                    <li>
+                                        <a href="#" title="">Profile</a>
+                                        <small>
+                                            
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="">My Music</a>
+                                        <small>
+                                            
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="">My Playlists</a>
+                                        <small>
+                                            
+                                        </small>
+                                    </li>
+                                    <li>
+                                        <a href="#" title="">Playlists I Like</a>
+                                        <small>
+                                            
+                                        </small>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                        <!-- End Widget -->
+                </div>
+                <!-- End Sidebar -->
+                
+                <!-- Content -->
+                <div class="col-sm-8 col-md-offset-1">
+                    
+                    <!-- Post -->
+                    <div class="blog-item">
+                        
+                        <!-- Post Title -->
+                        <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Profile Edit</a></h2>
+
+                        <div>
+                            <form action="{% url 'users:update' user.pk %}" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="blog-media">
+                                    <label>프로필사진</label>
+                                    <input type="file" name="image">
+                                </div>
+                                <br>
+                                <div class="team-item-name">
+                                    <label>닉네임</label>
+                                    <input type="text" name="username" value="{{ user.username }}">
+                                </div>
+                                <br>
+                                <blockquote class="blog-item-q">
+                                    <label>한줄소개</label>
+                                    <input type="text" name="introduction" value="{{ user.introduction }}">
+                                </blockquote>
+                                <br>
+                                <input type="submit" class="btn btn-primary" value="수정">
+                            </form>
+                        </div>
+    
+                    </div>
+                    <!-- End Post -->
+                    
+                </div>
+                <!-- End Content -->          
+            </div>
+            
+        </div>
+    </section>
+<!-- End Section -->
+
 
 {% endblock %}
