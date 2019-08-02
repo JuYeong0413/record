@@ -27,5 +27,5 @@ urlpatterns = [
     path('delete_comment/<int:comment_id>/', views.delete_comment, name="delete_comment"),
 
     # follow
-    path('follow_toggle/<int:id>/', views.follow_toggle, name="follow_toggle"),
+    path('follow_toggle/<int:id>/<int:playlist_id>/', views.follow_toggle, name="follow_toggle"),
 ]

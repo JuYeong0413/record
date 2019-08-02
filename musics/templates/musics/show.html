@@ -95,7 +95,7 @@
 				</div>
 				<div class="modal-footer">
 				<a href="{% url 'playlists:new' %}?music={{ music.id }}" class="btn btn-success">새 플레이리스트 생성하기</a>
-				<a href="{% url 'musics:show_playlists' %}?music={{ music.id }}" class = "btn btn-info">기존 플레이리스트에 추가</a>
+				<a href="{% url 'musics:add' %}?music={{ music.id }}" class = "btn btn-info">기존 플레이리스트에 추가</a>
 				</div>
 			</div>
 			</div>
