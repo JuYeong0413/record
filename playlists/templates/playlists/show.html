@@ -27,93 +27,256 @@
     </section>
 <!-- End Head Section -->
 
-<div style="margin-bottom:200px;">
-        
-    <!-- 플레이리스트 데이터 -->          
-        <a href="{% url 'users:main' playlist.creator.id %}">{{ playlist.creator }}</a><br>
-
-        {% for music in playlist.musics.all %}
-            <br>
-            {{ music.title }}
-            {{ music.singer }}
-            {{ music.genre}}
-            {% if user == playlist.creator %}
-                <a href ="{% url 'playlists:delete_music' playlist.id  music.id %}">음악삭제</a>
-            {% endif %}
-
-        {% endfor %}
-        <br><br>
-        {{ playlist.description }}
-
-        {% for tag in playlist.tags.all %}
-        ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>
-        {% endfor %}
-        <br>
-
-        {% if playlist.cover %}
-        <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
-        {% endif %}
-
-        {{ playlist.title }}<br>
-
-    <!-- /플레이리스트 데이터 -->
-
-    <!-- 플레이리스트 수정, 삭제 -->
-    {% if user == playlist.creator %}
-        <a href="{% url 'playlists:edit' playlist.pk %}">수정</a>
-        <a href ="{% url 'playlists:delete' playlist.pk %}">삭제</a>
-    {% endif %}
-    <!-- 플레이리스트 수정, 삭제-->
-
-    <!-- 등록된 댓글 -->
-    {% if playlist.comments %}
-        <div>
-            <ul class="list-group">
-                {% for comment in playlist.comments %}
-                <li class="list-group-item">
-                    <p>
-                        <a class="text-decoration-none" href="#"><b>{{ comment.user.username }}</b></a>
-                        {% if user == comment.writer %}
-                            <a href="{% url 'playlists:delete_comment' comment.id %}" style="float: right;">삭제</a></span>
+<!-- Section -->
+<section class="page-section">
+        <div class="container relative">
+            
+            <!-- Product Content -->
+            <div class="row mb-60 mb-xs-30">
+                
+                <!-- Product Images -->
+                <div class="col-md-4 mb-md-30">
+                    
+                    <div class="post-prev-img">
+                        {% if playlist.cover %}
+                            <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
                         {% endif %}
-                    </p>
-                    <p>{{ comment.message }}</p>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-    <!-- /등록된 댓글 -->
+                    </div>
+                    
+                </div>
+                <!-- End Product Images -->
+                
+                <!-- Product Description -->
+                <div class="col-sm-8 col-md-5 mb-xs-40">
+                    
+                    <h3 class="mt-0">{{ playlist.title }}</h3>
+                    
+                    <hr class="mt-0 mb-30"/>
+                    {% if user == playlist.creator %}
+                    <div class="row">
+                        <div class="col-xs-6 lead mt-0 mb-20">
+                            
+                            <a href="{% url 'playlists:edit' playlist.pk %}">수정</a> 
+                    
+                        </div>
+                        <div class="col-xs-6 align-right section-text">
+                            <a href ="{% url 'playlists:delete' playlist.pk %}">삭제</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <hr class="mt-0 mb-30"/> 
+                    
+                    <div class="section-text mb-30">
+                        {{ playlist.description }}
+                    </div>
+                    
+                    <hr class="mt-0 mb-30"/> 
+                    
+                    <div class="section-text small">
+                        <div>
+                            {% for tag in playlist.tags.all %}
+                            Tags: ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- End Product Description -->
+                
+                <!-- Features -->
+                <div class="col-sm-4 col-md-3 mb-xs-40">
 
-    <!-- 댓글달기 -->
-    <form method = "POST" action ="{% url 'playlists:create_comment' playlist.pk %}">
-        {% csrf_token %}
-        <input type ="text" name = "message">
-        <input type ="submit" value = "submit">
-    </form>
-    <!-- /댓글달기 -->
+                    <!--작성자-->
+                    <!-- Features Item -->
+                    <div class="alt-service-wrap">
+                        <div class="alt-service-item">
+                            <div class="alt-service-icon">
+                                <i class="fa fa-paper-plane-o"></i>
+                            </div>
+                            <h3 class="alt-services-title font-alt">
+                                <a href="{% url 'users:main' playlist.creator.id %}">{{ playlist.creator }}</a><br>
+                            </h3>
+                            
+                        </div>
+                    </div>
+                    <!-- End Features Item -->
 
+                    <!--팔로워, 팔로잉-->
+                    <!-- Features Item -->
+                    {% if request.user != playlist.creator %}
+                    <div class="alt-service-wrap">
+                        <div class="alt-service-item">
+                            <div class="alt-service-icon">
+                                <i class="fa fa-users"></i>
+                            </div>
 
-    <!-- 좋아요 -->
-    {% if user in playlist.likes.all %}
-        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요 취소</a>
-    {% else %}
-        <a href ="{% url 'playlists:like_toggle' playlist.id %}">좋아요</a>    
-    {% endif %}
-    <!-- /좋아요 -->
-
+                            <h3 class="alt-services-title font-alt">
+                            {% if user in playlist.creator.followers.all %}
+                            <a href="{% url 'playlists:follow_toggle' playlist.creator.id %}">팔로우 취소</a>
+                            {% else %}
+        
+                            <a href ="{% url 'playlists:follow_toggle' playlist.creator.id %}">팔로우</a>
+                            {% endif %}
     
-    <!-- 팔로우, 팔로잉 -->
-    {% if request.user != playlist.creator %}
-        {% if user in playlist.creator.followers.all %}
-        <br>
-        <a href="{% url 'playlists:follow_toggle' playlist.creator.id %}">팔로우 취소</a>
-        {% else %}
-        <br>
-        <a href ="{% url 'playlists:follow_toggle' playlist.creator.id %}">팔로우</a>
-        {% endif %}
-    {% endif %}
-    <!-- /팔로우, 팔로잉 -->
-</div>
+                            </h3>
+                        
+                        </div>
+                    </div>
+                    <!-- End Features Item -->
+                    {% endif %}   
+
+                    <!--좋아요-->
+                    <!-- Features Item -->
+                    <div class="alt-service-wrap">
+                        <div class="alt-service-item">
+                            <div class="alt-service-icon">
+                                <i class="fa fa-heart"></i>
+                            </div>
+                            
+                            {% if user in playlist.likes.all %}
+                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">좋아요 취소</h3></a>
+                            {% else %}
+                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">좋아요</h3></a>  
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- End Features Item -->
+
+                </div>
+                <!-- End Features -->
+
+                
+
+                
+            </div>
+            <!-- End Product Content -->
+            
+            
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs tpl-tabs animate">
+                <li>
+                    <a href="#two" data-toggle="tab">Music List</a>
+                </li>
+                <li>
+                    <a href="#three" data-toggle="tab">Comments</a>
+                </li>
+            </ul>
+            <!-- End Nav tabs -->
+            
+            <!-- Tab panes -->
+            <div class="tab-content tpl-tabs-cont">
+                
+                <div class="tab-pane fade" id="two">
+                    
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>
+                                제목
+                            </th>
+                            <th>
+                                가수
+                            </th>
+                            <th>
+                                장르
+                            </th>
+                            <th>
+                                삭제
+                            </th>
+                        </tr>
+
+                        {% for music in playlist.musics.all %}
+        
+                        <tr>
+                            <td>
+                                {{ music.title }}
+                            </td>
+                            <td>
+                                {{ music.singer }}
+                            </td>
+                            <td>
+                                {{ music.genre}}
+                            </td>
+                            <td>
+                                {% if user == playlist.creator %}
+                                    <a href ="{% url 'playlists:delete_music' playlist.id  music.id %}"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    
+                </div>
+
+                <div class="tab-pane fade" id="three">
+                        
+                        <div class="mb-60 mb-xs-30"> <!-- 등록된 댓글 -->
+                            {% if playlist.comments %}
+                            <ul class="media-list text comment-list clearlist">
+                               {% for comment in playlist.comments %}
+
+                                <!-- Comment Item -->
+
+                                <li class="media comment-item">
+                                    <a class="pull-left" href="#"><img class="media-object comment-avatar" src="images/user-avatar.png" alt=""></a>
+                                    <div class="media-body">
+                                        <div class="comment-item-data">
+                                            <div class="comment-author">
+                                                <a href="#">{{ comment.user.username }}</a>
+                                            </div>
+                                            Feb 9, 2014, at 10:37<span class="separator">&mdash;</span>
+                                            
+                                            <span>
+                                                {% if user == comment.writer %}
+                                                    <a href="{% url 'playlists:delete_comment' comment.id %}" style="float: right;">삭제</a></span>
+                                                {% endif %}
+                                            </span>
+                                            
+                                        </div>
+                                        <p>
+                                            {{ comment.message }}
+                                        </p>
+                                    </div>
+                                </li>
+                                <!-- End Comment Item -->
+                                {% endfor %}
+                                
+                            </ul>
+                            {% endif %}
+                        </div><!-- /등록된 댓글 -->
+
+                        <!-- Add Comment -->
+                        <div>
+                            
+                            <h4 class="blog-page-title font-alt">Add Review</h4>
+                            
+                            <!-- Form -->
+                            <form method="POST" action="{% url 'playlists:create_comment' playlist.pk %}" id="form" role="form" class="form">
+                                    {% csrf_token %}
+                                
+                                <!-- Comment -->
+                                <div class="mb-30 mb-md-10">
+                                    <input type ="text" name = "message">
+                                </div>
+                                
+                                <!-- Send Button -->
+                                <button type="submit" class="btn btn-mod btn-medium btn-round">
+                                    Submit
+                                </button>
+                                
+                            </form>
+                            <!-- End Form -->
+                            
+                        </div>
+                        <!-- End Add Comment -->
+                        
+                </div>
+            </div>
+            <!-- End Tab panes -->
+        
+        </div>
+    </section>
+<!-- End Section -->
+
+
 
 {% endblock %}

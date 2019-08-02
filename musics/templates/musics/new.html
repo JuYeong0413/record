@@ -27,17 +27,53 @@
 </section>
 <!-- End Head Section -->
 
-<div>
-    <h1>음악 등록</h1>
-    <form action="{% url 'musics:create' %}" method="POST">
-        {% csrf_token %}
-        <h3>제목</h3>
-        <input type="text" name="title" >
-        <h3>가수</h3>
-        <input type="text" name="singer">
+ <!-- Section -->
+ <section class="page-section">
+        <div class="container relative">
+            
+            <!-- Product Content -->
+            <div class="row mb-60 mb-xs-30">
+                
+                <!-- Product Images -->
+                <div class="col-md-4 mb-md-30">
+                    
+                    <div class="post-prev-img">
+                            <img src="{% static 'hyojeong/images/lp.png' %}" alt="" width=250px height=250px style="margin-left: auto; margin-right: auto; display: block;"/>
+                    </div>
+                    
+                </div>
+                <!-- End Product Images -->
+                
+                <!-- Product Description -->
+                <div class="col-sm-8 col-md-5 mb-xs-40">
+                    
+                    <h3 class="mt-0">음악 등록</h3>
+                    
+                    <hr class="mt-0 mb-30"/>
+                    
+                    
+                    <div class="section-text mb-30">
+                        <form action="{% url 'musics:create' %}" method="POST">
+                            {% csrf_token %}
+                            <h3>제목</h3>
+                            <input type="text" name="title" >
+                            <h3>가수</h3>
+                            <input type="text" name="singer">
+                            <br><br>       
+                            <input class="btn btn-mod btn-large btn-round" type="submit" value="제출">
+                        </form>
+                    </div>
+                 
+                </div>
+                <!-- End Product Description -->
+                
+            </div>
+            <!-- End Product Content -->
+            
+            
         
-        <input class="btn btn-light" type="submit" value="제출">
-    </form>
-</div>
+        </div>
+    </section>
+<!-- End Section -->
 
 {% endblock %}
