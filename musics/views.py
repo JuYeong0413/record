@@ -288,10 +288,14 @@ def search(request):
 
 
 # 기존 플레이리스트 생성 플레이리스트 보여주기
-def show_playlists(request):
+def add(request):
     user = request.user
-    playlists = Playlist.objects.filter(creator=user)
-    return render(request, 'musics/show_playlists.html', {'playlists':playlists})
+    playlist_list = Playlist.objects.filter(creator=user)
+    paginator = Paginator(playlist_list, 10)
+    page = request.GET.get('page')
+    playlists = paginator.get_page(page)
+    return render(request, 'musics/add.html', {'playlists':playlists, 'playlist_list':playlist_list})
+
 
 # 기존 플레이리스트에 곡 추가
 def add_music(request, playlist_id):

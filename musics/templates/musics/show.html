@@ -158,6 +158,28 @@
 				
 			</div>
 			
+<<<<<<< HEAD
+		<!-- 플레이리스트에 곡 추가 Modal -->
+		<div class="modal" id="addPlaylist" tabindex="-1" role="dialog" aria-labelledby="addPlaylistLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="addPlaylistLabel">플레이리스트에 추가하기</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+				<div class="modal-body">
+				기존 플레이리스트에 추가하시겠습니까?
+				</div>
+				<div class="modal-footer">
+				<a href="{% url 'playlists:new' %}?music={{ music.id }}" class="btn btn-success">새 플레이리스트 생성하기</a>
+				<a href="{% url 'musics:add' %}?music={{ music.id }}" class = "btn btn-info">기존 플레이리스트에 추가</a>
+				</div>
+			</div>
+			</div>
+=======
+>>>>>>> 2bb4b6ef42fec2a833fbcb540e4e95e00e8e6f37
 		</div>
 	</section>
 <!-- End Section -->

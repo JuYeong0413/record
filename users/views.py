@@ -4,7 +4,6 @@ from playlists.models import Playlist
 from .models import User
 from django.core.paginator import Paginator
 
-# Create your views here.
 # 프로필 페이지
 def main(request, id):
     user_profile = get_object_or_404(User, pk=id)
@@ -59,11 +58,11 @@ def follow_toggle(request, id):
 # 작성한 노래 게시글
 def musics(request, id):
     music_lists = Music.objects.filter(writer__id=id)
+    user = get_object_or_404(User, pk=id)
     paginator = Paginator(music_lists, 10)
     page = request.GET.get('page')
     musics = paginator.get_page(page)
-
-    return render(request, 'users/musics.html', {'musics': musics, 'music_lists':music_lists})
+    return render(request, 'users/musics.html', {'musics': musics, 'music_lists':music_lists, 'user':user})
 
 
 # 생성한 플레이리스트 게시글
@@ -80,7 +79,7 @@ def playlists(request, id):
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
 
-    return render(request, 'users/playlists.html', {'playlists': playlists, 'playlist_lists':playlist_lists})
+    return render(request, 'users/playlists.html', {'playlists': playlists, 'playlist_lists':playlist_lists, 'user':user})
 
 
 # 좋아하는 플레이리스트 목록
@@ -97,4 +96,4 @@ def likes(request, id):
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
 
-    return render(request, 'users/likes.html', {'playlists': playlists, 'playlist_lists':playlist_lists})
+    return render(request, 'users/likes.html', {'playlists': playlists, 'playlist_lists':playlist_lists, 'user':user})

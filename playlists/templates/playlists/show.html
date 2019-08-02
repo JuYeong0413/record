@@ -278,5 +278,21 @@
 <!-- End Section -->
 
 
+<<<<<<< HEAD
+    
+    <!-- 팔로우, 팔로잉 -->
+    {% if request.user != playlist.creator %}
+        {% if user in playlist.creator.followers.all %}
+        <br>
+        <a href="{% url 'playlists:follow_toggle' playlist.creator.id playlist.id %}">팔로우 취소</a>
+        {% else %}
+        <br>
+        <a href ="{% url 'playlists:follow_toggle' playlist.creator.id playlist.id %}">팔로우</a>
+        {% endif %}
+    {% endif %}
+    <!-- /팔로우, 팔로잉 -->
+</div>
+=======
+>>>>>>> 2bb4b6ef42fec2a833fbcb540e4e95e00e8e6f37
 
 {% endblock %}

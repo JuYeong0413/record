@@ -46,25 +46,25 @@
                         <div class="widget-body">
                             <ul class="clearlist widget-menu">
                                 <li>
-                                    <a href="#" title="">Profile</a>
+                                    <a href="{% url 'users:main' user.id %}" title="">Profile</a>
                                     <small>
                                         
                                     </small>
                                 </li>
                                 <li>
-                                    <a href="#" title="">My Music</a>
+                                    <a href="{% url 'users:musics' user.id %}" title="">My Music</a>
                                     <small>
                                         
                                     </small>
                                 </li>
                                 <li>
-                                    <a href="#" title="">My Playlists</a>
+                                    <a href="{% url 'users:playlists' user.id %}" title="">My Playlists</a>
                                     <small>
                                         
                                     </small>
                                 </li>
                                 <li>
-                                    <a href="#" title="">Playlists I Like</a>
+                                    <a href="{% url 'users:likes' user.id %}" title="">Playlists I Like</a>
                                     <small>
                                         
                                     </small>
