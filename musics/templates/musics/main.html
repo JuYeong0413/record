@@ -100,7 +100,9 @@
                                 {{ music.writer }}
                             </td>
                             <td>
-                                <a href=""><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                                {% if user == music.writer %}
+                                    <a href="{% url 'musics:delete' music.id %}"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                                {% endif %}
                             </td>
                         </tr>
                         
