@@ -129,16 +129,18 @@
                     </div>
                     <!--pagination-->
                     <hr class="mb-60" />
-                    {% if musics.has_previous %}
+                    {% if search_result.has_previous %}
                         <a href = "?page=1">맨 앞으로</a>
-                        <a href="?page={{ musics.previous_page_number }}"> 이전으로</a>
+                        <a href="?page={{ search_result.previous_page_number }}"> 이전으로</a>
                     {% endif %}            
-                        <span>{{ musics.number }}</span>
+
+                        <span>{{ search_result.number }}</span>
                         <span> of </span>    
-                        <span>{{ musics.paginator.num_pages }}</span>    
-                    {% if musics.has_next %}
-                        <a href="?page={{ musics.next_page_number }}">다음으로</a>
-                        <a href="?page={{ musics.paginator.num_page }}">맨 뒤로</a>        
+                        <span>{{ search_result.paginator.num_pages }}</span>    
+
+                    {% if search_result.has_next %}
+                        <a href="?page={{ search_result.next_page_number }}">다음으로</a>
+                        <a href="?page={{ search_result.paginator.num_page }}">맨 뒤로</a>        
 
                     {% endif %}
                 </div>
