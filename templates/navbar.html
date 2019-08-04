@@ -27,26 +27,23 @@
                 </li>
                 
                 {% if user.is_authenticated %}
-                <li>
-                    <a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
-                </li>
-
-                <li>
-                    <a href="{% url 'users:main' user.id %}"><i class="fa fa-user"></i> Mypage</a>
-                </li>
-
+                    <li>
+                        <a href="{% url 'users:main' user.id %}"><i class="fa fa-user"></i> Mypage</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
+                    </li>
                 {% else %}
-                <li>
-                    <a href="{% url 'account_login' %}" class="mn-has-sub"><i class="fa fa-sign-in"></i>Login</a>
-                </li>
-                <li>
-                    <a href="{% url 'account_signup' %}" class="mn-has-sub"><i class="fa fa-group"></i>Signup </a>
-                </li>
+                    <li>
+                        <a href="{% url 'account_login' %}" class="mn-has-sub"><i class="fa fa-sign-in"></i>Login</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'account_signup' %}" class="mn-has-sub"><i class="fa fa-group"></i>Signup </a>
+                    </li>
                 {% endif %}
             </ul>
         </div>
-        <!-- End Main Menu -->
-        
+        <!-- End Main Menu -->      
 
     </div>
     <hr color="#BFBFBF" style="margin-top:0; border-top:3px solid rgba(0,0,0,.1);">
