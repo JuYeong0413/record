@@ -88,28 +88,27 @@
                         <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">My Music</a></h2>
                         {% if music_lists.exists %}
                         <table class="table table-striped shopping-cart-table">
-                                {% for music in musics %}
-                                <a href="{% url 'musics:show' music.pk %}">
-                                <tr>
-                                    <th class="hidden-xs">
-                                        
-                                    </th>
-                                    <th>
-                                        제목
-                                    </th>
-                                    <th>
-                                        가수
-                                    </th>
-                                    <th>
-                                        
-                                    </th>
-                                </tr>
+                            <tr>
+                                <th class="hidden-xs">
+                                    
+                                </th>
+                                <th>
+                                    제목
+                                </th>
+                                <th>
+                                    가수
+                                </th>
+                                <th>
+                                    
+                                </th>
+                            </tr>
+                            {% for music in musics %}
                                 <tr>
                                     <td class="hidden-xs">
                                         <img src="{% static 'hyojeong/images/lp.png' %}" alt="" width=50px height=50px style="margin-left: auto; margin-right: auto; display: block;"/>
                                     </td>
                                     <td>
-                                        {{ music.title }}
+                                        <a href="{% url 'musics:show' music.pk %}">{{ music.title }}</a>
                                     </td>
                                     <td>
                                         {{ music.singer }}
@@ -118,8 +117,7 @@
                                         <a href=""><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
                                     </td>
                                 </tr>
-                                </a>
-                                {% endfor %}
+                            {% endfor %}
                             </table>                            
                             <hr />
                         {% else %}

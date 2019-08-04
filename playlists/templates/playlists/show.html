@@ -251,7 +251,7 @@
                             
                             <!-- Form -->
                             <form method="POST" action="{% url 'playlists:create_comment' playlist.pk %}" id="form" role="form" class="form">
-                                    {% csrf_token %}
+                                {% csrf_token %}
                                 
                                 <!-- Comment -->
                                 <div class="mb-30 mb-md-10">
