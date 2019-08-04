@@ -57,14 +57,13 @@
         
         <div class="row masonry">
             {% for playlist in playlists %}
-                {% if playlist.kinds == 0 or playlist.kinds == 1 %}
-                    <a href ="{% url 'playlists:show' playlist.id %}">
+                    <a href="{% url 'playlists:show' playlist.id %}">
                         <!-- Post Item -->
                         <div class="col-sm-6 col-md-4 col-lg-4 mb-60 mb-xs-40">
                             
                             <div class="post-prev-img">
                                 {% if playlist.cover %}
-                                    <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+                                    <img src="{{ playlist.cover.url }}" alt="사진없음"><br>
                                 {% endif %}
                             </div>
                         
@@ -79,7 +78,6 @@
                         </div>
                         <!-- End Post Item -->
                     </a>
-                {% endif %}
             {% endfor %}       
         </div>
                 
@@ -94,7 +92,7 @@
         <span>{{ playlists.paginator.num_pages }}</span>
 
         {% if playlists.has_next %}
-            <a href = "?page={{ playlists.next_page_number }}">Next</a>
+            <a href="?page={{ playlists.next_page_number }}">Next</a>
             <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
         {% endif %}
         <!-- End Pagination -->

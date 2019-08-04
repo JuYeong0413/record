@@ -39,7 +39,7 @@
                 
                 <div class="post-prev-img">
                     {% if playlist.cover %}
-                        <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+                        <img src="{{ playlist.cover.url }}" alt="사진없음"><br>
                     {% endif %}
                 </div>
                 
@@ -60,7 +60,7 @@
                     
                         </div>
                         <div class="col-xs-6 align-right section-text">
-                            <a href ="{% url 'playlists:delete' playlist.pk %}">삭제</a>
+                            <a href="{% url 'playlists:delete' playlist.pk %}">삭제</a>
                         </div>
                     </div>
                 {% endif %}
@@ -115,7 +115,7 @@
                         {% if user in playlist.creator.followers.all %}
                             <a href="{% url 'playlists:follow_toggle' playlist.id %}">팔로우 취소</a>
                         {% else %}
-                            <a href ="{% url 'playlists:follow_toggle' playlist.id %}">팔로우</a>
+                            <a href="{% url 'playlists:follow_toggle' playlist.id %}">팔로우</a>
                         {% endif %}
 
                         </h3>
@@ -134,9 +134,9 @@
                         </div>
                         
                         {% if user in playlist.likes.all %}
-                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요 취소</h3></a>
+                            <a href="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요 취소</h3></a>
                         {% else %}
-                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요</h3></a>  
+                            <a href="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요</h3></a>  
                         {% endif %}
                     </div>
                 </div>
@@ -199,7 +199,7 @@
                         </td>
                         <td>
                             {% if user == playlist.creator %}
-                                <a href ="{% url 'playlists:delete_music' playlist.id  music.id %}"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                                <a href="{% url 'playlists:delete_music' playlist.id  music.id %}"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
                             {% endif %}
                         </td>
                     </tr>

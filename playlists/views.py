@@ -32,7 +32,9 @@ def edit(request, id):
         
         for tag in tags:
             content += str(tag)+','
-            playlist.tags.remove(tag)
+            # playlist.tags.remove(tag) 이거 넣은 이유는?
+
+        content = content[:-1]
 
         return render(request, 'playlists/edit.html', {"playlist": playlist, 'content': content })
     else:
@@ -56,6 +58,7 @@ def update(request, id):
             playlist.cover = request.FILES.get('cover')
 
         playlist.title = request.POST.get('title')
+        playlist.description = request.POST.get('description')
         playlist.save()
 
     return redirect('playlists:show', id)

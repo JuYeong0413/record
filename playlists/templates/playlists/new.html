@@ -29,17 +29,17 @@
 <!-- End Head Section -->
 
 <div style="margin-bottom:200px;">
-    <form action = "{% url 'playlists:new' %}" method = "POST">
+    <form action="{% url 'playlists:new' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="music_id" value="{{ request.GET.music }}">
-        제목: <input type="text" name ="title"><br>
-        커버사진: <input type="file" name ="cover"><br>
-        <input type ="radio" name ="kinds" value ="0" checked>공개
-        <input type ="radio" name="kinds" value="1">비공개
+        제목 : <input type="text" name ="title"><br>
+        커버사진 : <input type="file" name="cover"><br>
+        <input type="radio" name="kinds" value="0" checked>공개
+        <input type="radio" name="kinds" value="1">비공개
         <br>
-        설명: <input type ="text" name = "description"><br>
-        태그 입력: <input type = "text" name = "tags" placeholder=",로 구분해주세요"><br>
-        <input type="submit" value = "submit" class = "btn btn-primary">
+        설명 : <textarea name="description" placeholder="플레이리스트 설명"></textarea><br>
+        태그 : <input type="text" name="tags" placeholder=",로 구분해주세요"><br>
+        <input type="submit" value="submit" class="btn btn-primary">
     </form>
 </div>
 {% endblock %}
