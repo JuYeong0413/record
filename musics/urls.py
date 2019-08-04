@@ -12,5 +12,5 @@ urlpatterns = [
  path('update/<int:music_id>/', views.update, name="update"),
  path('search/', views.search, name="search"),
  path('add/', views.add, name="add"),
- path('add_music/<int:playlist_id>/', views.add_music, name="add_music"),
+ path('add_music/', views.add_music, name="add_music"),
 ]

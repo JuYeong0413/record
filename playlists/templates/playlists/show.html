@@ -74,8 +74,9 @@
                     
                     <div class="section-text small">
                         <div>
+                            Tags: 
                             {% for tag in playlist.tags.all %}
-                                Tags: ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>
+                                ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>
                             {% endfor %}
                         </div>
                     </div>
@@ -216,13 +217,13 @@
                                 <!-- Comment Item -->
 
                                 <li class="media comment-item">
-                                    <a class="pull-left" href="#"><img class="media-object comment-avatar" src="images/user-avatar.png" alt=""></a>
+                                    <a class="pull-left" href="#"><img class="media-object comment-avatar" src="{{ comment.writer.image.url }}" alt=""></a>
                                     <div class="media-body">
                                         <div class="comment-item-data">
                                             <div class="comment-author">
-                                                <a href="#">{{ comment.user.username }}</a>
+                                                <a href="#">{{ comment.writer }}</a>
                                             </div>
-                                            Feb 9, 2014, at 10:37<span class="separator">&mdash;</span>
+                                            {{ comment.created_at }}<span class="separator">&mdash;</span>
                                             
                                             <span>
                                                 {% if user == comment.writer %}
@@ -246,7 +247,7 @@
                         <!-- Add Comment -->
                         <div>
                             
-                            <h4 class="blog-page-title font-alt">Add Review</h4>
+                            <h4 class="blog-page-title font-alt">Add Comment</h4>
                             
                             <!-- Form -->
                             <form method="POST" action="{% url 'playlists:create_comment' playlist.pk %}" id="form" role="form" class="form">
@@ -254,7 +255,7 @@
                                 
                                 <!-- Comment -->
                                 <div class="mb-30 mb-md-10">
-                                    <input type ="text" name = "message">
+                                    <input type ="text" name="message">
                                 </div>
                                 
                                 <!-- Send Button -->

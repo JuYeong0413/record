@@ -114,8 +114,8 @@ def like_toggle(request, playlist_id):
 def tag(request, playlist_id, tag_id):
     playlist = get_object_or_404(Playlist, pk=playlist_id)
     tag = playlist.tags.get(pk=tag_id)
-    sorted_playlists = Playlist.objects.filter(tags__name__in=[tag])
-    return render(request, 'playlists/tag.html', {'sorted_playlists':sorted_playlists})
+    sorted_playlists = Playlist.objects.filter(tags__name__in=[tag], kinds=0)
+    return render(request, 'playlists/tag.html', {'sorted_playlists': sorted_playlists})
 
 
 # 음악 삭제하기
@@ -132,7 +132,7 @@ def search(request):
     paginator = Paginator(search_list, 10)
     page = request.GET.get('page')
     search_result = paginator.get_page(page)
-    return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list':search_list})
+    return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list': search_list})
 
 
 # 새 플레이리스트 생성

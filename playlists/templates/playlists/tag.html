@@ -93,8 +93,8 @@
                     
             <!-- Pagination -->
             {% if playlists.has_previous%}
-            <a href="?page=1">first</a>
-            <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+                <a href="?page=1">first</a>
+                <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
             {% endif %}
 
             <span>{{ playlists.number }}</span>
@@ -102,8 +102,8 @@
             <span>{{ playlists.paginator.num_pages }}</span>
 
             {% if playlists.has_next %}
-            <a href = "?page={{ playlists.next_page_number }}">Next</a>
-            <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+                <a href="?page={{ playlists.next_page_number }}">Next</a>
+                <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
             {% endif %}
             <!-- End Pagination -->
             

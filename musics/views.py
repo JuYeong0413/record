@@ -298,10 +298,12 @@ def add(request):
 
 
 # 기존 플레이리스트에 곡 추가
-def add_music(request, playlist_id):
+def add_music(request):
     if request.method == "POST":
-        playlist = get_object_or_404(Playlist, pk=playlist_id)
+        playlist_id = request.POST.get('playlist_id')
         music_id = request.POST.get('music_id')
+        playlist = get_object_or_404(Playlist, pk=playlist_id)
         music = Music.objects.get(pk=music_id)
         playlist.musics.add(music)
+        
         return redirect('playlists:show', playlist_id)
