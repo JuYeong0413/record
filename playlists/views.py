@@ -170,12 +170,13 @@ def new(request):
 
     
 # 팔로우, 언팔로우
-def follow_toggle(request, id, playlist_id):
+def follow_toggle(request, id):
     user = request.user
     if user.is_anonymous:
         return redirect('account_login')
-    
-    followed_user = get_object_or_404(User, pk=id)
+
+    playlist = get_object_or_404(Playlist, pk=id)
+    followed_user = get_object_or_404(User, pk=playlist.creator.id)
 
     is_follower = user in followed_user.followers.all()
 
@@ -184,4 +185,4 @@ def follow_toggle(request, id, playlist_id):
     else:
         user.followings.add(followed_user)
 
-    return redirect('playlists:show', playlist_id)
+    return redirect('playlists:show', id)
