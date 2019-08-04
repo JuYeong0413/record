@@ -4,6 +4,7 @@ from musics.models import Music
 from django.core.paginator import Paginator
 from musics.models import Music
 from users.models import User
+import pdb
 
 # 플레이리스트 메인페이지
 def main(request):
@@ -119,7 +120,7 @@ def tag(request, playlist_id, tag_id):
 
 # 음악 삭제하기
 def delete_music(request, playlist_id, music_id):
-    playlist = get_object_or_404(Playlist, pk = playlist_id)
+    playlist = get_object_or_404(Playlist, pk=playlist_id)
     music = playlist.musics.get(pk=music_id)
     playlist.musics.remove(music)
     return redirect('playlists:show', playlist_id)
@@ -174,6 +175,7 @@ def follow_toggle(request, id):
     user = request.user
     if user.is_anonymous:
         return redirect('account_login')
+    
 
     playlist = get_object_or_404(Playlist, pk=id)
     followed_user = get_object_or_404(User, pk=playlist.creator.id)

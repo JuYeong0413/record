@@ -53,16 +53,16 @@
                     
                     <hr class="mt-0 mb-30"/>
                     {% if user == playlist.creator %}
-                    <div class="row">
-                        <div class="col-xs-6 lead mt-0 mb-20">
-                            
-                            <a href="{% url 'playlists:edit' playlist.pk %}">수정</a> 
-                    
+                        <div class="row">
+                            <div class="col-xs-6 lead mt-0 mb-20">
+                                
+                                <a href="{% url 'playlists:edit' playlist.pk %}">수정</a> 
+                        
+                            </div>
+                            <div class="col-xs-6 align-right section-text">
+                                <a href ="{% url 'playlists:delete' playlist.pk %}">삭제</a>
+                            </div>
                         </div>
-                        <div class="col-xs-6 align-right section-text">
-                            <a href ="{% url 'playlists:delete' playlist.pk %}">삭제</a>
-                        </div>
-                    </div>
                     {% endif %}
                     <hr class="mt-0 mb-30"/> 
                     
@@ -75,7 +75,7 @@
                     <div class="section-text small">
                         <div>
                             {% for tag in playlist.tags.all %}
-                            Tags: ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>
+                                Tags: ♪<a href="{% url 'playlists:tag' playlist.id tag.id %}">{{ tag }}</a>
                             {% endfor %}
                         </div>
                     </div>
@@ -112,18 +112,17 @@
 
                             <h3 class="alt-services-title font-alt">
                             {% if user in playlist.creator.followers.all %}
-                            <a href="{% url 'playlists:follow_toggle' playlist.creator.id %}">팔로우 취소</a>
+                                <a href="{% url 'playlists:follow_toggle' playlist.id %}">팔로우 취소</a>
                             {% else %}
-        
-                            <a href ="{% url 'playlists:follow_toggle' playlist.creator.id %}">팔로우</a>
+                                <a href ="{% url 'playlists:follow_toggle' playlist.id %}">팔로우</a>
                             {% endif %}
     
                             </h3>
                         
                         </div>
                     </div>
-                    <!-- End Features Item -->
                     {% endif %}   
+                    <!-- End Features Item -->
 
                     <!--좋아요-->
                     <!-- Features Item -->
@@ -134,9 +133,9 @@
                             </div>
                             
                             {% if user in playlist.likes.all %}
-                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">좋아요 취소</h3></a>
+                                <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">좋아요 취소</h3></a>
                             {% else %}
-                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">좋아요</h3></a>  
+                                <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">좋아요</h3></a>  
                             {% endif %}
                         </div>
                     </div>
@@ -276,18 +275,7 @@
         </div>
     </section>
     <!-- End Section -->
-        
-    <!-- 팔로우, 팔로잉 -->
-    {% if user != playlist.creator %}
-        {% if user in playlist.creator.followers.all %}
-        <br>
-        <a href="{% url 'playlists:follow_toggle' playlist.id %}">팔로우 취소</a>
-        {% else %}
-        <br>
-        <a href ="{% url 'playlists:follow_toggle' playlist.id %}">팔로우</a>
-        {% endif %}
-    {% endif %}
-    <!-- /팔로우, 팔로잉 -->
+
 </div>
 
 {% endblock %}

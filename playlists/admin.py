@@ -27,9 +27,9 @@ class PlaylistAdmin(admin.ModelAdmin):
 
     # Admin 사이트에 보여질 필드 목록
     list_display = (
-        'kinds',
         'title',
         'creator',
+        'kinds',
         'created_at',
         'updated_at',
     )
