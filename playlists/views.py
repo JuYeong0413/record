@@ -31,10 +31,10 @@ def edit(request, id):
         content = ""
         
         for tag in tags:
-            content += str(tag)+','
+            content += str(tag).join(" ,")
             # playlist.tags.remove(tag) 이거 넣은 이유는?
 
-        content = content[:-1]
+        content = content[:-1].lstrip()
 
         return render(request, 'playlists/edit.html', {"playlist": playlist, 'content': content })
     else:
