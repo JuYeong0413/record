@@ -4,89 +4,89 @@
 {% block content %}
 <!-- Head Section -->
 <section class="small-section bg-gray-lighter">
-        <div class="relative container align-left">
+    <div class="relative container align-left">
+        
+        <div class="row">
             
-            <div class="row">
-                
-                <div class="col-md-8">
-                    <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Users</h1>
-                    <div class="hs-line-4 font-alt black">
-                        Record your music
-                    </div>
-                </div>
-                
-                <div class="col-md-4 mt-30">
-                    <div class="mod-breadcrumbs font-alt align-right">
-                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">My Page</a>&nbsp;/&nbsp;<span>Musics</span>
-                    </div>
-                    
+            <div class="col-md-8">
+                <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Users</h1>
+                <div class="hs-line-4 font-alt black">
+                    Record your music
                 </div>
             </div>
             
+            <div class="col-md-4 mt-30">
+                <div class="mod-breadcrumbs font-alt align-right">
+                    <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">My Page</a>&nbsp;/&nbsp;<span>Musics</span>
+                </div>
+                
+            </div>
         </div>
-    </section>
+        
+    </div>
+</section>
 <!-- End Head Section -->
 
 <!-- Section -->
 <section class="page-section">
-        <div class="container relative">
+    <div class="container relative">
+        
+        <div class="row">
             
-            <div class="row">
+            
+            <!-- Sidebar -->
+            <div class="col-sm-4 col-md-3 sidebar">
                 
                 
-                <!-- Sidebar -->
-                <div class="col-sm-4 col-md-3 sidebar">
+                <!-- Widget -->
+                <div class="widget">
                     
+                    <h5 class="widget-title font-alt">Categories</h5>
                     
-                    <!-- Widget -->
-                    <div class="widget">
-                        
-                        <h5 class="widget-title font-alt">Categories</h5>
-                        
-                        <div class="widget-body">
-                            <ul class="clearlist widget-menu">
-                                <li>
-                                    <a href="{% url 'users:main' user.id %}" title="">Profile</a>
-                                    <small>
-                                        
-                                    </small>
-                                </li>
-                                <li>
-                                    <a href="{% url 'users:musics' user.id %}" title="">My Music</a>
-                                    <small>
-                                        
-                                    </small>
-                                </li>
-                                <li>
-                                    <a href="{% url 'users:playlists' user.id %}" title="">My Playlists</a>
-                                    <small>
-                                        
-                                    </small>
-                                </li>
-                                <li>
-                                    <a href="{% url 'users:likes' user.id %}" title="">Playlists I Like</a>
-                                    <small>
-                                        
-                                    </small>
-                                </li>
-                            </ul>
-                        </div>
-                        
+                    <div class="widget-body">
+                        <ul class="clearlist widget-menu">
+                            <li>
+                                <a href="{% url 'users:main' user.id %}" title="">Profile</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:musics' user.id %}" title="">My Music</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:playlists' user.id %}" title="">My Playlists</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:likes' user.id %}" title="">Playlists I Like</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- End Widget -->
                     
                 </div>
-                <!-- End Sidebar -->
+                <!-- End Widget -->
                 
-                <!-- Content -->
-                <div class="col-sm-8 col-md-offset-1">
+            </div>
+            <!-- End Sidebar -->
+            
+            <!-- Content -->
+            <div class="col-sm-8 col-md-offset-1">
+                
+                <!-- Post -->
+                <div class="blog-item">
                     
-                    <!-- Post -->
-                    <div class="blog-item">
-                        
-                        <!-- Post Title -->
-                        <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">My Music</a></h2>
-                        {% if music_lists.exists %}
+                    <!-- Post Title -->
+                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">My Music</a></h2>
+                    {% if music_lists.exists %}
                         <table class="table table-striped shopping-cart-table">
                             <tr>
                                 <th class="hidden-xs">
@@ -118,21 +118,21 @@
                                     </td>
                                 </tr>
                             {% endfor %}
-                            </table>                            
-                            <hr />
-                        {% else %}
+                        </table>                            
+                        <hr />
+                    {% else %}
                         <h3>작성한 노래 게시글이 없습니다.</h3>
-                        {% endif %}
-                    </div>
-                    <!-- End Post -->
-                    
+                    {% endif %}
                 </div>
-                <!-- End Content -->
+                <!-- End Post -->
                 
             </div>
+            <!-- End Content -->
             
         </div>
-    </section>
+        
+    </div>
+</section>
 <!-- End Section -->
 
 {% endblock %}
