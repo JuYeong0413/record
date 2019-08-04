@@ -103,7 +103,7 @@
 
                     <!--팔로워, 팔로잉-->
                     <!-- Features Item -->
-                    {% if request.user != playlist.creator %}
+                    {% if user != playlist.creator %}
                     <div class="alt-service-wrap">
                         <div class="alt-service-item">
                             <div class="alt-service-icon">
@@ -212,7 +212,7 @@
                         <div class="mb-60 mb-xs-30"> <!-- 등록된 댓글 -->
                             {% if playlist.comments %}
                             <ul class="media-list text comment-list clearlist">
-                               {% for comment in playlist.comments %}
+                               {% for comment in playlist.comments.all %}
 
                                 <!-- Comment Item -->
 
@@ -278,13 +278,13 @@
     <!-- End Section -->
         
     <!-- 팔로우, 팔로잉 -->
-    {% if request.user != playlist.creator %}
+    {% if user != playlist.creator %}
         {% if user in playlist.creator.followers.all %}
         <br>
-        <a href="{% url 'playlists:follow_toggle' playlist.creator.id playlist.id %}">팔로우 취소</a>
+        <a href="{% url 'playlists:follow_toggle' playlist.id %}">팔로우 취소</a>
         {% else %}
         <br>
-        <a href ="{% url 'playlists:follow_toggle' playlist.creator.id playlist.id %}">팔로우</a>
+        <a href ="{% url 'playlists:follow_toggle' playlist.id %}">팔로우</a>
         {% endif %}
     {% endif %}
     <!-- /팔로우, 팔로잉 -->

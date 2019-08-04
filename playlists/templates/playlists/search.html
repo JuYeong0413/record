@@ -68,7 +68,7 @@
                             
                             <div class="post-prev-img">
                                 {% if result.cover %}
-                                    <img src= "{{ playlist.cover.url }}" alt="사진없음"><br>
+                                    <img src= "{{ result.cover.url }}" alt="사진없음"><br>
                                 {% endif %}
                             </div>
                         
@@ -94,18 +94,18 @@
             </div>
                     
             <!-- Pagination -->
-            {% if playlists.has_previous%}
+            {% if search_result.has_previous%}
             <a href="?page=1">first</a>
-            <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+            <a href="?page={{ search_result.previous_page_number }}">Preivous</a>
             {% endif %}
 
-            <span>{{ playlists.number }}</span>
+            <span>{{ search_result.number }}</span>
             <span>of</span>
-            <span>{{ playlists.paginator.num_pages }}</span>
+            <span>{{ search_result.paginator.num_pages }}</span>
 
-            {% if playlists.has_next %}
-            <a href = "?page={{ playlists.next_page_number }}">Next</a>
-            <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+            {% if search_result.has_next %}
+            <a href = "?page={{ search_result.next_page_number }}">Next</a>
+            <a href="?page={{ search_result.paginator.num_pages }}">Last</a>
             {% endif %}
             <!-- End Pagination -->
             
