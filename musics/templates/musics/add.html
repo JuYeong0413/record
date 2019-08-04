@@ -26,19 +26,20 @@
     </div>
 </section>
 <!-- End Head Section -->
-    <div style="margin-top:200px;">
-    {% if playlist_list.exists %}
-        {% for playlist in playlists %}
-            <form action ="{% url 'musics:add_music' %}" method ="POST">
-                {% csrf_token %}
-                {{ playlist.title }}
-                <input type ="radio" name="playlist_id" value="{{ playlist.id }}">
-                <input type="hidden" name="music_id" value ="{{ request.GET.music }}">
-                <br>
-        {% endfor %}
-            <input type="submit" class ="btn btn-primary">
-        </form>
-    </div>        
-    {% endif %}
+
+<div style="margin-top:200px;">
+{% if playlist_list.exists %}
+    {% for playlist in playlists %}
+        <form action ="{% url 'musics:add_music' %}" method ="POST">
+            {% csrf_token %}
+            {{ playlist.title }}
+            <input type ="radio" name="playlist_id" value="{{ playlist.id }}">
+            <input type="hidden" name="music_id" value ="{{ request.GET.music }}">
+            <br>
+    {% endfor %}
+        <input type="submit" class ="btn btn-primary">
+    </form>
+</div>
+{% endif %}
 
 {% endblock %}
