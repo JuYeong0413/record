@@ -30,24 +30,21 @@
 
 <!-- Search Section -->
 <section class="small-section">
-        <div class="container relative">
-            
-            <!-- Search -->
-          
-
-            <form class="form-inline form" action="{% url 'playlists:search' %}" role="form">
-                <div class="search-wrap">
-                    <button class="search-button animate" type="submit" title="Start Search">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    <input type="text" class="form-control search-field" placeholder="검색어" name="query">
-                </div>
-            </form>
-            
-            <!-- End Search -->
-            
-        </div>
-    </section>
+    <div class="container relative">
+        
+        <!-- Search -->
+        <form class="form-inline form" action="{% url 'playlists:search' %}" role="form">
+            <div class="search-wrap">
+                <button class="search-button animate" type="submit" title="Start Search">
+                    <i class="fa fa-search"></i>
+                </button>
+                <input type="text" class="form-control search-field" placeholder="검색어" name="query">
+            </div>
+        </form>
+        <!-- End Search -->
+        
+    </div>
+</section>
 <!-- End Search Section -->
 
 <!-- Divider -->
@@ -57,13 +54,13 @@
 
 <!-- Section -->
 <section class="page-section">
-        <div class="container relative">
-            
-            <div class="row masonry">
-                {% for playlist in sorted_playlists %}
-                    {% if playlist.kinds == 0 or playlist.kinds == 1 %}
-                    
-                        <a href ="{% url 'playlists:show' playlist.id %}">
+    <div class="container relative">
+        
+        <div class="row masonry">
+            {% for playlist in sorted_playlists %}
+                {% if playlist.kinds == 0 or playlist.kinds == 1 %}
+                
+                    <a href ="{% url 'playlists:show' playlist.id %}">
                         <!-- Post Item -->
                         <div class="col-sm-6 col-md-4 col-lg-4 mb-60 mb-xs-40">
                             
@@ -81,37 +78,32 @@
                                 {{ playlist.creator}}
                             </div>
                             
-                            
                         </div>
                         <!-- End Post Item -->
-                        </a>
-                    {% endif %}
-                {% endfor %}
-                        
-                        
-            </div>
-                    
-            <!-- Pagination -->
-            {% if playlists.has_previous%}
-                <a href="?page=1">first</a>
-                <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
-            {% endif %}
-
-            <span>{{ playlists.number }}</span>
-            <span>of</span>
-            <span>{{ playlists.paginator.num_pages }}</span>
-
-            {% if playlists.has_next %}
-                <a href="?page={{ playlists.next_page_number }}">Next</a>
-                <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
-            {% endif %}
-            <!-- End Pagination -->
-            
-            
+                    </a>
+                {% endif %}
+            {% endfor %}
+         
         </div>
-    </section>
+                
+        <!-- Pagination -->
+        {% if playlists.has_previous%}
+            <a href="?page=1">first</a>
+            <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+        {% endif %}
+
+        <span>{{ playlists.number }}</span>
+        <span>of</span>
+        <span>{{ playlists.paginator.num_pages }}</span>
+
+        {% if playlists.has_next %}
+            <a href="?page={{ playlists.next_page_number }}">Next</a>
+            <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+        {% endif %}
+        <!-- End Pagination -->
+        
+    </div>
+</section>
 <!-- End Section -->
-
-
 
 {% endblock %}
