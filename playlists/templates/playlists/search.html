@@ -61,7 +61,7 @@
             <div class="row masonry">
                 {% if search_list.exists %}
                     {% for result in search_result %}
-                        {% if result.kinds == 0 or result.kinds == 1 %}
+                        {% if result.kinds == 0 %}
                         <a href ="{% url 'playlists:show' result.id %}">
                         <!-- Post Item -->
                         <div class="col-sm-6 col-md-4 col-lg-4 mb-60 mb-xs-40">
