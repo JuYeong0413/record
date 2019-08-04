@@ -134,9 +134,9 @@
                         </div>
                         
                         {% if user in playlist.likes.all %}
-                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">좋아요 취소</h3></a>
+                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요 취소</h3></a>
                         {% else %}
-                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">좋아요</h3></a>  
+                            <a href ="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요</h3></a>  
                         {% endif %}
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                 <a href="#two" data-toggle="tab">Music List</a>
             </li>
             <li>
-                <a href="#three" data-toggle="tab">Comments</a>
+                <a href="#three" data-toggle="tab">Comments ({{ playlist.comments.count }})</a>
             </li>
         </ul>
         <!-- End Nav tabs -->
@@ -167,6 +167,7 @@
         <div class="tab-content tpl-tabs-cont">
             
             <div class="tab-pane fade" id="two">
+                <h3>총 {{ playlist.musics.count }}개의 음악이 담겨있습니다.</h3>
                 
                 <table class="table table-bordered table-striped">
                     <tr>
@@ -188,7 +189,7 @@
     
                     <tr>
                         <td>
-                            {{ music.title }}
+                            <a href="{% url 'musics:show' music.id %}">{{ music.title }}</a>
                         </td>
                         <td>
                             {{ music.singer }}
@@ -222,9 +223,9 @@
                                     <div class="media-body">
                                         <div class="comment-item-data">
                                             <div class="comment-author">
-                                                <a href="#">{{ comment.writer }}</a>
+                                                <a href="{% url 'users:main' comment.writer.id %}">{{ comment.writer }}</a>
                                             </div>
-                                            {{ comment.created_at }}<span class="separator">&mdash;</span>
+                                            <span class="separator">&mdash;</span>{{ comment.created_at }}
                                             
                                             <span>
                                                 {% if user == comment.writer %}
