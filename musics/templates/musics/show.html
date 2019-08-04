@@ -45,7 +45,7 @@
 						</div>
 						
 						<!-- Post Title -->
-						<h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">노래 제목 : {{ music.title }}</a></h2>
+						<h2 class="blog-item-title font-alt"><a href="#">노래 제목 : {{ music.title }}</a></h2>
 						
 						<!-- Author, Categories, Comments -->
 						<div class="blog-item-data">
@@ -108,10 +108,8 @@
 						<!--가사-->
 						<!-- Blockquote -->
 						<blockquote class="blog-item-q">
-								<p>
-									{{ music.lyrics|linebreaks }
-								</p>
-							</blockquote>
+							{{ music.lyrics|linebreaks }}
+						</blockquote>
 						<!-- End Blockquote -->
 
 						<!-- Read More Link -->
@@ -137,7 +135,7 @@
 									</div>
 									<div class="modal-footer">
 									<a href="{% url 'playlists:new' %}?music={{ music.id }}" class="btn btn-success">새 플레이리스트 생성하기</a>
-									<a href="{% url 'musics:show_playlists' %}?music={{ music.id }}" class = "btn btn-info">기존 플레이리스트에 추가</a>
+									<a href="{% url 'musics:add' %}?music={{ music.id }}" class = "btn btn-info">기존 플레이리스트에 추가</a>
 									</div>
 								</div>
 								</div>
@@ -158,7 +156,7 @@
 				
 			</div>
 			
-<<<<<<< HEAD
+
 		<!-- 플레이리스트에 곡 추가 Modal -->
 		<div class="modal" id="addPlaylist" tabindex="-1" role="dialog" aria-labelledby="addPlaylistLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -178,11 +176,8 @@
 				</div>
 			</div>
 			</div>
-=======
->>>>>>> 2bb4b6ef42fec2a833fbcb540e4e95e00e8e6f37
 		</div>
-	</section>
+</section>
 <!-- End Section -->
-
 
 {% endblock %}
