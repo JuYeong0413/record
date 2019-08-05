@@ -154,8 +154,8 @@
         
         <!-- Nav tabs -->
         <ul class="nav nav-tabs tpl-tabs animate">
-            <li>
-                <a href="#two" data-toggle="tab">Music List</a>
+            <li class="active">
+                <a href="#two" data-toggle="tab" class="active" aria-expanded="true">Music List</a>
             </li>
             <li>
                 <a href="#three" data-toggle="tab">Comments ({{ playlist.comments.count }})</a>
@@ -166,7 +166,7 @@
         <!-- Tab panes -->
         <div class="tab-content tpl-tabs-cont">
             
-            <div class="tab-pane fade" id="two">
+            <div class="tab-pane fade active show in" id="two">
                 <h3>총 {{ playlist.musics.count }}개의 음악이 담겨있습니다.</h3>
                 
                 <table class="table table-bordered table-striped">
