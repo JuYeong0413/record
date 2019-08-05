@@ -79,64 +79,12 @@ def create(request):
         else:
             driver = webdriver.Chrome(executable_path='./chromedriver')
 
-        driver.set_window_position(-10000,0)
-        driver.get('https://music.youtube.com/search?q={}+{}'.format(singer, title))
+        driver.get('https://www.youtube.com/results?search_query={}+{}'.format(singer, title))
         time.sleep(2)
 
-
-        song_button = driver.find_element_by_xpath('//*[@id="chips"]/ytmusic-chip-cloud-chip-renderer[1]/a')
-        button_title = song_button.get_attribute('title')
-
-        if button_title == "Show song results":
-            song_button.click()
-            time.sleep(1)
-
-            html = driver.find_element_by_id('play-button').get_attribute('aria-label')
-            title_result = html.replace('Play ', '')
-            print(title_result)
-
-            driver.find_element_by_id('play-button').click()
-            time.sleep(1)
-
-            music_url = driver.current_url
-            youtube_url = music_url.replace('music.', '')
-            driver.get(youtube_url)
-            time.sleep(2)
-
-            # share button click
-            driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-button-renderer[1]/a').click()
-            time.sleep(1)
-            url = driver.find_element_by_xpath('//*[@id="share-url"]').get_attribute('value')
-            url = url.replace('youtu.be', 'www.youtube.com/embed')
-            print(url)
-
-
-        elif button_title == "Show video results":
-            song_button = driver.find_element_by_xpath('//*[@id="chips"]/ytmusic-chip-cloud-chip-renderer[2]/a')
-            button_title = song_button.get_attribute('title')
-
-            if button_title == "Show song results":
-                song_button.click()
-                time.sleep(1)
-
-                html = driver.find_element_by_id('play-button').get_attribute('aria-label')
-                title_result = html.replace('Play ', '')
-                print(title_result)
-
-                driver.find_element_by_id('play-button').click()
-                time.sleep(1)
-
-                music_url = driver.current_url
-                youtube_url = music_url.replace('music.', '')
-                driver.get(youtube_url)
-                time.sleep(2)
-
-                # share button click
-                driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-button-renderer[1]/a').click()
-                time.sleep(1)
-                url = driver.find_element_by_xpath('//*[@id="share-url"]').get_attribute('value')
-                url = url.replace('youtu.be', 'www.youtube.com/embed')
-                print(url)
+        video_title = driver.find_element_by_id('video-title')
+        url = video_title.get_attribute('href')
+        url = url.replace('watch?v=', 'embed/')
 
         driver.quit()
         
@@ -187,62 +135,13 @@ def update(request, music_id):
             driver = webdriver.Chrome(executable_path='./chromedriver.exe')
         else:
             driver = webdriver.Chrome(executable_path='./chromedriver')
-            
-        driver = webdriver.Chrome(executable_path='./chromedriver')
-        driver.set_window_position(-10000,0)
-        driver.get('https://music.youtube.com/search?q={}+{}'.format(singer, title))
+
+        driver.get('https://www.youtube.com/results?search_query={}+{}'.format(singer, title))
         time.sleep(2)
 
-
-        song_button = driver.find_element_by_xpath('//*[@id="chips"]/ytmusic-chip-cloud-chip-renderer[1]/a')
-        button_title = song_button.get_attribute('title')
-
-        if button_title == "Show song results":
-            song_button.click()
-            time.sleep(1)
-
-            html = driver.find_element_by_id('play-button').get_attribute('aria-label')
-            title_result = html.replace('Play ', '')
-
-            driver.find_element_by_id('play-button').click()
-            time.sleep(1)
-
-            music_url = driver.current_url
-            youtube_url = music_url.replace('music.', '')
-            driver.get(youtube_url)
-            time.sleep(2)
-
-            # share button click
-            driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-button-renderer[1]/a').click()
-            time.sleep(1)
-            url = driver.find_element_by_xpath('//*[@id="share-url"]').get_attribute('value')
-            url = url.replace('youtu.be', 'www.youtube.com/embed')
-
-
-        elif button_title == "Show video results":
-            song_button = driver.find_element_by_xpath('//*[@id="chips"]/ytmusic-chip-cloud-chip-renderer[2]/a')
-            button_title = song_button.get_attribute('title')
-
-            if button_title == "Show song results":
-                song_button.click()
-                time.sleep(1)
-
-                html = driver.find_element_by_id('play-button').get_attribute('aria-label')
-                title_result = html.replace('Play ', '')
-
-                driver.find_element_by_id('play-button').click()
-                time.sleep(1)
-
-                music_url = driver.current_url
-                youtube_url = music_url.replace('music.', '')
-                driver.get(youtube_url)
-                time.sleep(2)
-
-                # share button click
-                driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-button-renderer[1]/a').click()
-                time.sleep(1)
-                url = driver.find_element_by_xpath('//*[@id="share-url"]').get_attribute('value')
-                url = url.replace('youtu.be', 'www.youtube.com/embed')
+        video_title = driver.find_element_by_id('video-title')
+        url = video_title.get_attribute('href')
+        url = url.replace('watch?v=', 'embed/')
 
         driver.quit()
         
