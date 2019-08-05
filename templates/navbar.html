@@ -6,38 +6,38 @@
         <!-- Logo ( * your text or image into link tag *) -->
         <div class="nav-logo-wrap local-scroll">
             <a href="{% url 'main' %}" class="logo">
-                <img src="{% static 'bobae/images/logo.png' %}" alt="" />
+                <img src="{% static 'bobae/images/logo.png' %}" alt="" class="logo-image"/>
             </a>
         </div>
-        <div class="mobile-nav">
+        <div class="mobile-nav active">
             <i class="fa fa-bars"></i>
         </div>
         
         <!-- Main Menu -->
-        <div class="inner-nav desktop-nav">
-            <ul class="clearlist local-scroll">
-                <li>
+        <div class="inner-nav desktop-nav js opened" style="display: block;">
+            <ul class="clearlist local-scroll" style="max-height:656px;">
+                <li class="active">
                     <a href="{% url 'main' %}" class="mn-has-sub"><i class="fa fa-home"></i> Home</a>                    
                 </li>
-                <li>
+                <li class="active">
                     <a href="{% url 'musics:main' %}" class="mn-has-sub"><i class="fa fa-music"></i> Musics</a>     
                 </li>
-                <li>
+                <li class="active">
                     <a href="{% url 'playlists:main' %}" class="mn-has-sub"><i class="fa fa-list-ul"></i> Playlists</a>
                 </li>
                 
                 {% if user.is_authenticated %}
-                    <li>
+                    <li class="active">
                         <a href="{% url 'users:main' user.id %}"><i class="fa fa-user"></i> Mypage</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i> Logout</a>
                     </li>
                 {% else %}
-                    <li>
+                    <li class="active">
                         <a href="{% url 'account_login' %}" class="mn-has-sub"><i class="fa fa-sign-in"></i> Login</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{% url 'account_signup' %}" class="mn-has-sub"><i class="fa fa-group"></i> Signup</a>
                     </li>
                 {% endif %}
