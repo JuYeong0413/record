@@ -49,10 +49,18 @@ def update(request, id):
         tags = request.POST.get('tags')
         
         list=[]
-        list = tags.split(',') or tags.split(' ') 
+        list = tags.split(',')
         
         for tag in list:
-            playlist.tags.add(tag)
+            if tag != "":
+                words =""
+                if tag.find(' ') == 0:
+                    for word in tag:
+                        if word != ' ':
+                            words += word
+                    playlist.tags.add(words)
+                else:
+                    playlist.tags.add(tag)
         
         if request.FILES.get('cover'):
             playlist.cover = request.FILES.get('cover')
@@ -173,14 +181,15 @@ def create(request):
         list = tags.split(',') 
         
         for tag in list:
-            words =""
-            if tag.find(' ') == 0:
-                for word in tag:
-                    if word != ' ':
-                        words += word
-                playlist.tags.add(words)
-            else:
-                playlist.tags.add(tag)
+            if tag != "":
+                words =""
+                if tag.find(' ') == 0:
+                    for word in tag:
+                        if word != ' ':
+                            words += word
+                    playlist.tags.add(words)
+                else:
+                    playlist.tags.add(tag)
 
         music_id = request.POST.get('music_id')
         music = Music.objects.get(pk=music_id)
