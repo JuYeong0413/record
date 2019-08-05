@@ -141,8 +141,17 @@ def search(request):
     return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list': search_list})
 
 
-# 새 플레이리스트 생성
+# 새 플레이리스트 생성 페이지
 def new(request):
+    user = request.user
+    if user.is_anonymous:
+        return redirect('account_login')
+    else:
+        return render(request,'playlists/new.html')
+
+
+# 새 플레이리스트 생성
+def create(request):
     user = request.user
     if user.is_anonymous:
         return redirect('account_login')
@@ -178,8 +187,6 @@ def new(request):
         playlist.musics.add(music)
         
         return redirect('playlists:show', playlist.id)
-    else:
-        return render(request,'playlists/new.html')
 
     
 # 팔로우, 언팔로우

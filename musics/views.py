@@ -193,6 +193,7 @@ def search(request):
     paginator = Paginator(search_list, 10)
     page = request.GET.get('page')
     search_result = paginator.get_page(page)
+    
     return render(request,'musics/search.html', {'search_result': search_result, 'search_list':search_list})
 
 
@@ -203,6 +204,7 @@ def add(request):
     paginator = Paginator(playlist_list, 10)
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
+
     return render(request, 'musics/add.html', {'playlists':playlists, 'playlist_list':playlist_list})
 
 
