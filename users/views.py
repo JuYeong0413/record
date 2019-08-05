@@ -33,6 +33,9 @@ def update(request, id):
         if request.FILES.get('image'):
             user.image = request.FILES.get('image')
 
+        if request.POST.get('checkbox'):
+            user.image = 'images/default_profile.jpg'
+
         user.save()
         return redirect('users:main', id)
 
