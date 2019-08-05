@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="{% static 'rhythm/css/vertical-rhythm.min.css' %}">
         <link rel="stylesheet" href="{% static 'rhythm/css/owl.carousel.css' %}">
         <link rel="stylesheet" href="{% static 'rhythm/css/magnific-popup.css' %}"> 
-        <link rel="stylesheet" type="text/css" href="{% static 'bobae/css/bobae.css' %}">        
+        <link rel="stylesheet" href="{% static 'bobae/css/bobae.css' %}">        
         
         <!-- bootstrap4 -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
@@ -49,17 +49,21 @@
         </div>
         <!-- End Page Loader -->
         <!--record slogan-->
-        <div class="slogan"><img src="{% static 'bobae/images/logoimage.png' %}" alt="" />내가 좋아하는 음악을 RECORD에 RE:CORD하다.</div>
+        <section class="small-section bg-dark" style="padding:0; background-color: #E8E5D2!important;">
+            <div class="container relative">
+                <div class="align-center">
+                    <h3 class="banner-heading font-alt"><img src="{% static 'bobae/images/logoimage.png' %}" alt="" style="max-width:20%;"/>내가 좋아하는 음악을 RECORD에 RE:CORD하다.</h3>
+                </div>
+            </div>
+        </section>
         <!-- Page Wrap -->
         <div class="page" id="top">
-                 
             {% include 'navbar.html' %}
-
-            {% block content %}
-
-            {% endblock %}
             <br>
-        </div>
+        </div>     
+        {% block content %}
+        {% endblock %}
+            
         <!-- End Page Wrap -->
 
         {% include 'footer.html' %}

@@ -17,19 +17,133 @@
     color: #34495E;
 }
 .main-nav.dark .inner-nav ul > li > a {
-    color: #34495E;
+    color:#34495E;
+}
+.mn-has-sub{
+    height: 76px;
+    line-height: 75px;
 }
 
+
 /*base.html css*/
-.slogan {
-    background-color: #E8E5D2;
-    height:100px;
+.banner-heading {
+    color: #34495E;
+    letter-spacing:0;
     text-align: center;
     font-family: 'GyeonggiBatang';
-    font-size: x-large
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+.logo-image {
+    max-width: 100%; /* 이미지의 최대사이즈 */
+    width /***/: auto; /* only IE8 */
+    height: auto;
+    vertical-align: bottom;
 }
 hr {
     margin-top: 0;
     margin-bottom: 1rem;
-    height: 10px;
+    height: 63%;
 }
+
+/*main.html css*/
+/*main 사진 있는데! */
+.bg-dark-alfa-50:before, .bg-dark-alfa-50 .YTPOverlay:before {
+    background-image: url("mainback.gif");
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center center;
+    background-color: #E8E5D2;
+    filter: brightness(50%);
+}
+.home-content {
+    position: absolute;
+    top: 85%;
+	left: 50%;
+    transform: translate( -50%, -50% );
+}
+.hs-line-14 {
+    text-align: center;
+    font-family: 'GyeonggiBatang';
+    font-size: 2rem;
+    color:white;
+}
+
+/*검색창 css */
+.form input[type="text"]{
+    font-size:1.4rem;
+    color: #34495E;
+    background-color: #E8E5D2;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+}
+.form-inline form {
+    width:70%!important;
+    text-align: center;
+}
+.search-wrap{
+    width:70%;
+    top: 70%;
+	left: 50%;
+    transform: translate( -50%, -50% );
+}
+
+
+/*tag css */
+.tag-frequency {
+    font-family: 'GyeonggiBatang';
+    font-size: 1.5rem;
+    letter-spacing :0.7rem;
+    color:red;
+}
+.tag-frequency > a {
+    letter-spacing :1rem;
+}
+
+
+/*recoder's list 보여주기 있는데 */
+.recoders-list {
+    padding-bottom:50px;
+}
+.font-alt {
+    font-family: 'GyeonggiBatang';
+}
+.text h3 {
+    color:red;
+    font-family: 'GyeonggiBatang';
+}
+.text {
+    color:white;
+    font-family: 'GyeonggiBatang';
+}
+.mb-70 {
+    margin-top:50px;
+    margin-bottom:50px;
+}
+
+
+
+
+
+/*기존 main css */
+/* .main {
+    position: relative;
+}
+.main-top {
+    background-color: #E8E5D2;
+    filter: brightness(50%);
+    text-align: center;
+}
+.main-background{
+    width:60%;
+}
+.main-content {
+    text-align: center;
+    font-family: 'GyeonggiBatang';
+    font-size: 2rem;
+    color:white;
+    position: absolute;
+    top: 70%;
+	left: 50%;
+    transform: translate( -50%, -50% );
+} */
