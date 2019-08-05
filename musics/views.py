@@ -74,10 +74,15 @@ def create(request):
         music.lyrics = lyrics
 
         # crawling video link
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x1080')
+        options.add_argument('--disable-gpu')
+
         if os.name == 'nt':
-            driver = webdriver.Chrome(executable_path='./chromedriver.exe')
+            driver = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=options)
         else:
-            driver = webdriver.Chrome(executable_path='./chromedriver')
+            driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
 
         driver.get('https://www.youtube.com/results?search_query={}+{}'.format(singer, title))
         time.sleep(2)
@@ -131,10 +136,15 @@ def update(request, music_id):
         music.lyrics = lyrics
 
         # crawling video link
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        options.add_argument('window-size=1920x1080')
+        options.add_argument('--disable-gpu')
+
         if os.name == 'nt':
-            driver = webdriver.Chrome(executable_path='./chromedriver.exe')
+            driver = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=options)
         else:
-            driver = webdriver.Chrome(executable_path='./chromedriver')
+            driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
 
         driver.get('https://www.youtube.com/results?search_query={}+{}'.format(singer, title))
         time.sleep(2)
