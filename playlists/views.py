@@ -122,14 +122,13 @@ def like_toggle(request, playlist_id):
 
 
 # 태그 검색
-def tag(request, playlist_id, tag_id):
-    playlist = get_object_or_404(Playlist, pk=playlist_id)
-    tag = playlist.tags.get(pk=tag_id)
-    sorted_playlists_list = Playlist.objects.filter(tags__name__in=[tag], kinds=0)
-    paginator = Paginator(sorted_playlists_list, 10)
+def tag(request, tag_id):
+    tag = Playlist.tags.get(pk=tag_id)
+    playlists_list = Playlist.objects.filter(tags__name__in=[tag], kinds=0)
+    paginator = Paginator(playlists_list, 10)
     page = request.GET.get('page')
-    sorted_playlists = paginator.get_page(page)
-    return render(request, 'playlists/tag.html', {'sorted_playlists': sorted_playlists})
+    playlists = paginator.get_page(page)
+    return render(request, 'playlists/tag.html', {'playlists': playlists})
 
 
 # 음악 삭제하기

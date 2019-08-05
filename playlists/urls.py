@@ -18,7 +18,7 @@ urlpatterns = [
     path('create/', views.create, name="create"),
 
     # tag
-    path('tag/<int:playlist_id>/<int:tag_id>/', views.tag, name="tag"),
+    path('tag/<int:tag_id>/', views.tag, name="tag"),
 
     # likes
     path('<int:playlist_id>/like_toggle/', views.like_toggle, name="like_toggle"),
