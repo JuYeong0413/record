@@ -106,8 +106,10 @@
 					</div>
 					
 					<!--가사-->
+					<button id="show_lyrics">가사 펼치기</button>
+					<button id="hide_lyrics" class="hide">가사 접기</button>
 					<!-- Blockquote -->
-					<blockquote class="blog-item-q">
+					<blockquote class="blog-item-q hide" id="lyrics">
 						{{ music.lyrics|linebreaks }}
 					</blockquote>
 					<!-- End Blockquote -->

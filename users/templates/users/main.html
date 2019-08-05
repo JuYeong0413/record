@@ -154,7 +154,10 @@
             </div>
             <div class="modal-body">
                 {% for follower in user_profile.followers.all %}
-                    <a href="{% url 'users:main' follower.id %}">{{ follower.username }}</a>
+                    <a href="{% url 'users:main' follower.id %}">
+                        <img src="{{ follower.image.url }}" alt="" width="50" height="50">
+                        {{ follower.username }}
+                    </a>
                 {% endfor %}
             </div>
             <div class="modal-footer">
@@ -176,7 +179,10 @@
                 </div>
                 <div class="modal-body">
                     {% for following in user_profile.followings.all %}
-                        <a href="{% url 'users:main' following.id %}">{{ following.username }}</a>
+                        <a href="{% url 'users:main' following.id %}">
+                            <img src="{{ following.image.url }}" alt="" width="50" height="50">
+                            {{ following.username }}
+                        </a>
                     {% endfor %}
                 </div>
                 <div class="modal-footer">
