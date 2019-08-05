@@ -57,7 +57,7 @@
     <div class="container relative">
         
         <div class="row masonry">
-            {% for playlist in sorted_playlists %}
+            {% for playlist in playlists %}
                 {% if playlist.kinds == 0 or playlist.kinds == 1 %}
                 
                     <a href ="{% url 'playlists:show' playlist.id %}">
@@ -87,18 +87,18 @@
         </div>
                 
         <!-- Pagination -->
-        {% if sorted_playlistshas_previous%}
+        {% if playlists.has_previous %}
             <a href="?page=1">first</a>
-            <a href="?page={{ sorted_playlists.previous_page_number }}">Preivous</a>
+            <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
         {% endif %}
 
-        <span>{{ sorted_playlists.number }}</span>
+        <span>{{ playlists.number }}</span>
         <span>of</span>
-        <span>{{ sorted_playlists.paginator.num_pages }}</span>
+        <span>{{ playlists.paginator.num_pages }}</span>
 
-        {% if sorted_playlists.has_next %}
-            <a href="?page={{ sorted_playlists.next_page_number }}">Next</a>
-            <a href="?page={{ sorted_playlists.paginator.num_pages }}">Last</a>
+        {% if playlists.has_next %}
+            <a href="?page={{ playlists.next_page_number }}">Next</a>
+            <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
         {% endif %}
         <!-- End Pagination -->
         
