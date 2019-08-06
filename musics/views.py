@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 import requests
 from bs4 import BeautifulSoup
 from playlists.models import Playlist
-from django.http import HttpResponse
+
 
 # Create your views here.
 # 노래 메인 페이지
@@ -132,4 +132,11 @@ def show_playlists(request):
 
 def add_music(request, playlist_id):
     playlist = Playlist.objects.get(pk=playlist_id)
+
+    if request.method =="POST":
+        music_id = request.POST.get('music_id')
+        music = request.objects.get(pk=music_id)
+        playlist.musics.add(music)
+
+    return redirect('playlists:show', playlist_id)
 
