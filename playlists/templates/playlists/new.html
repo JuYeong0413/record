@@ -29,7 +29,7 @@
 <!-- End Head Section -->
 
 <div style="margin-bottom:200px;">
-    <form action="{% url 'playlists:new' %}" method="POST">
+    <form action="{% url 'playlists:create' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" name="music_id" value="{{ request.GET.music }}">
         제목 : <input type="text" name ="title"><br>

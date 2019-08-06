@@ -55,83 +55,36 @@
             RE:CORDer’s LIST
         </h2>
         <div class="row">
-            <!-- playlist1 -->
+
+            {% for playlist in playlists %}
+            <!-- playlist -->
             <div class="col-sm-4 mb-xs-30 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                 <div class="team-item">
                     
                     <div class="team-item-image">
                         
-                        <img src="{% static 'rhythm/images/team/team-1.jpg' %}" alt=""/>
+                        <a href="{% url 'playlists:show' playlist.id %}">
+                            <img src="{% static 'rhythm/images/team/team-1.jpg' %}" alt=""/>
+                        </a>
                         
                     </div>
                     
                     <div class="team-item-descr font-alt">
                         
                         <div class="team-item-name">
-                            플레이리스트 
+                            <a href="{% url 'playlists:show' playlist.id %}">{{ playlist.title }}</>
                         </div>
                         
                         <div class="team-item-role">
-                            글쓴이
+                            {{ playlist.creator }}
                         </div>
                         
                     </div>
                     
                 </div>
             </div>
-            <!-- End playlist1 -->
-            
-            <!-- playlist2 -->
-            <div class="col-sm-4 mb-xs-30 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp; ">
-                <div class="team-item">
-                
-                    <div class="team-item-image">
-                        
-                        <img src="{% static 'rhythm/images/team/team-2.jpg' %}" alt=""/>
-                        
-                    </div>
-                    
-                    <div class="team-item-descr font-alt">
-                        
-                        <div class="team-item-name">
-                            플레이리스트 
-                        </div>
-                        
-                        <div class="team-item-role">
-                            글쓴이
-                        </div>
-                        
-                    </div>
-                        
-                </div>
-            </div>
-            <!-- End playlist2 -->
-            
-            <!-- playlist3 -->
-            <div class="col-sm-4 mb-xs-30 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
-                <div class="team-item">
-            
-                    <div class="team-item-image">
-                        
-                        <img src="{% static 'rhythm/images/team/team-3.jpg' %}" alt=""/>
-                        
-                    </div>
-                    
-                    <div class="team-item-descr font-alt">
-                        
-                        <div class="team-item-name">
-                            플레이리스트 
-                        </div>
-                        
-                        <div class="team-item-role">
-                            글쓴이
-                        </div>
-                        
-                    </div>
-                            
-                </div>
-            </div>
-            <!-- End playlist3 -->
+            {% endfor %}
+            <!-- End playlist -->
             
         </div>
     </div>
