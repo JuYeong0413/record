@@ -28,6 +28,84 @@
 </section>
 <!-- End Head Section -->
 
+<!-- Contact Section -->
+<section class="page-section" id="contact">
+    <div class="container relative">
+        
+        <h2 class="section-title font-alt mb-70 mb-sm-40">
+            새 플레이리스트 생성하기
+        </h2>
+
+        <!-- Contact Form -->                            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                
+                <form class="form contact-form" id="contact_form">
+                    <div class="clearfix">
+                        
+                       
+                            
+                            <!-- Name -->
+                            
+                            <div class="form-group">
+                                <label for="exampleInputFile">제목</label>
+                                <input type="text" name="name" id="name" class="input-md round form-control" placeholder="제목" pattern=".{3,100}" required>
+                            </div>
+                            
+                            <!-- Email -->
+                            
+                            <div class="form-group">
+                                <label for="exampleInputFile">태그</label>
+                                <input type="email" name="email" id="email" class="input-md round form-control" placeholder=",로 구분해주세요" pattern=".{5,100}" required>
+                            </div>
+                            
+                        
+                            
+                            <!-- Message -->
+                            <div class="form-group"> 
+                                <label for="exampleInputFile">설명</label>                                         
+                                <textarea name="message" id="message" class="input-md round form-control" style="height: 84px;" placeholder="플레이리스트 설명"></textarea>
+                            </div>
+                            
+                        
+                        
+                    </div>
+                    
+                    <div class="clearfix">
+                        
+                        <div class="cf-left-col">
+                            
+                            <!-- Inform Tip -->                                        
+                            <div class="form-tip pt-20">
+                                <i class="fa fa-info-circle"></i> All the fields are required
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="cf-right-col">
+                            
+                            <!-- Send Button -->
+                            <div class="align-right pt-10">
+                                <button class="submit_btn btn btn-mod btn-medium btn-round" id="submit_btn">Submit Message</button>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    
+                    <div id="result"></div>
+                </form>
+                
+            </div>
+        </div>
+        <!-- End Contact Form -->
+        
+    </div>
+</section>
+<!-- End Contact Section -->
+
 <div style="margin-bottom:200px;">
     <form action="{% url 'playlists:create' %}" method="POST">
         {% csrf_token %}
