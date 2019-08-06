@@ -27,31 +27,152 @@
 </section>
 <!-- End Head Section -->
 
-<div>
-    <form action="{% url 'playlists:update' playlist.id %}" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        제목 : <input type="text" name="title" value="{{ playlist.title }}"><br>
-        커버사진 : <input type="file" name ="cover">{{ playlist.cover }}<br>
-        {% if playlist.kinds == 0 %}
-            <input type="radio" name="kinds" value="0" checked>공개
-            <input type="radio" name="kinds" value="1">비공개
-            {% else %}
-            <input type="radio" name="kinds" value="0">공개
-            <input type="radio" name="kinds" value="1" checked>비공개
-        {% endif %}
-            <br>
-        {% for music in playlist.musics.all %}
-            {{ music.title }}
-            {{ music.singer }}
-            <a href="{% url 'playlists:delete_music' playlist.id  music.id %}">음악삭제</a>
-            <br>
-        {% endfor %}
-        <br>
-        설명 : <textarea name="description">{{ playlist.description }}</textarea>
-        <br>
-        태그 : <input type="text" name ="tags" value ="{{ content }}" placeholder=",로 구분해주세요">
-        <input type="submit" value="수정" class="btn btn-primary">
-    </form>
-</div>
+<!-- Contact Section -->
+<section class="page-section" id="contact">
+        <div class="container relative">
+            
+            <h2 class="section-title font-alt mb-70 mb-sm-40">
+                플레이리스트 수정하기
+            </h2>
+    
+            <!-- Contact Form -->                            
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    
+                    <form action="{% url 'playlists:update' playlist.id %}" method="POST" enctype="multipart/form-data" class="form contact-form" id="contact_form">
+                        {% csrf_token %}
+                        <div class="clearfix">
+                                
+                                <div class="form-group">
+                                    <label for="exampleInputFile">제목</label>
+                                    <input type="text" name="title" id="name" class="input-md round form-control" value="{{ playlist.title }}" pattern=".{3,100}" required>
+                                </div>
+                                
+                                
+                                <div class="form-group">
+                                    <label for="exampleInputFile">태그</label>
+                                    <input type="text" name="tags" id="email" value = "{{ content }}" class="input-md round form-control" placeholder=",로 구분해주세요" pattern=".{5,100}" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    {% if playlist.kinds == 0 %}
+                                        <input type="radio" name="kinds" value="0" checked>공개
+                                        <input type="radio" name="kinds" value="1">비공개
+                                    {% else %}
+                                        <input type="radio" name="kinds" value="0">공개
+                                        <input type="radio" name="kinds" value="1" checked>비공개
+                                    {% endif %}
+                                </div>
+    
+                                <div class="form-group">
+                                    <label for="exampleInputFile">커버사진</label>
+                                    <input type="file" name="cover" id="exampleInputFile">{{ playlist.cover }}
+                                </div>
+    
+                                <!-- Message -->
+                                <div class="form-group"> 
+                                    <label for="exampleInputFile">설명</label>                                         
+                                    <textarea name="description" id="message" class="input-md round form-control" style="height: 84px;" placeholder="플레이리스트 설명">{{ playlist.description }}</textarea>
+                                </div>
+                                
+                            
+                                <div class="form-group">
+                                    <label for="exampleInputFile">노래목록</label>
+                                        <table class="table table-striped shopping-cart-table">
+                                                <tr>
+                                                    <th class="hidden-xs">
+                                                        
+                                                    </th>
+                                                    <th>
+                                                        제목
+                                                    </th>
+                                                    <th>
+                                                        가수
+                                                    </th>
+                                                    <th>
+                                                        작성자
+                                                    </th>
+                                                    <th>
+                                                        삭제
+                                                    </th>
+                                                </tr>
+                                                
+                                                {% for music in playlist.musics.all %}  
+                                                <tr>
+                                                    <td class="hidden-xs">
+                                                        <img src="{% static 'hyojeong/images/lp.png' %}" alt="" width="50px" height="50px" style="margin-left: auto; margin-right: auto; display: block;"/>
+                                                    </td>
+                                                    <td>
+                                                        {{ music.title }}
+                                                    </td>
+                                                    <td>
+                                                        {{ music.singer }}
+                                                    </td>
+                                                    
+                                                    <td>
+                        
+                                                        <a href="{% url 'playlists:delete_music' playlist.id  music.id %}" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                                                        
+                                                        
+                                                        <!-- deleteModal -->
+                                                        <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                <h5 class="modal-title" id="deletModalLabel">게시글 삭제하기</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    정말로 게시글을 삭제하시겠습니까?<br>
+                                                                    삭제된 글은 복구할 수 없습니다.
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                                                                <a class="btn btn-primary" href="{% url 'musics:delete' music.id %}">확인</a>
+                                                                </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr> 
+                                                {% endfor %}
+                                            </table>
+                                </div>
+                        </div>
+                        
+                        <div class="clearfix">
+                            
+                            <div class="cf-left-col">
+                                
+                                <!-- Inform Tip -->                                        
+                                <div class="form-tip pt-20">
+                                    <i class="fa fa-info-circle"></i> All the fields are required
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="cf-right-col">
+                                
+                                <!-- Send Button -->
+                                <div class="align-right pt-10">
+                                    <input type="submit" value="수정" class="submit_btn btn btn-mod btn-medium btn-round">
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+    
+                    </form>
+                    
+                </div>
+            </div>
+            <!-- End Contact Form -->
+            
+        </div>
+    </section>
+<!-- End Contact Section -->
+
 
 {% endblock %}
