@@ -4,41 +4,192 @@
 {% block content %}
 <!-- Head Section -->
 <section class="small-section bg-gray-lighter">
-        <div class="relative container align-left">
+    <div class="relative container align-left">
+        
+        <div class="row">
             
-            <div class="row">
-                
-                <div class="col-md-8">
-                    <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Users</h1>
-                    <div class="hs-line-4 font-alt black">
-                        Record your music
-                    </div>
-                </div>
-                
-                <div class="col-md-4 mt-30">
-                    <div class="mod-breadcrumbs font-alt align-right">
-                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">뭐넣지</a>&nbsp;/&nbsp;<span>Users</span>
-                    </div>
-                    
+            <div class="col-md-8">
+                <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">MYPAGE</h1>
+                <div class="hs-line-4 font-alt black">
+                    Record your music
                 </div>
             </div>
             
+            <div class="col-md-4 mt-30">
+                <div class="mod-breadcrumbs font-alt align-right">
+                    <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="{% url 'users:main' user_profile.id %}">My Page</a>&nbsp;/&nbsp;<span>Profile</span>
+                </div>
+                
+            </div>
         </div>
-    </section>
+        
+    </div>
+</section>
 <!-- End Head Section -->
 
-<div>
-    <img src="{{ user_profile.image.url }}" alt=""><br>
-    username : {{ user_profile.username }}<br>
-    {{ user_profile.introduction }}<br>
-    팔로우 <a href="#">{{ user.followers.count }}</a>명<br>
-    팔로잉 <a href="#">{{ user.followings.count }}</a>명<br>
+ <!-- Section -->
+ <section class="page-section">
+    <div class="container relative">
+        
+        <div class="row">
+            
+            
+            <!-- Sidebar -->
+            <div class="col-sm-4 col-md-3 sidebar">
+                
+                
+                <!-- Widget -->
+                <div class="widget">
+                    
+                    <h5 class="widget-title font-alt">Categories</h5>
+                    
+                    <div class="widget-body">
+                        <ul class="clearlist widget-menu">
+                            <li>
+                                <a href="{% url 'users:main' user_profile.id %}" title="">Profile</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:musics' user_profile.id %}" title="">My Music</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:playlists' user_profile.id %}" title="">My Playlists</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:likes' user_profile.id %}" title="">Playlists I Like</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <!-- End Widget -->
+                
+            </div>
+            <!-- End Sidebar -->
+            
+            <!-- Content -->
+            <div class="col-sm-8 col-md-offset-1">
+                
+                <!-- Post -->
+                <div class="blog-item">
+                    
+                    <!-- Post Title -->
+                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Profile</a></h2>
+                    
+                    <!-- Media Gallery -->
+                    <div class="blog-media">
+                        <img src="{{ user_profile.image.url }}" alt=""><br>
+                    </div>
 
-    {% if user == user_profile %}
-        <a href="{% url 'users:musics' user.id %}">내가 작성한 노래 게시글</a><br>
-        <a href="{% url 'users:playlists' user.id %}">내가 좋아하는 플레이리스트</a><br>
-        <a href="{% url 'users:edit' user.id %}">회원정보 수정</a>
-    {% endif %}
+                    <div class="team-item-name">
+                        {{ user_profile.username }}
+                    </div><br>
+
+                    <div class="blog-item-data">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#followModal">
+                            팔로우 {{ user_profile.followers.count }}명
+                        </button>
+                        <span class="separator">&nbsp;</span>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#followingModal">
+                            팔로잉 {{ user_profile.followings.count }}명
+                        </button>
+                        <span class="separator">&nbsp;</span>
+                        {% if user != user_profile %}
+                            {% if user in user_profile.followers.all %}
+                                <a href="{% url 'users:follow_toggle' user_profile.id %}" class="btn btn-info">팔로우 취소</a><br>
+                            {% else %}
+                                <a href ="{% url 'users:follow_toggle' user_profile.id %}" class="btn btn-info">팔로우</a><br>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+                    <!-- Blockquote -->
+                    <blockquote class="blog-item-q">
+                        <p>
+                            {{ user_profile.introduction }}
+                        </p>
+                    </blockquote>
+                    <!-- End Blockquote -->
+
+                    <!-- Read More Link -->
+                    {% if user == user_profile %}
+                        <div class="blog-item-foot">
+                            <a href="{% url 'users:edit' user_profile.id %}" class="btn btn-mod btn-round  btn-small">회원정보 수정</a>
+                        </div>
+                    {% endif %}
+
+                </div>
+                <!-- End Post -->
+                
+            </div>
+            <!-- End Content -->
+            
+        </div>
+        
+    </div>
+</section>
+<!-- End Section -->
+
+
+<!-- Follow Modal -->
+<div class="modal" id="followModal" tabindex="-1" role="dialog" aria-labelledby="followModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="followModalLabel">팔로우 목록</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {% for follower in user_profile.followers.all %}
+                    <a href="{% url 'users:main' follower.id %}">
+                        <img src="{{ follower.image.url }}" alt="" width="50" height="50">
+                        {{ follower.username }}
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Following Modal -->
+<div class="modal" id="followingModal" tabindex="-1" role="dialog" aria-labelledby="followingModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="followingModalLabel">팔로잉 목록</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {% for following in user_profile.followings.all %}
+                        <a href="{% url 'users:main' following.id %}">
+                            <img src="{{ following.image.url }}" alt="" width="50" height="50">
+                            {{ following.username }}
+                        </a>
+                    {% endfor %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

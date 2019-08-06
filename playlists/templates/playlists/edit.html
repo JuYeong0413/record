@@ -4,41 +4,53 @@
 {% block content %}
 <!-- Head Section -->
 <section class="small-section bg-gray-lighter">
-        <div class="relative container align-left">
+    <div class="relative container align-left">
+        
+        <div class="row">
             
-            <div class="row">
-                
-                <div class="col-md-8">
-                    <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Playlists</h1>
-                    <div class="hs-line-4 font-alt black">
-                        Record your music
-                    </div>
-                </div>
-                
-                <div class="col-md-4 mt-30">
-                    <div class="mod-breadcrumbs font-alt align-right">
-                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="{% url 'playlists:main' %}">Playlists</a>&nbsp;/&nbsp;<span>Edit</span>
-                    </div>
-                    
+            <div class="col-md-8">
+                <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Playlists</h1>
+                <div class="hs-line-4 font-alt black">
+                    Record your music
                 </div>
             </div>
             
+            <div class="col-md-4 mt-30">
+                <div class="mod-breadcrumbs font-alt align-right">
+                    <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="{% url 'playlists:main' %}">Playlists</a>&nbsp;/&nbsp;<span>Edit</span>
+                </div>
+                
+            </div>
         </div>
-    </section>
+        
+    </div>
+</section>
 <!-- End Head Section -->
 
 <div>
-    <form action="{% url 'playlists:update' playlist.id %}" method ="POST" enctype="multipart/form-data">
+    <form action="{% url 'playlists:update' playlist.id %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" name ="title" value="{{ playlist.title }}"><br>
-        <input type="file" name ="cover">{{ playlist.cover }}<br>
-        <input type ="radio" name="kinds" value = "private">private
-        <input type ="radio" name ="kinds" value ="public">public
-        
+        제목 : <input type="text" name="title" value="{{ playlist.title }}"><br>
+        커버사진 : <input type="file" name ="cover">{{ playlist.cover }}<br>
+        {% if playlist.kinds == 0 %}
+            <input type="radio" name="kinds" value="0" checked>공개
+            <input type="radio" name="kinds" value="1">비공개
+            {% else %}
+            <input type="radio" name="kinds" value="0">공개
+            <input type="radio" name="kinds" value="1" checked>비공개
+        {% endif %}
+            <br>
+        {% for music in playlist.musics.all %}
+            {{ music.title }}
+            {{ music.singer }}
+            <a href="{% url 'playlists:delete_music' playlist.id  music.id %}">음악삭제</a>
+            <br>
+        {% endfor %}
         <br>
-        <input type="text" name ="tags" value ="{{ content }}">
-
-        <input type="submit" value ="제출" class = "btn btn-primary">
+        설명 : <textarea name="description">{{ playlist.description }}</textarea>
+        <br>
+        태그 : <input type="text" name ="tags" value ="{{ content }}" placeholder=",로 구분해주세요">
+        <input type="submit" value="수정" class="btn btn-primary">
     </form>
 </div>
 

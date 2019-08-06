@@ -4,35 +4,136 @@
 {% block content %}
 <!-- Head Section -->
 <section class="small-section bg-gray-lighter">
-        <div class="relative container align-left">
+    <div class="relative container align-left">
+        
+        <div class="row">
             
-            <div class="row">
-                
-                <div class="col-md-8">
-                    <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Users</h1>
-                    <div class="hs-line-4 font-alt black">
-                        Record your music
-                    </div>
-                </div>
-                
-                <div class="col-md-4 mt-30">
-                    <div class="mod-breadcrumbs font-alt align-right">
-                        <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">Users</a>&nbsp;/&nbsp;<span>Playlists</span>
-                    </div>
-                    
+            <div class="col-md-8">
+                <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Users</h1>
+                <div class="hs-line-4 font-alt black">
+                    Record your music
                 </div>
             </div>
             
+            <div class="col-md-4 mt-30">
+                <div class="mod-breadcrumbs font-alt align-right">
+                    <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="#">Users</a>&nbsp;/&nbsp;<span>Playlists</span>
+                </div>
+                
+            </div>
         </div>
-    </section>
+        
+    </div>
+</section>
 <!-- End Head Section -->
 
-{% if playlists.exists %}
-    {% for playlist in playlists %}
-        <a href="{% url 'playlists:show' playlist.pk %}">{{ playlist.title }}</a><br>
-    {% endfor %}
-{% else %}
-    <h3>생성한 플레이리스트가 없습니다.</h3>
-{% endif %}
+<!-- Section -->
+<section class="page-section">
+    <div class="container relative">
+        
+        <div class="row">
+            
+            
+            <!-- Sidebar -->
+            <div class="col-sm-4 col-md-3 sidebar">
+                
+                
+                <!-- Widget -->
+                <div class="widget">
+                    
+                    <h5 class="widget-title font-alt">Categories</h5>
+                    
+                    <div class="widget-body">
+                        <ul class="clearlist widget-menu">
+                            <li>
+                                <a href="{% url 'users:main' user.id %}" title="">Profile</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:musics' user.id %}" title="">My Music</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:playlists' user.id %}" title="">My Playlists</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                            <li>
+                                <a href="{% url 'users:likes' user.id %}" title="">Playlists I Like</a>
+                                <small>
+                                    
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+                <!-- End Widget -->
+                
+            </div>
+            <!-- End Sidebar -->
+            
+            <!-- Content -->
+            <div class="col-sm-8 col-md-offset-1">
+
+                <!-- Post Title -->
+                <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">My Playlists</a></h2>
+                <br>
+                
+                <div class="row multi-columns-row">
+                    
+                    {% if playlist_lists.exists %}
+                    
+                        <!-- Post Item -->
+                        {% for playlist in playlists %}
+                            <a href ="{% url 'playlists:show' playlist.id %}">
+                                <div class="col-md-6 col-lg-6 mb-60 mb-xs-40">
+                            
+                                    {% if playlist.cover %}
+                                        <div class="post-prev-img">
+                                            <img src= "{{ playlist.cover.url }}" alt="사진없음">
+                                        </div>
+                                    {% endif %}
+                            
+                                    <div class="post-prev-title font-alt">
+                                        {{ playlist.title }}
+                                    </div>
+                            
+                                </div>
+                            </a>
+                        {% endfor %}
+                        <!-- End Post Item -->
+                    {% else %}
+                        <h3>생성한 플레이리스트가 없습니다.</h3>
+                    {% endif %}
+
+                </div>
+                <br>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href=""><i class="fa fa-angle-left"></i></a>
+                    <a href="" class="active">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a class="no-active">...</a>
+                    <a href="">9</a>
+                    <a href=""><i class="fa fa-angle-right"></i></a>
+                </div>
+                <!-- End Pagination -->
+                
+            </div>
+            <!-- End Content -->
+            
+        </div>
+        
+    </div>
+</section>
+<!-- End Section -->
 
 {% endblock %}

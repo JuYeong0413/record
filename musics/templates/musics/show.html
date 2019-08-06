@@ -27,78 +27,137 @@
 </section>
 <!-- End Head Section -->
 
-<div>
-
-	<!-- 곡 상세정보 -->
-	노래 제목 : {{ music.title }}<br>
-	가수 : {{ music.singer }}<br>
-	장르 : {{ music.genre }}<br>
-	글 작성자 : {{ music.writer }}<br>
-	가사<br>{{ music.lyrics|linebreaks }}<br>
-	링크 : {{ music.link }}<br>
-
-	{% if user == music.writer %}
-		<a class="btn btn-primary" href="{% url 'musics:edit' music.id %}">수정</a>
-		<!-- deleteModal -->
-		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-			삭제
-		</button>
-
-		<!-- deleteModal -->
-		<div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="deletModalLabel">게시글 삭제하기</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-				<div class="modal-body">
-					정말로 게시글을 삭제하시겠습니까?<br>
-					삭제된 글은 복구할 수 없습니다.
-				</div>
-				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-				<a class="btn btn-primary" href="{% url 'musics:delete' music.id %}">확인</a>
-				</div>
-			</div>
-			</div>
-		</div>
-	{% endif %}
-	
-	<br>
-	
-	{% if user.is_authenticated %}
-		<!-- 플레이리스트에 곡 추가 -->
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPlaylist">
-			플레이리스트에 추가하기
-		</button>
+ <!-- Section -->
+ <section class="page-section">
+	<div class="container relative">
+		
+		<div class="row">
 			
-		<!-- 플레이리스트에 곡 추가 Modal -->
-		<div class="modal" id="addPlaylist" tabindex="-1" role="dialog" aria-labelledby="addPlaylistLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-				<h5 class="modal-title" id="addPlaylistLabel">플레이리스트에 추가하기</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+			<!-- Content -->
+			<div class="col-sm-10 col-sm-offset-1">
+				
+				<!-- Post -->
+				<div class="blog-item">
+					
+					<!-- Date -->
+					<div class="blog-item-date">
+						<a href="{% url 'musics:main' %}"><span class="date-num">뒤로가기</span></a>
+					</div>
+					
+					<!-- Post Title -->
+					<h2 class="blog-item-title font-alt"><a href="#">노래 제목 : {{ music.title }}</a></h2>
+					
+					<!-- Author, Categories, Comments -->
+					<div class="blog-item-data">
+						<a href="#"><i class="fa fa-user"></i> 가수 : {{ music.singer }}</a>
+						<span class="separator">&nbsp;</span>
+						<i class="fa fa-folder-open"></i>
+						<a href="#">장르 : {{ music.genre }}</a>
+						<span class="separator">&nbsp;</span>
+						<a href="#"><i class="fa fa-comments"></i> 글 작성자 : {{ music.writer }}</a>
+
+						{% if user == music.writer %}
+							<span class="separator">&nbsp;</span>
+							<a class="btn btn-primary" href="{% url 'musics:edit' music.id %}">수정</a>
+							<!-- deleteModal -->
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+								삭제
+							</button>
+
+							<!-- deleteModal -->
+							<div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="deletModalLabel">게시글 삭제하기</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="modal-body">
+										정말로 게시글을 삭제하시겠습니까?<br>
+										삭제된 글은 복구할 수 없습니다.
+									</div>
+									<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+									<a class="btn btn-primary" href="{% url 'musics:delete' music.id %}">확인</a>
+									</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						
+					</div>
+					
+					<!-- Media Gallery -->
+					<div class="blog-media">
+						{% if url == "None" %}
+							<p>영상이 없습니다.</p>
+						{% else %}
+							<iframe width="640" height="360" src="{{ music.link }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						{% endif %}
+					</div>
+					
+					<!-- Text Intro -->
+					<div class="blog-item-body">
+						<p>
+							노래에 관한 설명 있으면 여기다 작성..?
+						</p>
+					</div>
+					
+					<!--가사-->
+					<button id="show_lyrics">가사 펼치기</button>
+					<button id="hide_lyrics" class="hide">가사 접기</button>
+					<!-- Blockquote -->
+					<blockquote class="blog-item-q hide" id="lyrics">
+						{{ music.lyrics|linebreaks }}
+					</blockquote>
+					<!-- End Blockquote -->
+
+					<!-- Read More Link -->
+					<div class="blog-item-foot">
+					{% if user.is_authenticated %}
+						<!-- 플레이리스트에 곡 추가 -->
+						<button type="button" class="btn btn-mod btn-round  btn-small" data-toggle="modal" data-target="#addPlaylist">
+							플레이리스트에 추가하기
+						</button>
+							
+						<!-- 플레이리스트에 곡 추가 Modal -->
+						<div class="modal" id="addPlaylist" tabindex="-1" role="dialog" aria-labelledby="addPlaylistLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+								<h5 class="modal-title" id="addPlaylistLabel">플레이리스트에 추가하기</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<div class="modal-body">
+									기존 플레이리스트에 추가하시겠습니까?
+								</div>
+								<div class="modal-footer">
+								<a href="{% url 'playlists:new' %}?music={{ music.id }}" class="btn btn-success">새 플레이리스트 생성하기</a>
+								<a href="{% url 'musics:add' %}?music={{ music.id }}" class = "btn btn-info">기존 플레이리스트에 추가</a>
+								</div>
+							</div>
+							</div>
+						</div>
+					{% else %}
+						<h3>플레이리스트에 곡을 추가하려면 <a href="{% url 'account_login' %}">로그인</a> 하세요.</h3>
+					{% endif %}
+						
+					</div>
+					
 				</div>
-				<div class="modal-body">
-				기존 플레이리스트에 추가하시겠습니까?
-				</div>
-				<div class="modal-footer">
-				<a href="#">No, 새로운 플레이리스트 생성</a>
-				<a href="{% url 'musics:show_playlists' %}" class = "btn btn-primary">Yes</a>
-				</div>
+				<!-- End Post -->
+				
 			</div>
-			</div>
+			<!-- End Content -->
+			
 		</div>
-	{% else %}
-		<h3>플레이리스트에 곡을 추가하려면 <a href="{% url 'account_login' %}">로그인</a> 하세요.</h3>
-	{% endif %}
-	  
-</div>
+	</div>
+
+</section>
+<!-- End Section -->
 
 {% endblock %}

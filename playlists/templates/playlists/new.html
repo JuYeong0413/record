@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<!-- Head Section -->
+<section class="small-section bg-gray-lighter">
+    <div class="relative container align-left">
+        
+        <div class="row">
+            
+            <div class="col-md-8">
+                <h1 class="hs-line-11 no-transp font-alt mb-20 mb-xs-0">Playlists</h1>
+                <div class="hs-line-4 font-alt black">
+                    Record your music
+                </div>
+            </div>
+            
+            <div class="col-md-4 mt-30">
+                <div class="mod-breadcrumbs font-alt align-right">
+                    <a href="{% url 'main' %}">Home</a>&nbsp;/&nbsp;<a href="{% url 'playlists:main' %}">Playlists</a>&nbsp;/&nbsp;<span>Show</span>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</section>
+<!-- End Head Section -->
+
+<div style="margin-bottom:200px;">
+    <form action="{% url 'playlists:new' %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="music_id" value="{{ request.GET.music }}">
+        제목 : <input type="text" name ="title"><br>
+        커버사진 : <input type="file" name="cover"><br>
+        <input type="radio" name="kinds" value="0" checked>공개
+        <input type="radio" name="kinds" value="1">비공개
+        <br>
+        설명 : <textarea name="description" placeholder="플레이리스트 설명"></textarea><br>
+        태그 : <input type="text" name="tags" placeholder=",로 구분해주세요"><br>
+        <input type="submit" value="submit" class="btn btn-primary">
+    </form>
+</div>
+{% endblock %}

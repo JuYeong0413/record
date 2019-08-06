@@ -1,6 +1,161 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 {% load staticfiles %}
 
 {% block content %}
 
+<!--main사진 section입니당-->
+
+<section class="home-section bg-dark-alfa-50 parallax-2 fixed-height-small" id="home">
+    <div class="js-height-parent container" style="height: 600px;"></div>
+
+        <!-- Main -->
+        <div class="home-content">
+
+            <div class="home-text">
+
+                <!--record에 record하자-->
+                <h2 class="hs-line-14 font-alt mb-50 mb-xs-30">
+                    여러분이 알고 있는 명곡을 RE:CORD에 RECORD하세요.
+                </h2>
+
+                <!--검색어 입력공간-->
+                <form class="form-inline form" action="{% url 'playlists:search' %}" role="form">
+                    <div class="search-wrap">
+                        <button class="search-button animate" type="submit" title="Start Search">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <input type="text" class="form-control search-field" placeholder="RE:CORDERS의 좋아하는 음악들을 찾아보세요. ex)밤샘코딩할 때 듣는 음악" name="query">
+                    </div>
+                </form>
+
+                <!--자주 입력된 태그를 넣는 공간입니당-->
+                
+                <div class="tag-frequency mb-110 mb-xs-60">
+                    자주 입력된 태그
+                    <a href="#" title="tag1" >#태그1</a>
+                    <a href="#" title="tag2" >#태그2</a>
+                    <a href="#" title="tag3" >#태그3</a>
+                    <a href="#" title="tag4" >#태그4</a>
+                    <a href="#" title="tag5" >#태그5</a>
+                </div>
+                    
+            </div>
+        </div>
+        <!-- End Main -->
+        
+    </div>
+</section>
+
+
+
+<!--main recoder's list section입니당-->
+<section class="recoders-list">
+    <div class="container relative">     
+        <h2 class="section-title font-alt align-left mb-70 mb-sm-40">
+            RE:CORDer’s LIST
+        </h2>
+        <div class="row">
+            <!-- playlist1 -->
+            <div class="col-sm-4 mb-xs-30 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                <div class="team-item">
+                    
+                    <div class="team-item-image">
+                        
+                        <img src="{% static 'rhythm/images/team/team-1.jpg' %}" alt=""/>
+                        
+                    </div>
+                    
+                    <div class="team-item-descr font-alt">
+                        
+                        <div class="team-item-name">
+                            플레이리스트 
+                        </div>
+                        
+                        <div class="team-item-role">
+                            글쓴이
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- End playlist1 -->
+            
+            <!-- playlist2 -->
+            <div class="col-sm-4 mb-xs-30 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp; ">
+                <div class="team-item">
+                
+                    <div class="team-item-image">
+                        
+                        <img src="{% static 'rhythm/images/team/team-2.jpg' %}" alt=""/>
+                        
+                    </div>
+                    
+                    <div class="team-item-descr font-alt">
+                        
+                        <div class="team-item-name">
+                            플레이리스트 
+                        </div>
+                        
+                        <div class="team-item-role">
+                            글쓴이
+                        </div>
+                        
+                    </div>
+                        
+                </div>
+            </div>
+            <!-- End playlist2 -->
+            
+            <!-- playlist3 -->
+            <div class="col-sm-4 mb-xs-30 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                <div class="team-item">
+            
+                    <div class="team-item-image">
+                        
+                        <img src="{% static 'rhythm/images/team/team-3.jpg' %}" alt=""/>
+                        
+                    </div>
+                    
+                    <div class="team-item-descr font-alt">
+                        
+                        <div class="team-item-name">
+                            플레이리스트 
+                        </div>
+                        
+                        <div class="team-item-role">
+                            글쓴이
+                        </div>
+                        
+                    </div>
+                            
+                </div>
+            </div>
+            <!-- End playlist3 -->
+            
+        </div>
+    </div>
+</section>
+
+
+
+
+<!--기존코드-->
+<!-- <section class="main">
+    <div class="main-top">
+        <img src="{% static 'bobae/images/mainback.gif' %}" alt="" class="main-background"/>
+    </div>
+    <div class="main-content">
+        <p>내가 좋아하는 음악을 RECORD에 RE:CORD하다.</p>-->
+        <!-- Search -->
+        <!--<form class="form-inline form" action="{% url 'playlists:search' %}" role="form">
+            <div class="search-wrap">
+                <button class="search-button animate" type="submit" title="Start Search">
+                    <i class="fa fa-search"></i>
+                </button>
+                <input type="text" class="form-control search-field" placeholder="검색어" name="query">
+            </div>
+        </form>
+    </div>
+</section> -->
 {% endblock %}
