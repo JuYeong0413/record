@@ -62,7 +62,7 @@
                     <div class="team-item-image">
                         
                         <a href="{% url 'playlists:show' playlist.id %}">
-                            <img src="{% static 'rhythm/images/team/team-1.jpg' %}" alt=""/>
+                            <img src="{{ playlist.cover.url }}" alt=""/>
                         </a>
                         
                     </div>
