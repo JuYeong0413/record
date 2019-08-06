@@ -193,8 +193,8 @@ def create(request):
         music_id = request.POST.get('music_id')
         music = Music.objects.get(pk=music_id)
         playlist.musics.add(music)
-        
-        return redirect('playlists:show', playlist.id)
+    
+    return redirect('playlists:show', playlist.id)
 
     
 # 팔로우, 언팔로우
