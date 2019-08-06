@@ -42,7 +42,7 @@
 </div>
 {% else %}
     <h3>기존 플레이리스트가 없습니다.</h3>
-    <h3>플레이리스트를 <a href="{% url 'playlists:new' %}?music={{ music.id }}">생성</a>해 주세요.</h3>
+    <h3>플레이리스트를 <a href="{% url 'playlists:new' %}?music={{ request.GET.music }}">생성</a>해 주세요.</h3>
 {% endif %}
 
 {% endblock %}
