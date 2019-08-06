@@ -226,7 +226,7 @@
                                 <!-- Comment Item -->
 
                                 <li class="media comment-item">
-                                    <a class="pull-left" href="#"><img class="media-object comment-avatar" src="{{ comment.writer.image.url }}" alt=""></a>
+                                    <a class="pull-left" href="{% url 'users:main' comment.writer.id %}"><img class="media-object comment-avatar" src="{{ comment.writer.image.url }}" alt=""></a>
                                     <div class="media-body">
                                         <div class="comment-item-data">
                                             <div class="comment-author">
