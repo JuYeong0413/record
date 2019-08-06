@@ -121,10 +121,62 @@ hr {
     margin-bottom:50px;
 }
 
+/*musics/main.html */
+.bg-gray-lighter{
+    background-color: #E8E5D2;
+    padding:30px;
+}
+.search-wrap > .form-group {
+    display:inline;
+}
+.form-group > .form-control {
+    background-color: #E8E5D2;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size:1.4rem;
+    color: #34495E;
+}
+.musictable{
+    padding:0;
+}
+.col-md-10{
+    margin: 0 auto;
+}
+.shopping-cart-table{
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 1.4rem;
+    color: #34495E;
+    background-color: #E8E5D2;
+}
+.music-plus {
+    width: 5rem;
+}
+.music-main-pagination{
+    margin-bottom:1rem;
+}
+.music-paginator-num {
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 1.4rem;
+    color: #34495E;
+}
 
-
-
-
+/*musics/new.html */
+.music-new{
+    background-color: #E8E5D2;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 1.4rem;
+    color: #34495E;
+    box-shadow: 1px 1px 1px grey;
+}
+.music-add {
+    margin:2% auto;
+}
+.addtext{
+    margin:5% auto;
+}
 /*기존 main css */
 /* .main {
     position: relative;
