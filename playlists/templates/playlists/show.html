@@ -130,14 +130,15 @@
                 <div class="alt-service-wrap">
                     <div class="alt-service-item">
                         <div class="alt-service-icon">
-                            <i class="fa fa-heart"></i>
-                        </div>
-                        
-                        {% if user in playlist.likes.all %}
-                            <a href="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요 취소</h3></a>
-                        {% else %}
-                            <a href="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요</h3></a>  
-                        {% endif %}
+                            {% if user in playlist.likes.all %}
+                                <i class="fa fa-heart"></i>
+                            </div>
+                                <a href="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요 취소</h3></a>
+                            {% else %}
+                                <i class="fa fa-heart-o"></i>
+                            </div>
+                                <a href="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요</h3></a>  
+                            {% endif %}
                     </div>
                 </div>
                 <!-- End Features Item -->
