@@ -207,7 +207,6 @@ def add(request):
 
     return render(request, 'musics/add.html', {'playlists':playlists, 'playlist_list':playlist_list})
 
-
 # 기존 플레이리스트에 곡 추가
 def add_music(request):
     if request.method == "POST":
