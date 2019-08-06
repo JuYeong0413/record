@@ -91,11 +91,13 @@
                 <!-- Features Item -->
                 <div class="alt-service-wrap">
                     <div class="alt-service-item">
+                        <a href="{% url 'users:main' playlist.creator.id %}">
+
                         <div class="alt-service-icon">
                             <i class="fa fa-paper-plane-o"></i>
                         </div>
                         <h3 class="alt-services-title font-alt">
-                            <a href="{% url 'users:main' playlist.creator.id %}">{{ playlist.creator }}</a><br>
+                            {{ playlist.creator }}</a><br>
                         </h3>
                         
                     </div>
@@ -107,15 +109,17 @@
                 {% if user != playlist.creator %}
                 <div class="alt-service-wrap">
                     <div class="alt-service-item">
+                        <a href="{% url 'playlists:follow_toggle' playlist.id %}">
+
                         <div class="alt-service-icon">
                             <i class="fa fa-users"></i>
                         </div>
 
                         <h3 class="alt-services-title font-alt">
                         {% if user in playlist.creator.followers.all %}
-                            <a href="{% url 'playlists:follow_toggle' playlist.id %}">팔로우 취소</a>
+                            팔로우 취소</a>
                         {% else %}
-                            <a href="{% url 'playlists:follow_toggle' playlist.id %}">팔로우</a>
+                            팔로우</a>
                         {% endif %}
 
                         </h3>
@@ -129,15 +133,17 @@
                 <!-- Features Item -->
                 <div class="alt-service-wrap">
                     <div class="alt-service-item">
-                        <div class="alt-service-icon">
+                        <a href="{% url 'playlists:like_toggle' playlist.id %}">
+                        
+                            <div class="alt-service-icon">
                             {% if user in playlist.likes.all %}
                                 <i class="fa fa-heart"></i>
                             </div>
-                                <a href="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요 취소</h3></a>
+                                <h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요 취소</h3></a>
                             {% else %}
                                 <i class="fa fa-heart-o"></i>
                             </div>
-                                <a href="{% url 'playlists:like_toggle' playlist.id %}"><h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요</h3></a>  
+                                <h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요</h3></a>  
                             {% endif %}
                     </div>
                 </div>
