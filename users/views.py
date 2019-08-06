@@ -18,7 +18,7 @@ def edit(request, id):
     if user == current_user:
         return render(request, 'users/edit.html', {'user': user})
     else:
-        return redirect('main', id)
+        return redirect('users:main', id)
 
 
 # 프로필 수정
@@ -32,6 +32,9 @@ def update(request, id):
 
         if request.FILES.get('image'):
             user.image = request.FILES.get('image')
+
+        if request.POST.get('checkbox'):
+            user.image = 'images/default_profile.jpg'
 
         user.save()
         return redirect('users:main', id)

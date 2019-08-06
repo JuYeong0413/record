@@ -28,41 +28,40 @@
 <!-- End Head Section -->
 
 <!-- Search Section -->
-<section class="small-section">
+<section class="small-section" style="padding: 5rem 0 0 0;">
     <div class="container relative">
 
         <!-- Search -->
         <form class="form-inline form" action="{% url 'musics:search' %}" role="form">
+            
             <div class="search-wrap">
                 <div class="form-group">
                     <select class="form-control col-md-2" name="option">
                         <option value="title">제목</option>
                         <option value="singer">가수명</option>
                     </select>
-
-                    <div class="search-wrap">
-                            <button class="search-button animate" type="submit" title="Start Search">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            <input type="text" class="form-control search-field" placeholder="검색어" name="query">
-                    </div>
-                        
+                </div>
+                <div class="form-group">    
+                        <button class="search-button animate" type="submit" title="Start Search">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        <input type="text" class="form-control search-field" placeholder="검색어" name="query">
+ 
                 </div>
 
             </div>
         </form> 
         <!-- End Search -->
-        
     </div>
 </section>
 <!-- End Search Section -->
 
 <!-- Section -->
-<section class="page-section">
+<section class="page-section musictable">
     <div class="container">
         
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-2">
                 
                 <table class="table table-striped shopping-cart-table">
                     <tr>
@@ -99,8 +98,31 @@
                         </td>
                         <td>
                             {% if user == music.writer %}
-                                <a href="{% url 'musics:delete' music.id %}"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                                <!-- deleteModal -->
+                                <a href="#" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
                             {% endif %}
+                            
+							<!-- deleteModal -->
+							<div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+									<div class="modal-header">
+									<h5 class="modal-title" id="deletModalLabel">게시글 삭제하기</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									</div>
+									<div class="modal-body">
+										정말로 게시글을 삭제하시겠습니까?<br>
+										삭제된 글은 복구할 수 없습니다.
+									</div>
+									<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+									<a class="btn btn-primary" href="{% url 'musics:delete' music.id %}">확인</a>
+									</div>
+									</div>
+								</div>
+							</div>
                         </td>
                     </tr> 
                     {% endfor %}
@@ -116,14 +138,15 @@
                     <div class="col-sm-4 text align-right">
                         
                         <div>
-                            <a href="{% url 'musics:new' %}" class="btn btn-mod btn-gray btn-round btn-small">곡 등록하기</a>
+                            <a href="{% url 'musics:new' %}"><img src="{% static 'bobae/images/music-plus.png' %}" alt="" class="music-plus"/></a>
                         </div>
                         
                     </div>
                 </div>
 
                 <!--pagination-->
-                <hr class="mb-60" />
+                <hr class="mb-60 music-main-pagination" />
+                <div class="music-paginator-num">
                 {% if musics.has_previous %}
                     <a href="?page=1">맨 앞으로</a>
                     <a href="?page={{ musics.previous_page_number }}">이전으로</a>
@@ -135,6 +158,7 @@
                     <a href="?page={{ musics.next_page_number }}">다음으로</a>
                     <a href="?page={{ musics.paginator.num_page }}">맨 뒤로</a>
                 {% endif %}
+                </div>
             </div>
         </div>
     
@@ -143,10 +167,10 @@
 <!-- End Section -->
 
 <!--검색창 아직 수정전이라서 남겨둠-->
-<div>
+<!-- <div>-->
  
     <!-- 곡 검색 -->
-    <form action ="{% url 'musics:search' %}">
+    <!--<form action ="{% url 'musics:search' %}">
         <div class="form-group">
             <select class="form-control col-md-2" name="option">
                 <option value="title">제목</option>
@@ -158,6 +182,6 @@
         </div>
     </form>
     <br><br>
-</div>
+</div> -->
 
 {% endblock %}
