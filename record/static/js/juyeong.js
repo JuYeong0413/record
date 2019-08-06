@@ -11,3 +11,4 @@ $('#hide_lyrics').click(function() {
 
     $('#lyrics').addClass('hide');
 });
+
