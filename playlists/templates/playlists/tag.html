@@ -51,41 +51,47 @@
 <hr class="mt-0 mb-0"/>
 <!-- End Divider -->
 
-
-<!-- Section -->
-<section class="page-section">
-    <div class="container relative">
-        
-        <div class="row masonry">
-            {% for playlist in playlists %}
-                {% if playlist.kinds == 0 or playlist.kinds == 1 %}
-                
-                    <a href ="{% url 'playlists:show' playlist.id %}">
-                        <!-- Post Item -->
-                        <div class="col-sm-6 col-md-4 col-lg-4 mb-60 mb-xs-40">
-                            
-                            <div class="post-prev-img">
-                                {% if playlist.cover %}
-                                    <img src="{{ playlist.cover.url }}" alt="사진없음"><br>
-                                {% endif %}
+<section class="recoders-list">
+        <div class="container relative">     
+            <h2 class="section-title font-alt align-left mb-70 mb-sm-40">
+                태그검색결과
+            </h2>
+            <div class="row">
+    
+                {% for playlist in playlists %}
+                    {% if playlist.kinds == 0 or playlist.kinds == 1 %}
+                        <!-- playlist -->
+                        <div class="col-sm-4 mb-xs-30 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                            <div class="team-item">
+                                    
+                                <a href="{% url 'playlists:show' playlist.id %}">
+                                    <div class="team-item-image">
+                                        {% if playlist.cover %}
+                                        <img src="{{ playlist.cover.url }}" alt=""/>
+                                        {% endif %}
+                                    </div>
+                                </a>
+                                    
+                                <div class="team-item-descr font-alt">
+                                        
+                                    <div class="team-item-name">
+                                        <a href="{% url 'playlists:show' playlist.id %}">{{ playlist.title }}</a>
+                                    </div>
+                                        
+                                    <div class="team-item-role">
+                                        {{ playlist.creator }}
+                                    </div>
+                                        
+                                </div>
+                                    
                             </div>
-                        
-                            <div class="post-prev-title font-alt">
-                                {{ playlist.title }} 
-                            </div>
-                            
-                            <div class="post-prev-info font-alt">
-                                {{ playlist.creator}}
-                            </div>
-                            
                         </div>
-                        <!-- End Post Item -->
-                    </a>
-                {% endif %}
-            {% endfor %}
-         
-        </div>
-                
+                   
+                    {% endif %}
+                {% endfor %}    
+                <!-- End playlist -->
+    
+            </div>
         <!-- Pagination -->
         {% if playlists.has_previous %}
             <a href="?page=1">first</a>
@@ -101,9 +107,9 @@
             <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
         {% endif %}
         <!-- End Pagination -->
+        </div>
         
-    </div>
 </section>
-<!-- End Section -->
+
 
 {% endblock %}
