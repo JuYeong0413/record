@@ -60,7 +60,7 @@
 
             {% for playlist in playlists %}
             <!-- playlist -->
-            <div class="col-sm-4 mb-xs-30 wow fadeInUp music-new playlist-list" style="visibility: visible; animation-name: fadeInUp; padding-top: 10px;">
+            <div class="col-md-4 col-lg-4 mb-60 mb-xs-30 wow fadeInUp music-new playlist-list" style="visibility: visible; animation-name: fadeInUp; padding: 10px 0 0 0;">
                 <div class="team-item">
                     
                     <a href="{% url 'playlists:show' playlist.id %}">
@@ -68,10 +68,10 @@
                             <img src="{{ playlist.cover.url }}" alt=""/>
                         </div>
                     </a>
-
+                </div>
                     <a href="{% url 'playlists:show' playlist.id %}">
                     <div class="team-item-descr font-alt playlist-bar">
-                        
+                            <br>
                             <div class="team-item-name font-bold">
                                 {{ playlist.title }}
                             </div>
@@ -79,10 +79,10 @@
                         <div class="team-item-role">
                             {{ playlist.creator }}
                         </div>
-                        
+                            <br>
                     </div>
                     </a>
-                </div>
+                
             </div>
             {% endfor %}
             

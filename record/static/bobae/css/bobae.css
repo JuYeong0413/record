@@ -177,6 +177,12 @@ hr {
     font-size: 1.4rem;
     color: #34495E;
 }
+.font-bold {
+    margin:0;
+}
+.mb-60 {
+    margin-bottom:5%;
+}
 
 /*musics/new.html */
 .music-new{
@@ -192,6 +198,10 @@ hr {
 }
 .addtext{
     margin:5% auto;
+}
+.row-b{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /*musics/show.html */
@@ -235,12 +245,20 @@ hr {
 .add-submit {
     width:100%;
     background-color : transparent;
-    border-color : transparent;
+    border-radius:4px;
+    border:1px solid rgba(0,0,0, .1);
+}
+.add-submit:hover{
+    background-color : rgba(0,0,0, .1);
 }
 
 /*users/main.html */
 .blog-media img {
     border-radius:100%;
+    width: auto; height: auto;
+    max-width: 300px;
+    max-height: 300px;
+    display: block; margin: 0px auto;
 }
 .page-section {
     padding: 5% 0;
