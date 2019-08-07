@@ -9,6 +9,8 @@ import pdb
 # 플레이리스트 메인페이지
 def main(request):
     playlists_list = Playlist.objects.filter(kinds=0).order_by('-id')
+    tags = Playlist.tags.all()[:5]
+
     page = request.GET.get('page', 1)
     paginator = Paginator(playlists_list, 9)
     try:
@@ -18,7 +20,7 @@ def main(request):
     except EmptyPage:
         playlists = paginator.page(paginator.num_pages)
 
-    return render(request, 'playlists/main.html', {'playlists': playlists})
+    return render(request, 'playlists/main.html', {'playlists': playlists, 'tags': tags})
 
 
 # 상세보기페이지
@@ -129,6 +131,8 @@ def like_toggle(request, playlist_id):
 
 # 태그 검색
 def tag(request, tag_id):
+    tags = Playlist.tags.all()[:5]
+
     tag = Playlist.tags.get(pk=tag_id)
     playlists_list = Playlist.objects.filter(tags__name__in=[tag], kinds=0)
     page = request.GET.get('page', 1)
@@ -140,7 +144,7 @@ def tag(request, tag_id):
     except EmptyPage:
         playlists = paginator.page(paginator.num_pages)
 
-    return render(request, 'playlists/tag.html', {'playlists': playlists})
+    return render(request, 'playlists/tag.html', {'playlists': playlists, 'tags': tags})
 
 
 # 음악 삭제하기
@@ -148,10 +152,11 @@ def delete_music(request, playlist_id, music_id):
     playlist = get_object_or_404(Playlist, pk=playlist_id)
     music = get_object_or_404(Music, pk=music_id)
     playlist.musics.remove(music)
-    return redirect('playlists:edit', playlist_id)
+    return redirect('playlists:show', playlist_id)
 
 # 검색
 def search(request):
+    tags = Playlist.tags.all()[:5]
     query = request.GET.get('query')
     search_list = Playlist.objects.filter(title__contains=query)
     page = request.GET.get('page', 1)
@@ -162,7 +167,7 @@ def search(request):
         search_result = paginator.page(1)
     except EmptyPage:
         search_result = paginator.page(paginator.num_pages)
-    return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list': search_list})
+    return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list': search_list, 'tags': tags})
 
 
 # 새 플레이리스트 생성 페이지
