@@ -57,7 +57,7 @@ hr {
 
     filter: brightness(50%);
     animation-name: mainback;
-    animation-duration: 10s;
+    animation-duration: 5s;
     animation-iteration-count: 1;
 }
 
@@ -141,7 +141,7 @@ hr {
     padding:50px;
 }
 .search-wrap > .form-group {
-    display:inline;
+    display:inline!important;
 }
 .form-group > .form-control {
     background-color: #E8E5D2;
@@ -164,8 +164,9 @@ hr {
     background-color: #E8E5D2;
 }
 .music-plus {
-    width: 10rem;
+    width: 5rem;
     float:right;
+    margin-bottom: 10px;
 }
 .music-main-pagination{
     margin-bottom:1rem;
