@@ -58,9 +58,9 @@
 
 						{% if user == music.writer %}
 							<span class="separator">&nbsp;</span>
-							<a class="btn btn-primary" href="{% url 'musics:edit' music.id %}">수정</a>
+							<a class="btn btn-mod btn-circle btn-small" href="{% url 'musics:edit' music.id %}">수정</a>
 							<!-- deleteModal -->
-							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+							<button class="btn btn-mod btn-circle btn-small" data-toggle="modal" data-target="#deleteModal">
 								삭제
 							</button>
 
