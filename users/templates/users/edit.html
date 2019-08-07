@@ -41,7 +41,7 @@
                     
                     <h5 class="widget-title font-alt">Categories</h5>
                     
-                    <div class="widget-body">
+                    <div class="widget-body font-alt">
                         <ul class="clearlist widget-menu">
                             <li>
                                 <a href="{% url 'users:main' user.id %}" title="">Profile</a>
@@ -87,10 +87,12 @@
                     <div>
                         <form action="{% url 'users:update' user.pk %}" method="POST" enctype="multipart/form-data" class="user-edit">
                             {% csrf_token %}
-                            <div class="blog-media">
-                                <label>프로필사진</label>
+                            <div>
+                                <div class="user-name">
+                                    <label>프로필사진</label>
+                                </div>
                                 <input type="file" name="image" style="margin:0 auto;">
-                                <label>기본 이미지로 변경하기</label>
+                                <label class="mt-10">기본 이미지로 변경하기</label>
                                 <input type="checkbox" name="checkbox" value="1">
                             </div>
                             <br>
