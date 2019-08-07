@@ -81,8 +81,11 @@
         
         <div class="socialaccount_ballot">
             <span class="socialaccount_providers">
-                <button type="button" class="google">
-                    <a title ="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login">Google</a>
+
+                <button type="button" class="google" onclick="location.href='/accounts/google/login/?process=login'">
+                    <img src="{% static 'img/google.png'%}" width=20%;>
+                    <span class = "socialaccount_provider google" > Google 로그인 </span>
+                    <!-- <a title ="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login"> Google 로그인</a> -->
                     <!-- {% include "socialaccount/snippets/provider_list.html" with process="login" %} -->
                 </button>
             </span>
