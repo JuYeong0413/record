@@ -93,7 +93,7 @@
                         <!-- Post Item -->
                         {% for playlist in playlists %}
                             
-                                <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list">
+                                <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list" style="padding-top: 10px;">
                             
                                     {% if playlist.cover %}
                                     <a href ="{% url 'playlists:show' playlist.id %}">
