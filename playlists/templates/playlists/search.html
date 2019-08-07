@@ -50,7 +50,7 @@
 <hr class="mt-0 mb-0"/>
 <!-- End Divider -->
 
-<section class="recoders-list">
+<section class="recoders-list row">
     <div class="container relative">     
         <h2 class="section-title font-alt align-left mb-70 mb-sm-40">
             검색결과
@@ -95,7 +95,15 @@
             <!-- End playlist -->
 
         </div>
-            <!-- Pagination -->
+          
+    </div>
+</section>
+
+<section>
+    <!--pagination-->
+        <hr class="mb-60 music-main-pagination" />
+            <div class="music-paginator-num">
+            
             {% if playlists.has_previous %}
                 <a href="?page=1">first</a>
                 <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
@@ -109,9 +117,11 @@
                 <a href="?page={{ playlists.next_page_number }}">Next</a>
                 <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
             {% endif %}
-            <!-- End Pagination -->
-    </div>
+            
+            
+            </div>
+        <hr class="mb-60 music-main-pagination" />  
+    <!-- End Pagination -->
 </section>
-
 
 {% endblock %}

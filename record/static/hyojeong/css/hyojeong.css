@@ -7,3 +7,13 @@
 .font-only{
     font-family: 'GyeonggiBatang';
 }
+
+.playlist-list{
+    margin: 5px;
+    max-width: 30%!important;
+}
+
+.playlist-bar{
+    background-color: rgb(216, 211, 184);
+    margin-bottom: 10px;
+}

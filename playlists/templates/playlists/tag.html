@@ -92,24 +92,33 @@
                 <!-- End playlist -->
     
             </div>
-        <!-- Pagination -->
-        {% if playlists.has_previous %}
-            <a href="?page=1">first</a>
-            <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
-        {% endif %}
-
-        <span>{{ playlists.number }}</span>
-        <span>of</span>
-        <span>{{ playlists.paginator.num_pages }}</span>
-
-        {% if playlists.has_next %}
-            <a href="?page={{ playlists.next_page_number }}">Next</a>
-            <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
-        {% endif %}
-        <!-- End Pagination -->
+        
         </div>
         
 </section>
-
+<section>
+        <!--pagination-->
+            <hr class="mb-60 music-main-pagination" />
+                <div class="music-paginator-num">
+                
+                {% if playlists.has_previous %}
+                    <a href="?page=1">first</a>
+                    <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+                {% endif %}
+        
+                <span>{{ playlists.number }}</span>
+                <span>of</span>
+                <span>{{ playlists.paginator.num_pages }}</span>
+        
+                {% if playlists.has_next %}
+                    <a href="?page={{ playlists.next_page_number }}">Next</a>
+                    <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+                {% endif %}
+                
+                
+                </div>
+            <hr class="mb-60 music-main-pagination" />  
+        <!-- End Pagination -->
+</section>
 
 {% endblock %}
