@@ -125,7 +125,7 @@ def like_toggle(request, playlist_id):
 def tag(request, tag_id):
     tag = Playlist.tags.get(pk=tag_id)
     playlists_list = Playlist.objects.filter(tags__name__in=[tag], kinds=0)
-    paginator = Paginator(playlists_list, 10)
+    paginator = Paginator(playlists_list, 9)
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
     return render(request, 'playlists/tag.html', {'playlists': playlists})
@@ -142,7 +142,7 @@ def delete_music(request, playlist_id, music_id):
 def search(request):
     query = request.GET.get('query')
     search_list = Playlist.objects.filter(title__contains=query)
-    paginator = Paginator(search_list, 10)
+    paginator = Paginator(search_list, 9)
     page = request.GET.get('page')
     search_result = paginator.get_page(page)
     return render(request, 'playlists/search.html', {'search_result': search_result, 'search_list': search_list})
