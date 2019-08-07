@@ -9,7 +9,7 @@ import pdb
 # 플레이리스트 메인페이지
 def main(request):
     playlists_list = Playlist.objects.filter(kinds=0).order_by('-id')
-    paginator = Paginator(playlists_list, 10)
+    paginator = Paginator(playlists_list, 9)
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
     return render(request, 'playlists/main.html', {'playlists': playlists})
