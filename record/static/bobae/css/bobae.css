@@ -54,8 +54,22 @@ hr {
     background-size: 60%;
     background-position: center center;
     background-color: #E8E5D2;
+
     filter: brightness(50%);
+    animation-name: mainback;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
 }
+
+@-webkit-keyframes mainback {
+    0% {
+      filter: brightness(130%);
+    }
+    100% {
+      filter: brightness(50%);
+    }
+  }
+
 .home-content {
     position: absolute;
     top: 85%;

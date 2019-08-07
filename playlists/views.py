@@ -134,9 +134,9 @@ def tag(request, tag_id):
 # 음악 삭제하기
 def delete_music(request, playlist_id, music_id):
     playlist = get_object_or_404(Playlist, pk=playlist_id)
-    music = playlist.musics.get(pk=music_id)
+    music = get_object_or_404(Music, pk=music_id)
     playlist.musics.remove(music)
-    return redirect('playlists:show', playlist_id)
+    return redirect('playlists:edit', playlist_id)
 
 # 검색
 def search(request):
