@@ -43,8 +43,9 @@
             </div>
         </form>
         <!-- End Search -->
-        
+
     </div>
+
 </section>
 <!-- End Search Section -->
 
@@ -67,19 +68,20 @@
                             <img src="{{ playlist.cover.url }}" alt=""/>
                         </div>
                     </a>
-                    
+
+                    <a href="{% url 'playlists:show' playlist.id %}">
                     <div class="team-item-descr font-alt playlist-bar">
-                        <a href="{% url 'playlists:show' playlist.id %}">
-                            <div class="team-item-name">
+                        
+                            <div class="team-item-name font-bold">
                                 {{ playlist.title }}
                             </div>
-                        </a>
+                        
                         <div class="team-item-role">
                             {{ playlist.creator }}
                         </div>
                         
                     </div>
-                    
+                    </a>
                 </div>
             </div>
             {% endfor %}

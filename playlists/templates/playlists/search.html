@@ -61,7 +61,7 @@
             {% for result in search_result %}
                 {% if result.kinds == 0 %}
                     <!-- playlist -->
-                    <div class="col-sm-4 mb-xs-30 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="col-sm-4 mb-xs-30 wow fadeInUp music-new playlist-list" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="team-item">
                                 
                             <a href="{% url 'playlists:show' result.id %}">
@@ -71,11 +71,11 @@
                                     {% endif %}
                                 </div>
                             </a>
-                                
-                            <div class="team-item-descr font-alt">
+                            <a href="{% url 'playlists:show' result.id %}"> 
+                            <div class="team-item-descr font-alt playlist-bar">
                                     
-                                <div class="team-item-name">
-                                    <a href="{% url 'playlists:show' result.id %}">{{ result.title }}</a>
+                                <div class="team-item-name font-bold">
+                                    {{ result.title }}
                                 </div>
                                     
                                 <div class="team-item-role">
@@ -83,7 +83,7 @@
                                 </div>
                                     
                             </div>
-                                
+                            </a>    
                         </div>
                     </div>
                
