@@ -57,7 +57,7 @@ hr {
 
     filter: brightness(50%);
     animation-name: mainback;
-    animation-duration: 3s;
+    animation-duration: 10s;
     animation-iteration-count: 1;
 }
 
@@ -108,7 +108,7 @@ hr {
     font-family: 'GyeonggiBatang';
     font-size: 1.5rem;
     letter-spacing :0.7rem;
-    color:red;
+    color:#FAAFAF;
 }
 .tag-frequency > a {
     letter-spacing :1rem;
