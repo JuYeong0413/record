@@ -6,13 +6,15 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner %}
-<h1>{% trans "Sign Up" %}</h1>
+<div class="text-center mt-50 signup-font">
+    <h1>회원가입</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+    <h4>이미 계정이 있으신가요? 바로 <a href="{{ login_url }}">로그인</a> 하세요.</h4>
+</div>
 
 
 <!-- Section -->
-<section class="page-section">
+<section class="page-section signup-font" style="padding: 3% 0;">
     <div class="container relative" style="padding-left: 50px;">
 
         <!-- Tab panes -->

@@ -301,3 +301,8 @@ hr {
     color: #34495E;
     line-height : normal;
 }
+
+/* signup font */
+.signup-font {
+    font-family: 'GyeonggiBatang';
+}
