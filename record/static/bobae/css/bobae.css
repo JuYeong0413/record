@@ -164,7 +164,8 @@ hr {
     background-color: #E8E5D2;
 }
 .music-plus {
-    width: 5rem;
+    width: 10rem;
+    float:right;
 }
 .music-main-pagination{
     margin-bottom:1rem;
@@ -191,6 +192,38 @@ hr {
 .addtext{
     margin:5% auto;
 }
+
+/*musics/show.html */
+.titlefont {
+    margin:5% 0 2% 0;
+    font-size:x-large;
+    font-weight:bold;
+}
+.blog-item-data {
+    font-size:1.4rem;
+}
+.modal-content {
+    color:#34495E;
+}
+
+.hide{
+    background-color : #E8E5D2;
+    border-color: transparent;
+}
+.blog-item-q p{
+    background : transparent;
+}
+.blog-item {
+    margin-bottom:3%;
+}
+.blog-item-foot {
+    float:center;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 2rem;
+    color: #34495E;
+}
+
 /*기존 main css */
 /* .main {
     position: relative;

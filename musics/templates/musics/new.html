@@ -32,10 +32,10 @@
     <div class="container relative">
         
         <!-- Product Content -->
-        <div class="row mb-60 mb-xs-30 music-new">
+        <div class="col-sm-10 col-sm-offset-1 music-new">
             
             <!-- Product Images -->
-            <div class="col-md-4 mb-md-30 music-add">
+            <div class="col-sm-5 mb-md-30 music-add">
                 
                 <div class="post-prev-img">
                     <img src="{% static 'hyojeong/images/lp.png' %}" alt="" />
@@ -45,7 +45,10 @@
             <!-- End Product Images -->
             
             <!-- Product Description -->
-            <div class="col-sm-8 col-md-5 mb-xs-40 addtext">
+            <div class="blog-item-date">
+                <a href="{% url 'musics:main' %}"><span class="date-num"><img src="{% static 'bobae/images/back.png' %}" alt="" /></span></a>
+            </div>
+            <div class="col-sm-5 col-md-5 mb-xs-40 addtext">
                 
                 <h3 class="mt-0">음악 등록</h3>
                 
