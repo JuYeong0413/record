@@ -224,6 +224,12 @@ hr {
 	left: 50%;
     transform: translate( -50%, -50% );
 }
+.search-wrap4{
+    width:65%;
+    top: 50%;
+	left: 50%;
+    transform: translate( -50%, -50% );   
+}
 /*tag css */
 .tag-frequency {
     font-family: 'GyeonggiBatang';
@@ -430,6 +436,48 @@ hr {
     line-height : normal;
 }
 
+
+
+
+/*loading-page.html 시험 */
+#loading {
+
+	width: 100%;
+
+	height: 100%;
+
+	top: 0;
+
+	left: 0;
+
+	position: fixed;
+
+	display: block;
+
+	opacity: 0.8;
+
+	background: white;
+
+	z-index: 99;
+
+    text-align: center;
+   
+
+}
+
+
+
+#loading > img {
+
+	position: absolute;
+
+	top: 50%;
+
+	left: 50%;
+
+    z-index: 100;
+    
+}
 /* signup font */
 .signup-font {
     font-family: 'GyeonggiBatang';
