@@ -202,6 +202,9 @@ hr {
 }
 .blog-item-data {
     font-size:1.4rem;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 2rem;
 }
 .modal-content {
     color:#34495E;
@@ -213,6 +216,9 @@ hr {
 }
 .blog-item-q p{
     background : transparent;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    color: #34495E;
 }
 .blog-item {
     margin-bottom:3%;
@@ -231,25 +237,52 @@ hr {
     background-color : transparent;
     border-color : transparent;
 }
-/*기존 main css */
-/* .main {
-    position: relative;
+
+/*users/main.html */
+.blog-media img {
+    border-radius:100%;
 }
-.main-top {
-    background-color: #E8E5D2;
-    filter: brightness(50%);
-    text-align: center;
+.page-section {
+    padding: 5% 0;
 }
-.main-background{
-    width:60%;
-}
-.main-content {
-    text-align: center;
+.team-item-name {
     font-family: 'GyeonggiBatang';
+    text-align: center;
     font-size: 2rem;
-    color:white;
-    position: absolute;
-    top: 70%;
-	left: 50%;
-    transform: translate( -50%, -50% );
-} */
+    color: #34495E;
+}
+.user-follow {
+    background-color : transparent;
+    border-color : transparent;
+    background-size:50%;
+}
+.modal-body {
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 2rem;
+    color: #34495E;
+}
+.user-edit {
+    background-color: #E8E5D2;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 1.4rem;
+    color: #34495E;
+    box-shadow: 1px 1px 1px grey;
+    padding:5%;
+}
+.introduction {
+    width:100%;
+    height:100px;
+    line-height: 1.5;
+}
+.user-name {
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 1.8rem;
+    color: #34495E;
+    line-height : normal;
+}
+.black {
+    text-align: center;
+}

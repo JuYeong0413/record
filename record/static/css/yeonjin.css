@@ -27,10 +27,12 @@
 }
 
 .google{
-    background-color:#DC4A38;
+    background-color:rgb(221, 79, 67);
     color:white;
     border-radius:3px;
     border-color:#e14152;
-    width:20%;
-    height:40%;
+    width:30%;
+    height:20%;
+    font-weight:normal;
+
 }

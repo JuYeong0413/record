@@ -94,16 +94,22 @@
 
                     <div class="team-item-name">
                         {{ user_profile.username }}
-                    </div><br>
+                    </div>
+                    {% if user == user_profile %}
+                    <div class="blog-item-foot">
+                        <a href="{% url 'users:edit' user_profile.id %}" class="btn btn-mod btn-round  btn-small">회원정보 수정</a>
+                    </div>
+                    {% endif %}
+                    <br>
 
                     <div class="blog-item-data">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#followModal">
-                            팔로우 {{ user_profile.followers.count }}명
-                        </button>
+                        <button type="button" class="user-follow" data-toggle="modal" data-target="#followModal">
+                            <img src="{% static 'bobae/images/follower.png' %}" alt="" style="max-width:150px;height:auto;"/>
+                        </button>{{ user_profile.followers.count }}명
                         <span class="separator">&nbsp;</span>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#followingModal">
-                            팔로잉 {{ user_profile.followings.count }}명
-                        </button>
+                        <button type="button" class="user-follow" data-toggle="modal" data-target="#followingModal">
+                            <img src="{% static 'bobae/images/following.png' %}" alt="" style="max-width:150px;height:auto;"/>
+                        </button>{{ user_profile.followings.count }}명
                         <span class="separator">&nbsp;</span>
                         {% if user != user_profile %}
                             {% if user in user_profile.followers.all %}
@@ -121,13 +127,6 @@
                         </p>
                     </blockquote>
                     <!-- End Blockquote -->
-
-                    <!-- Read More Link -->
-                    {% if user == user_profile %}
-                        <div class="blog-item-foot">
-                            <a href="{% url 'users:edit' user_profile.id %}" class="btn btn-mod btn-round  btn-small">회원정보 수정</a>
-                        </div>
-                    {% endif %}
 
                 </div>
                 <!-- End Post -->

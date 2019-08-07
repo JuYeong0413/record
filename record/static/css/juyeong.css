@@ -27,3 +27,16 @@
     margin-left: 50px;
     margin-bottom: -100px;
 }
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="number"],
+.form input[type="url"],
+.form input[type="search"],
+.form input[type="tel"],
+.form input[type="password"],
+.form input[type="date"],
+.form input[type="color"],
+.form select {
+    text-transform: none;
+}
