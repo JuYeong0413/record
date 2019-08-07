@@ -1,7 +1,6 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
-{% load crispy_forms_tags %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
@@ -10,14 +9,84 @@
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
+<div class="row">
+                              
+    <div class="col-md-4 col-md-offset-4">
+        <form class="form contact-form" id="contact_form">
+            <div class="clearfix">
+                
+                <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+                    <!-- Email -->
+                    <div class="form-group">
+                        <div id="div_id_email" class="control-group"> 
+                          <label for="id_email" class="control-label">
+                            이메일 (선택사항)
+                          </label> 
+                          <div class="controls">
+                          <input type="text" name="Email" required_id="Email" class="input-md round form-control" placeholder="이메일" pattern=".{3,100}" required> </div> </div>                   
+                    </div>
+                    
+                    <!-- Username -->
+                    <div class="form-group">
+                        <div id="div_id_username" class="control-group"> 
+                          <label for="id_username" class="control-label">
+                            아이디<span class="asteriskField">*</span> 
+                          </label> 
+                            <div class="controls"> 
+                              <input type="text" name="username" required_ id="username" class="input-md round form-control" placeholder="아이디" pattern=".{3,100}" required> 
+                            </div> 
+                        </div>                   
+                    </div>
+                    
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="id_password1" class="control-label">
+                            비밀번호<span class="asteriskField">*</span> 
+                          </label>    
+                        <input type="password" name="password1" required_id="password1" class="input-md round form-control" placeholder="비밀번호" pattern=".{5,100}"required> 
+                                
+                    </div>
+                    
+                    
+                    <!-- Re-enter Password -->
+                    <div class="form-group">
+                        <label for="id_password2" class="control-label">
+                            비밀번호 (확인) <span class="asteriskField">*</span> 
+                        </label>    
+                        <input type="password" name="password2" required_id="password2" class="input-md round form-control" placeholder="비밀번호 확인" pattern=".{5,100}" required> 
+                    </div>
+
+            
+                    <!-- Send Button -->
+                    <div class="pt-10">
+                        {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                        {% endif %}
+                        <button class="submit_btn btn btn-mod btn-medium btn-round btn-full" id="reg-btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
+                    </div>
+
+                </form> 
+              
+            </div>
+        </form>  
+    </div>
+</div>
+<!-- End Registry Form -->
+
+
+
+<h1>{% trans "Sign Up" %}</h1>
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
-  {{ form|crispy }}
+  {{ form.as_p }}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button class="btn btn-primary" type="submit">{% trans "Sign Up" %} &raquo;</button>
+  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
 </form>
 
 {% endblock %}
-
