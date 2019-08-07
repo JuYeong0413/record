@@ -5,28 +5,29 @@
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block inner %}
+<section class="small-section bg-gray-lighter">
+  <div class="relative container align-left">
 
-<section class="page-section">
-    <div class="container relative">
-        
-        <div class="row section-text">
-            <div class="col-md-8 col-md-offset-2">
-                <h1>{% trans "Sign Out" %}</h1>
+      <div class="logout">
 
-                <p>{% trans 'Are you sure you want to sign out?' %}</p>
-                 
-                <form method="post" action="{% url 'account_logout' %}">
-                  {% csrf_token %}
-                  {% if redirect_field_value %}
-                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                  {% endif %}
-                  <button class="btn btn-danger" type="submit">{% trans 'Sign Out' %}</button>
-                </form>
-                
+              <div class="hs-line-4 font-alt black">
+              <h1>{% trans "Sign Out" %}</h1>
+
+              <p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+              <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <button class="btn btn-danger" type="submit">{% trans 'Sign Out' %}</button>
+              </form>
             </div>
-        </div>
-        
-    </div>
+
+
+      </div>
+
+  </div>
 </section>
 <!-- End Section -->
 
