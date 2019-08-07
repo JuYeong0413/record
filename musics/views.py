@@ -131,9 +131,7 @@ def update(request, music_id):
         lyrics = str(song_parse.find(id='d_video_summary'))
         lyrics = lyrics.replace('<div class="lyric" id="d_video_summary"><!-- height:auto; 로 변경시, 확장됨 -->','').replace('</div>','').strip()
         lyrics = lyrics.replace('<br/>', '\n')
-
-        music.genre = genre
-        music.lyrics = lyrics
+        
 
         # crawling video link
         options = webdriver.ChromeOptions()
