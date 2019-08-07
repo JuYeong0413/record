@@ -69,3 +69,9 @@
     color: #444!important;
 }
 
+/* paginator */
+.pagination > li.active > a {
+    background-color: #999!important;
+    border-color: #999!important;
+}
+
