@@ -29,7 +29,7 @@
 
 <!-- Section -->
 <section class="page-section">
-    <div class="container relative">
+    <div class="container relative font-only">
         
         <!-- Product Content -->
         <div class="row mb-60 mb-xs-30">
@@ -49,21 +49,8 @@
             <!-- Product Description -->
             <div class="col-sm-8 col-md-5 mb-xs-40">
                 
-                <h3 class="mt-0">{{ playlist.title }}</h3>
+                <h2 class="mt-0">{{ playlist.title }}</h2>
                 
-                {% if user == playlist.creator %}
-                    <hr class="mt-0 mb-30"/>
-                    <div class="row">
-                        <div class="col-xs-6 lead mt-0 mb-20">
-                            
-                            <a href="{% url 'playlists:edit' playlist.pk %}">수정</a> 
-                    
-                        </div>
-                        <div class="col-xs-6 align-right section-text">
-                            <a href="{% url 'playlists:delete' playlist.pk %}">삭제</a>
-                        </div>
-                    </div>
-                {% endif %}
                 <hr class="mt-0 mb-30"/> 
                 
                 <div class="section-text mb-30">
@@ -72,14 +59,26 @@
                 
                 <hr class="mt-0 mb-30"/> 
                 
-                <div class="section-text small">
+                <div class="section-text">
                     <div>
-                        Tags: 
+                        Tags : 
                         {% for tag in playlist.tags.all %}
-                            ♪<a href="{% url 'playlists:tag' tag.id %}">{{ tag }}</a>
+                            ♪<a href="{% url 'playlists:tag' tag.id %}">{{ tag }} </a>
                         {% endfor %}
                     </div>
-                </div>
+                </div><br><br>
+                <hr class="mt-0 mb-30"/>
+                {% if user == playlist.creator %}
+                    
+                    <div class="row">
+                        <div class="col-xs-6 align-center section-text">
+                            <a href="{% url 'playlists:edit' playlist.pk %}" class="btn btn-mod btn-circle btn-small">수정</a>
+                        </div>
+                        <div class="col-xs-6 align-center section-text">
+                            <a href="{% url 'playlists:delete' playlist.pk %}" class="btn btn-mod btn-circle btn-small">삭제</a>
+                        </div>
+                    </div><br><br>
+                {% endif %}
                 
             </div>
             <!-- End Product Description -->
@@ -89,7 +88,7 @@
 
                 <!--작성자-->
                 <!-- Features Item -->
-                <div class="alt-service-wrap">
+                
                     <div class="alt-service-item">
                         <a href="{% url 'users:main' playlist.creator.id %}">
 
@@ -101,13 +100,13 @@
                         </h3>
                         
                     </div>
-                </div>
+                
                 <!-- End Features Item -->
 
                 <!--팔로워, 팔로잉-->
                 <!-- Features Item -->
                 {% if user != playlist.creator %}
-                <div class="alt-service-wrap">
+                
                     <div class="alt-service-item">
                         <a href="{% url 'playlists:follow_toggle' playlist.id %}">
 
@@ -125,36 +124,35 @@
                         </h3>
                     
                     </div>
-                </div>
+                
                 {% endif %}   
                 <!-- End Features Item -->
 
                 <!--좋아요-->
                 <!-- Features Item -->
-                <div class="alt-service-wrap">
+                
                     <div class="alt-service-item">
-                        <a href="{% url 'playlists:like_toggle' playlist.id %}">
                         
+                        <a href="{% url 'playlists:like_toggle' playlist.id %}">
                             <div class="alt-service-icon">
                             {% if user in playlist.likes.all %}
+                            
                                 <i class="fa fa-heart"></i>
                             </div>
-                                <h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요 취소</h3></a>
+                        </a>
+                            <h3 class="alt-services-title font-alt">{{ playlist.likes.count }} <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요 취소</a></h3>
                             {% else %}
                                 <i class="fa fa-heart-o"></i>
                             </div>
-                                <h3 class="alt-services-title font-alt">{{ playlist.likes.count }} 좋아요</h3></a>  
+                                <h3 class="alt-services-title font-alt">{{ playlist.likes.count }} <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요</a></h3> 
                             {% endif %}
                     </div>
-                </div>
+                
                 <!-- End Features Item -->
 
             </div>
             <!-- End Features -->
 
-            
-
-            
         </div>
         <!-- End Product Content -->
         
@@ -176,8 +174,11 @@
             <div class="tab-pane fade active show in" id="two">
                 <h3>총 {{ playlist.musics.count }}개의 음악이 담겨있습니다.</h3>
                 
-                <table class="table table-bordered table-striped">
+                <table class="table table-striped shopping-cart-table">
                     <tr>
+                        <th class="hidden-xs">
+                            
+                        </th>
                         <th>
                             제목
                         </th>
@@ -191,10 +192,12 @@
                             삭제
                         </th>
                     </tr>
-
-                    {% for music in playlist.musics.all %}
-    
+                    
+                    {% for music in playlist.musics.all %}  
                     <tr>
+                        <td class="hidden-xs">
+                            <img src="{% static 'hyojeong/images/lp.png' %}" alt="" width="50px" height="50px" style="margin-left: auto; margin-right: auto; display: block;"/>
+                        </td>
                         <td>
                             <a href="{% url 'musics:show' music.id %}">{{ music.title }}</a>
                         </td>
@@ -202,16 +205,19 @@
                             {{ music.singer }}
                         </td>
                         <td>
-                            {{ music.genre}}
+                            {{ music.genre }}
                         </td>
                         <td>
                             {% if user == playlist.creator %}
                                 <a href="{% url 'playlists:delete_music' playlist.id  music.id %}"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
                             {% endif %}
+                         
                         </td>
-                    </tr>
+                    </tr> 
                     {% endfor %}
                 </table>
+
+               
                 
             </div>
 
@@ -241,9 +247,11 @@
                                             </span>
                                             
                                         </div>
+                                        <div class="comment">
                                         <p>
                                             {{ comment.message }}
                                         </p>
+                                        </div>
                                     </div>
                                 </li>
                                 <!-- End Comment Item -->
@@ -265,12 +273,12 @@
                         
                         <!-- Comment -->
                         <div class="mb-30 mb-md-10">
-                            <input type ="text" name="message">
+                            <input type ="text" name="message" style="width:100%;" placeholder="Comment">
                         </div>
                         
                         <!-- Send Button -->
                         <button type="submit" class="btn btn-mod btn-medium btn-round">
-                            Submit
+                            댓글달기
                         </button>
                         
                     </form>
