@@ -93,17 +93,17 @@
                         <!-- Post Item -->
                         {% for playlist in playlists %}
                             
-                                <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list" style="padding-top: 10px;">
+                                <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list" style="padding: 10px 0 10px 0;">
                             
                                     {% if playlist.cover %}
                                     <a href ="{% url 'playlists:show' playlist.id %}">
-                                        <div class="post-prev-img">
+                                        <div class="team-item-image">
                                             <img src= "{{ playlist.cover.url }}" alt="사진없음">
                                         </div>
                                     </a>
                                     {% endif %}
                                     
-                                    <div class="post-prev-title font-alt playlist-bar font-bold">
+                                    <div class="team-item-name">
                                         {{ playlist.title }}
                                     </div>
                                     

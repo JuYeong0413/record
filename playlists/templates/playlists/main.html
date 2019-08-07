@@ -43,7 +43,12 @@
             </div>
         </form>
         <!-- End Search -->
-
+        <div class="tag-frequency mb-110 mb-xs-60">
+                자주 입력된 태그
+                {% for tag in tags %}
+                <a href="{% url 'playlists:tag' tag.id %}"><i class="fa fa-music"></i>{{ tag }}</a>
+                {% endfor %}
+        </div>
     </div>
 
 </section>
@@ -60,7 +65,7 @@
 
             {% for playlist in playlists %}
             <!-- playlist -->
-            <div class="col-md-4 col-lg-4 mb-60 mb-xs-30 wow fadeInUp music-new playlist-list" style="visibility: visible; animation-name: fadeInUp; padding: 10px 0 0 0;">
+            <div class="col-md-4 col-lg-4 mb-60 mb-xs-30 wow fadeInUp music-new playlist-list" style="visibility: visible; animation-name: fadeInUp; padding: 10px 10px 10px;">
                 <div class="team-item">
                     
                     <a href="{% url 'playlists:show' playlist.id %}">
