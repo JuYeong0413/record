@@ -34,38 +34,41 @@
     <div class="container">
 
         <!-- Search Section -->
-        <section class="small-section">
+        <section class="small-section music-main-search">
             
-                    <!-- Search -->
-                    <form class="form-inline form" action="{% url 'musics:search' %}">
-                        
-                        <div class="search-wrap column">
-                            <div class="form-group">
-                                <select class="form-control col-md-2" name="option">
-                                    <option value="title">제목</option>
-                                    <option value="singer">가수명</option>
-                                </select>
-                            </div>
-                                <div class="search-wrap">    
-                                    <button class="search-button animate" type="submit">
-                                        <i class="fa fa-search" style="margin-top: 24px;"></i>
-                                    </button>
-                                    <input type="text" class="form-control search-field" placeholder="검색어" name="query">
-            
-                                </div>
-            
+            <!-- Search -->
+            <form class="form-inline form" action="{% url 'musics:search' %}">
+                
+                <div class="search-wrap column">
+                    <div class="form-group">
+                        <select class="form-control col-md-2" name="option">
+                            <option value="title">제목</option>
+                            <option value="singer">가수명</option>
+                        </select>
+                    </div>
+                        <div class="search-wrap">    
+                            <button class="search-button animate" type="submit">
+                                <i class="fa fa-search" style="margin-top: 24px;"></i>
+                            </button>
+                            <input type="text" class="form-control search-field" placeholder="검색어" name="query">
+    
                         </div>
-                    </form> 
-                    <!-- End Search -->
+    
+                </div>
+            </form> 
+            <!-- End Search -->
 
-            </section>
-            <!-- End Search Section -->
-            <div>
-                ddd
-            </div>
+        </section>
+        <!-- End Search Section -->
+
+        <!-- ////////// -->
+        <div class="column">
+           
+        </div>
+        <!-- ////////// -->
         
         <div class="row">
-            <div class="col-md-10 col-md-offset-2">
+            <div class="col-md-10">
                 
                 <table class="table table-striped shopping-cart-table">
                     <tr>
