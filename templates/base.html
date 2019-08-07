@@ -53,11 +53,12 @@
         <!-- Page Wrap -->
         <div class="page" id="top">
             {% include 'navbar.html' %}
-            <br>
-        </div>     
-        {% block content %}
-        {% endblock %}
             
+            {% block content %}
+            
+            {% endblock %}
+            
+        </div>     
         <!-- End Page Wrap -->
 
         {% include 'footer.html' %}
