@@ -117,17 +117,28 @@
                     </div>
                     <br>
                     
-                    <!-- Pagination -->
-                    <div class="pagination">
-                        <a href=""><i class="fa fa-angle-left"></i></a>
-                        <a href="" class="active">1</a>
-                        <a href="">2</a>
-                        <a href="">3</a>
-                        <a class="no-active">...</a>
-                        <a href="">9</a>
-                        <a href=""><i class="fa fa-angle-right"></i></a>
-                    </div>
-                    <!-- End Pagination -->
+                    <!--pagination-->
+            <hr class="mb-60 music-main-pagination" />
+            <div class="music-paginator-num">
+            
+            {% if playlists.has_previous %}
+                <a href="?page=1">first</a>
+                <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+            {% endif %}
+    
+            <span>{{ playlists.number }}</span>
+            <span>of</span>
+            <span>{{ playlists.paginator.num_pages }}</span>
+    
+            {% if playlists.has_next %}
+                <a href="?page={{ playlists.next_page_number }}">Next</a>
+                <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+            {% endif %}
+            
+            
+            </div>
+        <hr class="mb-60 music-main-pagination" />  
+    <!-- End Pagination -->
                     
                 </div>
             <!-- End Content -->

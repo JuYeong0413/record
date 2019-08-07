@@ -6,6 +6,116 @@
     font-style: normal;
 }
 
+/*page loader css */
+.page-loader{
+    display:block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background:  #FFF8E5;
+    z-index: 100000;    
+}
+
+.loader{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    font-size: 10px;
+    text-indent: -12345px;
+    border-top: 1px solid rgba(0,0,0, 0.08);
+    border-right: 1px solid rgba(0,0,0, 0.08);
+    border-bottom: 1px solid rgba(0,0,0, 0.08);
+    border-left: 1px solid rgba(0,0,0, 0.5);
+  
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+  
+    -webkit-animation: spinner 700ms infinite linear;
+    -moz-animation: spinner 700ms infinite linear;
+    -ms-animation: spinner 700ms infinite linear;
+    -o-animation: spinner 700ms infinite linear;
+    animation: spinner 700ms infinite linear;
+  
+    z-index: 100001;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
 /*navbar.html css*/
 .main-nav.dark {
     background-color: #FFF8E5;
@@ -60,7 +170,6 @@ hr {
     animation-duration: 5s;
     animation-iteration-count: 1;
 }
-
 @-webkit-keyframes mainback {
     0% {
       filter: brightness(130%);
@@ -82,7 +191,6 @@ hr {
     font-size: 2rem;
     color:white;
 }
-
 /*검색창 css */
 .form input[type="text"]{
     font-size:1.4rem;
@@ -90,6 +198,7 @@ hr {
     background-color: #E8E5D2;
     font-family: 'GyeonggiBatang';
     text-align: center;
+    border-radius: 3px;
 }
 .form-inline form {
     width:70%!important;
@@ -181,7 +290,7 @@ hr {
     margin:0;
 }
 .mb-60 {
-    margin-bottom:5%;
+    margin-bottom:0;
 }
 
 /*musics/new.html */
@@ -191,7 +300,7 @@ hr {
     text-align: center;
     font-size: 1.4rem;
     color: #34495E;
-    box-shadow: 1px 1px 1px grey;
+    box-shadow: 3px 3px 0 10px #FFF8E5;
 }
 .music-add {
     margin:2% auto;
@@ -269,6 +378,13 @@ hr {
     font-size: 2rem;
     color: #34495E;
 }
+.team-item-image{
+    width: auto; height: auto;
+    max-width: 300px;
+    max-height: 300px;
+    display: block; margin: 0px auto;
+    border-radius:5%;
+}
 .user-follow {
     background-color : transparent;
     border-color : transparent;
@@ -286,7 +402,7 @@ hr {
     text-align: center;
     font-size: 1.4rem;
     color: #34495E;
-    box-shadow: 1px 1px 1px grey;
+    box-shadow: 1px 1px 1px white;
     padding:5%;
 }
 .introduction {

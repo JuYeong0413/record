@@ -93,17 +93,17 @@
                         <!-- Post Item -->
                         {% for playlist in playlists %}
                             
-                                <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list" style="padding-top: 10px;">
+                                <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list" style="padding: 10px 0 10px 0;">
                             
                                     {% if playlist.cover %}
                                     <a href ="{% url 'playlists:show' playlist.id %}">
-                                        <div class="post-prev-img">
+                                        <div class="team-item-image">
                                             <img src= "{{ playlist.cover.url }}" alt="사진없음">
                                         </div>
                                     </a>
                                     {% endif %}
                                     
-                                    <div class="post-prev-title font-alt playlist-bar font-bold">
+                                    <div class="team-item-name">
                                         {{ playlist.title }}
                                     </div>
                                     
@@ -120,17 +120,28 @@
                 </div>
                 <br>
                 
-                <!-- Pagination -->
-                <div class="pagination">
-                    <a href=""><i class="fa fa-angle-left"></i></a>
-                    <a href="" class="active">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a class="no-active">...</a>
-                    <a href="">9</a>
-                    <a href=""><i class="fa fa-angle-right"></i></a>
-                </div>
-                <!-- End Pagination -->
+                <!--pagination-->
+            <hr class="mb-60 music-main-pagination" />
+            <div class="music-paginator-num">
+            
+            {% if playlists.has_previous %}
+                <a href="?page=1">first</a>
+                <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+            {% endif %}
+    
+            <span>{{ playlists.number }}</span>
+            <span>of</span>
+            <span>{{ playlists.paginator.num_pages }}</span>
+    
+            {% if playlists.has_next %}
+                <a href="?page={{ playlists.next_page_number }}">Next</a>
+                <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+            {% endif %}
+            
+            
+            </div>
+        <hr class="mb-60 music-main-pagination" />  
+    <!-- End Pagination -->
                 
             </div>
             <!-- End Content -->
