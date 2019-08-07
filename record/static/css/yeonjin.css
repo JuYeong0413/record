@@ -57,3 +57,11 @@
 .btn:hover{
     color:white!important;
 }
+
+.kyjbox{
+    display:inline-flex;
+}
+
+.kyj{
+    margin-right:5px;
+}
