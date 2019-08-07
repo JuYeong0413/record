@@ -50,61 +50,68 @@
 <hr class="mt-0 mb-0"/>
 <!-- End Divider -->
 
+<section class="recoders-list">
+    <div class="container relative">     
+        <h2 class="section-title font-alt align-left mb-70 mb-sm-40">
+            검색결과
+        </h2>
+        <div class="row">
 
-<!-- Section -->
-<section class="page-section">
-    <div class="container relative">
-        
-        <div class="row masonry">
-            {% if search_list.exists %}
-                {% for result in search_result %}
-                    {% if result.kinds == 0 %}
-                        <a href="{% url 'playlists:show' result.id %}">
-                            <!-- Post Item -->
-                            <div class="col-sm-6 col-md-4 col-lg-4 mb-60 mb-xs-40">
+        {% if search_list.exists %}
+            {% for result in search_result %}
+                {% if result.kinds == 0 %}
+                    <!-- playlist -->
+                    <div class="col-sm-4 mb-xs-30 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+                        <div class="team-item">
                                 
-                                <div class="post-prev-img">
+                            <a href="{% url 'playlists:show' result.id %}">
+                                <div class="team-item-image">
                                     {% if result.cover %}
-                                        <img src="{{ result.cover.url }}" alt="사진없음"><br>
+                                    <img src="{{ result.cover.url }}" alt=""/>
                                     {% endif %}
                                 </div>
-                            
-                                <div class="post-prev-title font-alt">
-                                    {{ result.title }}  
-                                </div>
+                            </a>
                                 
-                                <div class="post-prev-info font-alt">
+                            <div class="team-item-descr font-alt">
+                                    
+                                <div class="team-item-name">
+                                    <a href="{% url 'playlists:show' result.id %}">{{ result.title }}</a>
+                                </div>
+                                    
+                                <div class="team-item-role">
                                     {{ result.creator }}
                                 </div>
-
+                                    
                             </div>
-                            <!-- End Post Item -->
-                        </a>
+                                
+                        </div>
+                    </div>
+               
                     {% endif %}
                 {% endfor %}
             {% else %}
                 <h3>검색 결과가 없습니다.</h3>
             {% endif %}
+            <!-- End playlist -->
+
         </div>
-                
-        <!-- Pagination -->
-        {% if search_result.has_previous%}
-            <a href="?page=1">first</a>
-            <a href="?page={{ search_result.previous_page_number }}">Preivous</a>
-        {% endif %}
-
-        <span>{{ search_result.number }}</span>
-        <span>of</span>
-        <span>{{ search_result.paginator.num_pages }}</span>
-
-        {% if search_result.has_next %}
-            <a href="?page={{ search_result.next_page_number }}">Next</a>
-            <a href="?page={{ search_result.paginator.num_pages }}">Last</a>
-        {% endif %}
-        <!-- End Pagination -->
-        
+            <!-- Pagination -->
+            {% if playlists.has_previous %}
+                <a href="?page=1">first</a>
+                <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+            {% endif %}
+    
+            <span>{{ playlists.number }}</span>
+            <span>of</span>
+            <span>{{ playlists.paginator.num_pages }}</span>
+    
+            {% if playlists.has_next %}
+                <a href="?page={{ playlists.next_page_number }}">Next</a>
+                <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+            {% endif %}
+            <!-- End Pagination -->
     </div>
 </section>
-<!-- End Section -->
+
 
 {% endblock %}

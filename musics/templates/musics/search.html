@@ -110,21 +110,6 @@
                     <h3 class="music-paginator-num">검색 결과가 없습니다.</h3>
                 {% endif %}
 
-                <hr />
-                <div class="col-sm-8">
-                        
-                </div>
-
-                <div class="row">
-                    
-                    <div class="col-sm-4 text align-right">
-                        
-                        <div>
-                            <a href="{% url 'musics:new' %}"><img src="{% static 'bobae/images/music-plus.png' %}" alt="" class="music-plus"/></a>
-                        </div>
-                        
-                    </div>
-                </div>
 
                 <!--pagination-->
                 <hr class="mb-60 music-main-pagination" />
@@ -147,5 +132,6 @@
     </div>
 </section>
 <!-- End Section -->
-
+<!--곡 추가섹션-->
+<a href="{% url 'musics:new' %}"><img src="{% static 'bobae/images/music-plus.png' %}" alt="" class="music-plus"/></a>
 {% endblock %}

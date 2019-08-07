@@ -54,8 +54,22 @@ hr {
     background-size: 60%;
     background-position: center center;
     background-color: #E8E5D2;
+
     filter: brightness(50%);
+    animation-name: mainback;
+    animation-duration: 10s;
+    animation-iteration-count: 1;
 }
+
+@-webkit-keyframes mainback {
+    0% {
+      filter: brightness(130%);
+    }
+    100% {
+      filter: brightness(50%);
+    }
+  }
+
 .home-content {
     position: absolute;
     top: 85%;
@@ -94,7 +108,7 @@ hr {
     font-family: 'GyeonggiBatang';
     font-size: 1.5rem;
     letter-spacing :0.7rem;
-    color:red;
+    color:#FAAFAF;
 }
 .tag-frequency > a {
     letter-spacing :1rem;
@@ -124,7 +138,7 @@ hr {
 /*musics/main.html */
 .bg-gray-lighter{
     background-color: #E8E5D2;
-    padding:30px;
+    padding:50px;
 }
 .search-wrap > .form-group {
     display:inline;
@@ -210,6 +224,12 @@ hr {
     color: #34495E;
 }
 
+/*musics.add.html */
+.add-submit {
+    width:100%;
+    background-color : transparent;
+    border-color : transparent;
+}
 /*기존 main css */
 /* .main {
     position: relative;

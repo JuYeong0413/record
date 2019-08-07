@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 <!-- Navigation panel -->
-<nav class="main-nav dark js-stick">
+<nav class="main-nav dark stick-fixed js-stick">
     <div class="full-wrapper relative clearfix">
         <!-- Logo ( * your text or image into link tag *) -->
         <div class="nav-logo-wrap local-scroll">
@@ -10,11 +10,11 @@
             </a>
         </div>
         <div class="mobile-nav active">
-            <i class="fa fa-bars"></i>
+            <i class="fa fa-bars" style="color: #34495E;"></i>
         </div>
         
         <!-- Main Menu -->
-        <div class="inner-nav desktop-nav js opened" style="display: block;">
+        <div class="inner-nav desktop-nav">
             <ul class="clearlist local-scroll" style="max-height:656px;">
                 <li class="active">
                     <a href="{% url 'main' %}"><i class="fa fa-home"></i> Home</a>                    

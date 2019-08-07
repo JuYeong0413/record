@@ -34,6 +34,7 @@
         <link rel="stylesheet" href="{% static 'rhythm/css/magnific-popup.css' %}"> 
         <link rel="stylesheet" href="{% static 'bobae/css/bobae.css' %}">          
         <link rel="stylesheet" href="{% static 'css/juyeong.css' %}">
+        <link rel="stylesheet" href="{% static 'css/yeonjin.css' %}">
         
         <!-- bootstrap4 -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
@@ -49,22 +50,16 @@
             <div class="loader">Loading...</div>
         </div>
         <!-- End Page Loader -->
-        <!--record slogan-->
-        <!-- <section class="small-section bg-dark" style="padding:0; background-color: #E8E5D2!important;">
-            <div class="container relative">
-                <div class="align-center">
-                    <h3 class="banner-heading font-alt"><img src="{% static 'bobae/images/logoimage.png' %}" alt="" style="max-width:20%;"/>여러분이 알고 있는 명곡을 RE:CORD에 RECORD하세요.</h3>
-                </div>
-            </div>
-        </section> -->
+
         <!-- Page Wrap -->
         <div class="page" id="top">
             {% include 'navbar.html' %}
-            <br>
-        </div>     
-        {% block content %}
-        {% endblock %}
             
+            {% block content %}
+            
+            {% endblock %}
+            
+        </div>     
         <!-- End Page Wrap -->
 
         {% include 'footer.html' %}
