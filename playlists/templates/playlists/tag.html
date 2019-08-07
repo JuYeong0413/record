@@ -101,7 +101,7 @@
 <!-- paginator -->
 <section>
     {% if playlists.has_other_pages %}
-        <ul class="pagination">
+        <ul class="pagination justify-content-center mb-40">
             {% if playlists.has_previous %}
                 <li class="page-item"><a class="page-link" href="?page={{ playlists.previous_page_number }}">&laquo;</a></li>
             {% else %}
