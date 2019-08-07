@@ -103,7 +103,7 @@
     {% if playlists.has_other_pages %}
         <ul class="pagination">
             {% if playlists.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page={{ playlists.previous_page_number }}">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ playlists.previous_page_number }}{% if request.GET.tag%}&tag={{ request.GET.tag}}{% endif %}">&laquo;</a></li>
             {% else %}
                 <li class="page-item"><a class="page-link">&laquo;</a></li>
             {% endif %}
@@ -111,11 +111,11 @@
                 {% if playlists.number == i %}
                     <li class="page-item active"><a class="page-link">{{ i }}</a></li>
                 {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET.tag%}&tag={{ request.GET.tag}}{% endif %}">{{ i }}</a></li>
                 {% endif %}
             {% endfor %}
             {% if playlists.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ playlists.next_page_number }}">&raquo;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ playlists.next_page_number }}{% if request.GET.tag%}&tag={{ request.GET.tag}}{% endif %}">&raquo;</a></li>
             {% else %}
                 <li class="page-item"><a class="page-link">&raquo;</a></li>
             {% endif %}
