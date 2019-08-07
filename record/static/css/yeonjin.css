@@ -1,0 +1,31 @@
+@font-face { 
+    font-family: 'GyeonggiBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.music_box{
+    font-family: 'GyeonggiBatang';
+    background-color:rgb(242, 242, 242);
+    text-align:left;
+    font-weight:bold;
+    font-size:16px;
+    padding-left:20px;
+    padding-top:20px;
+    padding-bottom:5px;
+}
+
+.tpl-minimal-tabs{
+    padding:0 5% 2%;
+}
+
+.nav-tabs{
+    justify-content:center;
+}
+
+.col-md-4 col-md-offset-4{
+    padding-left:0px;
+    margin-left:10px;
+    margin-right:150px;
+}

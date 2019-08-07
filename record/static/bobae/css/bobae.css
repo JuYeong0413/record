@@ -57,7 +57,7 @@ hr {
 
     filter: brightness(50%);
     animation-name: mainback;
-    animation-duration: 10s;
+    animation-duration: 5s;
     animation-iteration-count: 1;
 }
 
@@ -138,10 +138,10 @@ hr {
 /*musics/main.html */
 .bg-gray-lighter{
     background-color: #E8E5D2;
-    padding:30px;
+    padding:50px;
 }
 .search-wrap > .form-group {
-    display:inline;
+    display:inline!important;
 }
 .form-group > .form-control {
     background-color: #E8E5D2;
@@ -165,6 +165,8 @@ hr {
 }
 .music-plus {
     width: 5rem;
+    float:right;
+    margin-bottom: 10px;
 }
 .music-main-pagination{
     margin-bottom:1rem;
@@ -191,6 +193,38 @@ hr {
 .addtext{
     margin:5% auto;
 }
+
+/*musics/show.html */
+.titlefont {
+    margin:5% 0 2% 0;
+    font-size:x-large;
+    font-weight:bold;
+}
+.blog-item-data {
+    font-size:1.4rem;
+}
+.modal-content {
+    color:#34495E;
+}
+
+.hide{
+    background-color : #E8E5D2;
+    border-color: transparent;
+}
+.blog-item-q p{
+    background : transparent;
+}
+.blog-item {
+    margin-bottom:3%;
+}
+.blog-item-foot {
+    float:center;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 2rem;
+    color: #34495E;
+}
+
 /*기존 main css */
 /* .main {
     position: relative;

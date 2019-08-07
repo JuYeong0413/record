@@ -35,6 +35,7 @@
         <link rel="stylesheet" href="{% static 'bobae/css/bobae.css' %}">          
         <link rel="stylesheet" href="{% static 'css/juyeong.css' %}">
         <link rel="stylesheet" href="{% static 'hyojeong/css/hyojeong.css' %}"> 
+        <link rel="stylesheet" href="{% static 'css/yeonjin.css' %}">
         
         <!-- bootstrap4 -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
@@ -54,11 +55,12 @@
         <!-- Page Wrap -->
         <div class="page" id="top">
             {% include 'navbar.html' %}
-            <br>
-        </div>     
-        {% block content %}
-        {% endblock %}
             
+            {% block content %}
+            
+            {% endblock %}
+            
+        </div>     
         <!-- End Page Wrap -->
 
         {% include 'footer.html' %}

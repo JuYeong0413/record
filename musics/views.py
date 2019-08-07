@@ -61,7 +61,7 @@ def create(request):
         song = requests.get('https://www.melon.com/song/detail.htm?songId={}'.format(song_number), headers = header)
         song_html = song.text
         song_parse = BeautifulSoup(song_html, 'html.parser')
-        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)'))
+        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-of-type(6)'))
         genre = genre.replace('[<dd>', '').replace('</dd>]', '')
         if '&amp;' in genre:
             genre = genre.replace('&amp;', '&')
@@ -131,9 +131,7 @@ def update(request, music_id):
         lyrics = str(song_parse.find(id='d_video_summary'))
         lyrics = lyrics.replace('<div class="lyric" id="d_video_summary"><!-- height:auto; 로 변경시, 확장됨 -->','').replace('</div>','').strip()
         lyrics = lyrics.replace('<br/>', '\n')
-
-        music.genre = genre
-        music.lyrics = lyrics
+        
 
         # crawling video link
         options = webdriver.ChromeOptions()
