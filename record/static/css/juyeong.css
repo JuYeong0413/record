@@ -43,10 +43,12 @@
 
 .user-introduction {
     text-align: center;
-    background-color: gray;
+    background-color: rgba(0,0,0, .1);
     margin-top: 10px;
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 16px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .tpl-tabs li.active a  {
@@ -57,4 +59,8 @@
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
     background-color: #FFF8E5;
+}
+
+.team-item-name {
+    text-transform: none;
 }
