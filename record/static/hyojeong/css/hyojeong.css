@@ -9,8 +9,7 @@
 }
 
 .playlist-list{
-    margin: 5px;
-    max-width: 30%!important;
+    border: solid darkgray;
 }
 
 .font-bold{
