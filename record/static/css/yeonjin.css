@@ -7,13 +7,12 @@
 
 .music_box{
     font-family: 'GyeonggiBatang';
-    background-color:rgb(242, 242, 242);
-    text-align:left;
+    background-color: transparent;
+    text-align: center;
     font-weight:bold;
     font-size:16px;
-    padding-left:20px;
-    padding-top:20px;
-    padding-bottom:5px;
+    padding-top:5%;
+    padding-bottom:5%;
 }
 
 .tpl-minimal-tabs{

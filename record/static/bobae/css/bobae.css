@@ -225,6 +225,12 @@ hr {
     color: #34495E;
 }
 
+/*musics.add.html */
+.add-submit {
+    width:100%;
+    background-color : transparent;
+    border-color : transparent;
+}
 /*기존 main css */
 /* .main {
     position: relative;

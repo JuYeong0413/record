@@ -35,7 +35,7 @@
         <div class="row">
         {% if playlist_list.exists %}
             {% for playlist in playlists %}
-                <form action="{% url 'musics:add_music' %}" method="POST">
+                <form action="{% url 'musics:add_music' %}" method="POST" style="width:100%;">
                     {% csrf_token %}
                     <div class="col-sm-4 mb-xs-30 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                         <div class="team-item">
@@ -52,15 +52,19 @@
                                 </div>
                         
                             </div>
+                            <div class="team-item-name" style="text-align: center;">
+                                <input type="radio" name="playlist_id" value="{{ playlist.id }}">
+                                <input type="hidden" name="music_id" value="{{ request.GET.music }}">
+                                <br>
+                            </div>
                         </div>
-                        <input type="radio" name="playlist_id" value="{{ playlist.id }}">
-                        <input type="hidden" name="music_id" value="{{ request.GET.music }}">
-                        <br>
+                        
                     </div>
                     {% endfor %}
-                    <div class="col-sm-4 mb-xs-30">
-                        <input type="submit" class="btn btn-primary">
+                    <div class="blog-item-foot">
+                        <input type="submit" class="add-submit" value="선택">
                     </div>
+                    <br><br>
                     </form>
         </div>
         {% else %}
