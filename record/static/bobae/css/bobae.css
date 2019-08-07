@@ -104,12 +104,17 @@ hr {
     font-family: 'GyeonggiBatang';
 }
 .search-wrap2{
-    width:70%;
+    width:65%;
     top: 70%;
-	left: 45%;
+	left: 42%;
     transform: translate( -50%, -50% );
 }
-
+.search-wrap3{
+    width:70%;
+    top: 70%;
+	left: 50%;
+    transform: translate( -50%, -50% );
+}
 /*tag css */
 .tag-frequency {
     font-family: 'GyeonggiBatang';
