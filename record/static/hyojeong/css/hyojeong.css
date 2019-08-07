@@ -17,3 +17,7 @@
     background-color: rgb(216, 211, 184);
     margin-bottom: 10px;
 }
+.btn-mod.btn-small {
+    background-color: black;
+    color:white;
+}
