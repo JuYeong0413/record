@@ -125,23 +125,6 @@
                     {% endif %}
                 </div>
                 <!-- End Post -->
-                <!--pagination-->
-                <hr class="mb-60 music-main-pagination" />
-                <div class="music-paginator-num">
-                {% if musics.has_previous %}
-                    <a href="?page=1">맨 앞으로</a>
-                    <a href="?page={{ musics.previous_page_number }}">이전으로</a>
-                {% endif %}            
-                    <span>{{ musics.number }}</span>
-                    <span> of </span>    
-                    <span>{{ musics.paginator.num_pages }}</span>    
-                {% if musics.has_next %}
-                    <a href="?page={{ musics.next_page_number }}">다음으로</a>
-                    <a href="?page={{ musics.paginator.num_page }}">맨 뒤로</a>
-                {% endif %}
-                </div>
-                <hr class="mb-60 music-main-pagination" />
-            </div>
             <!-- End Content -->
             
         </div>
@@ -149,5 +132,31 @@
     </div>
 </section>
 <!-- End Section -->
+
+<!-- paginator -->
+<section>
+    {% if musics.has_other_pages %}
+        <ul class="pagination">
+            {% if musics.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ musics.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link">&laquo;</a></li>
+            {% endif %}
+            {% for i in musics.paginator.page_range %}
+                {% if musics.number == i %}
+                    <li class="page-item active"><a class="page-link">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if musics.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ musics.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</section>
+<!-- end paginator -->
 
 {% endblock %}

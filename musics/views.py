@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Music
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -12,9 +12,15 @@ from playlists.models import Playlist
 # 노래 메인 페이지
 def main(request):
     music_list = Music.objects.all().order_by('-id')
+    page = request.GET.get('page', 1)
     paginator = Paginator(music_list, 10)
-    page = request.GET.get('page')
-    musics = paginator.get_page(page)
+    try:
+        musics = paginator.get_page(page)
+    except PageNotAnInteger:
+        musics = paginator.page(1)
+    except EmptyPage:
+        musics = paginator.page(paginator.num_pages)
+
     return render(request, 'musics/main.html', {'musics': musics})
    
 
@@ -188,9 +194,14 @@ def search(request):
     else:
         search_list = Music.objects.filter(singer__contains=query)
 
+    page = request.GET.get('page', 1)
     paginator = Paginator(search_list, 10)
-    page = request.GET.get('page')
-    search_result = paginator.get_page(page)
+    try:
+        search_result = paginator.get_page(page)
+    except PageNotAnInteger:
+        search_result = paginator.page(1)
+    except EmptyPage:
+        search_result = paginator.page(paginator.num_pages)
     
     return render(request,'musics/search.html', {'search_result': search_result, 'search_list':search_list})
 

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from musics.models import Music
 from playlists.models import Playlist
 from .models import User
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # 프로필 페이지
 def main(request, id):
@@ -62,9 +62,16 @@ def follow_toggle(request, id):
 def musics(request, id):
     music_lists = Music.objects.filter(writer__id=id)
     user = get_object_or_404(User, pk=id)
+
+    page = request.GET.get('page', 1)
     paginator = Paginator(music_lists, 10)
-    page = request.GET.get('page')
-    musics = paginator.get_page(page)
+    try:
+        musics = paginator.get_page(page)
+    except PageNotAnInteger:
+        musics = paginator.page(1)
+    except EmptyPage:
+        musics = paginator.page(paginator.num_pages)
+
     return render(request, 'users/musics.html', {'musics': musics, 'music_lists':music_lists, 'user':user})
 
 
@@ -78,9 +85,14 @@ def playlists(request, id):
     else:
         playlist_lists = Playlist.objects.filter(creator__id=id, kinds=0)
 
-    paginator = Paginator(playlist_lists, 9)
-    page = request.GET.get('page')
-    playlists = paginator.get_page(page)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(playlist_lists, 8)
+    try:
+        playlists = paginator.page(page)
+    except PageNotAnInteger:
+        playlists = paginator.page(1)
+    except EmptyPage:
+        playlists = paginator.page(paginator.num_pages)
 
     return render(request, 'users/playlists.html', {'playlists': playlists, 'playlist_lists':playlist_lists, 'user':user})
 
@@ -95,8 +107,13 @@ def likes(request, id):
     else:
         playlist_lists = Playlist.objects.filter(likes=user, kinds=0)
 
-    paginator = Paginator(playlist_lists, 9)
-    page = request.GET.get('page')
-    playlists = paginator.get_page(page)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(playlist_lists, 8)
+    try:
+        playlists = paginator.page(page)
+    except PageNotAnInteger:
+        playlists = paginator.page(1)
+    except EmptyPage:
+        playlists = paginator.page(paginator.num_pages)
 
     return render(request, 'users/likes.html', {'playlists': playlists, 'playlist_lists':playlist_lists, 'user':user})
