@@ -50,3 +50,11 @@
     float:right;
 }
 
+.btn-mod.btn-round{
+    border-radius:4px;
+    border:1px solid rgba(0,0,0, .1);
+}
+
+.btn:hover{
+    color:white!important;
+}
