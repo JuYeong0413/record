@@ -93,29 +93,30 @@
             
     </div>
 </section>
+
+
 <section>
-        <!--pagination-->
-            <hr class="mb-60 music-main-pagination" />
-                <div class="music-paginator-num">
-                
-                {% if playlists.has_previous %}
-                    <a href="?page=1">first</a>
-                    <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+    {% if playlists.has_other_pages %}
+        <ul class="pagination">
+            {% if playlists.has_previous %}
+                <li><a href="?page={{ playlists.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in playlists.paginator.page_range %}
+                {% if playlists.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
                 {% endif %}
-        
-                <span>{{ playlists.number }}</span>
-                <span>of</span>
-                <span>{{ playlists.paginator.num_pages }}</span>
-        
-                {% if playlists.has_next %}
-                    <a href="?page={{ playlists.next_page_number }}">Next</a>
-                    <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
-                {% endif %}
-                
-                
-                </div>
-            <hr class="mb-60 music-main-pagination" />  
-        <!-- End Pagination -->
-    </section>
+            {% endfor %}
+            {% if playlists.has_next %}
+                <li><a href="?page={{ playlists.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</section>
 
 {% endblock %}
