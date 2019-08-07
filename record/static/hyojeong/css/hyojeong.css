@@ -13,6 +13,9 @@
     max-width: 30%!important;
 }
 
+.font-bold{
+    font-weight: bold;
+}
 .playlist-bar{
     background-color: rgb(216, 211, 184);
     margin-bottom: 10px;
