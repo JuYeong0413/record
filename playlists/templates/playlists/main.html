@@ -43,7 +43,7 @@
             </div>
         </form>
         <!-- End Search -->
-        <div class="tag-frequency mb-110 mb-xs-60 text-center">
+        <div class="tag-frequency mb-xs-60 text-center">
 
             {% for tag in tags %}
                 <a href="{% url 'playlists:tag' tag.id %}"><i class="fa fa-music"></i>{{ tag }}</a>
