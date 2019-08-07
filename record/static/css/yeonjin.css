@@ -34,5 +34,9 @@
     width:30%;
     height:20%;
     font-weight:normal;
+    font-size:10px;
+}
 
+.test{
+    background-color:rgb(16,17,0)
 }
