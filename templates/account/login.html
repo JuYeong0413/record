@@ -53,18 +53,10 @@
                             </div>
                             
                             <div class="clearfix">
-                                
-                                
-                                
-
-                                    
                                     <!-- Send Button -->
-                                    <div class="align-right pt-10">
-                                        <button class="submit_btn btn btn-mod btn-medium btn-round" >{% trans "Sign In" %}</button>
+                                    <div class="align-center pt-20">
+                                        <button class="submit_btn btn btn-mod btn-medium btn-round btn-full" style="width:50%;" >{% trans "Sign In" %}</button>
                                     </div>
-                                    
-
-                                
                             </div>
                             
                         </form>
@@ -80,7 +72,7 @@
         <!-- <p>{% blocktrans with site.name as site_name %}Please sign in with one
         of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
         for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
-            <div class="socialaccount_ballot">
+            <div class="socialaccount_ballot text-center pt-20">
                 <span class="socialaccount_providers">
 
                     <button type="button" class="google" onclick="location.href='/accounts/google/login/?process=login'">
