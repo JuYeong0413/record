@@ -48,3 +48,13 @@
     margin-bottom: 10px;
     font-size: 14px;
 }
+
+.tpl-tabs li.active a  {
+    background-color: #FFF8E5;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    background-color: #FFF8E5;
+}
