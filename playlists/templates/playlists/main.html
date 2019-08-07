@@ -43,12 +43,6 @@
             </div>
         </form>
         <!-- End Search -->
-        <div class="tag-frequency mb-110 mb-xs-60">
-                자주 입력된 태그
-                {% for tag in tags %}
-                <a href="{% url 'playlists:tag' tag.id %}"><i class="fa fa-music"></i>{{ tag }}</a>
-                {% endfor %}
-        </div>
     </div>
 
 </section>
