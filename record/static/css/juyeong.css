@@ -40,3 +40,11 @@
 .form select {
     text-transform: none;
 }
+
+.user-introduction {
+    text-align: center;
+    background-color: gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
