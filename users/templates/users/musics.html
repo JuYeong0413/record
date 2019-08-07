@@ -75,6 +75,7 @@
                 </div>
                 <!-- End Widget -->
                 
+                
             </div>
             <!-- End Sidebar -->
             
@@ -119,13 +120,27 @@
                                 </tr>
                             {% endfor %}
                         </table>                            
-                        <hr />
                     {% else %}
                         <h3>작성한 노래 게시글이 없습니다.</h3>
                     {% endif %}
                 </div>
                 <!-- End Post -->
-                
+                <!--pagination-->
+                <hr class="mb-60 music-main-pagination" />
+                <div class="music-paginator-num">
+                {% if musics.has_previous %}
+                    <a href="?page=1">맨 앞으로</a>
+                    <a href="?page={{ musics.previous_page_number }}">이전으로</a>
+                {% endif %}            
+                    <span>{{ musics.number }}</span>
+                    <span> of </span>    
+                    <span>{{ musics.paginator.num_pages }}</span>    
+                {% if musics.has_next %}
+                    <a href="?page={{ musics.next_page_number }}">다음으로</a>
+                    <a href="?page={{ musics.paginator.num_page }}">맨 뒤로</a>
+                {% endif %}
+                </div>
+                <hr class="mb-60 music-main-pagination" />
             </div>
             <!-- End Content -->
             

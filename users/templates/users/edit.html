@@ -85,26 +85,27 @@
                     <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Profile Edit</a></h2>
 
                     <div>
-                        <form action="{% url 'users:update' user.pk %}" method="POST" enctype="multipart/form-data">
+                        <form action="{% url 'users:update' user.pk %}" method="POST" enctype="multipart/form-data" class="user-edit">
                             {% csrf_token %}
                             <div class="blog-media">
                                 <label>프로필사진</label>
-                                <input type="file" name="image">
+                                <input type="file" name="image" style="margin:0 auto;">
                                 <label>기본 이미지로 변경하기</label>
                                 <input type="checkbox" name="checkbox" value="1">
                             </div>
                             <br>
-                            <div class="team-item-name">
+                            <div class="user-name">
                                 <label>닉네임</label>
+                                <br>
                                 <input type="text" name="username" value="{{ user.username }}">
                             </div>
                             <br>
-                            <blockquote class="blog-item-q">
+                            <blockquote class="user-name">
                                 <label>한줄소개</label>
-                                <input type="text" name="introduction" value="{{ user.introduction }}">
+                                <textarea rows=10 cols=5 name="introduction" class="introduction">{{ user.introduction }}</textarea>
                             </blockquote>
                             <br>
-                            <input type="submit" class="btn btn-primary" value="수정">
+                            <input type="submit" class="btn btn-mod btn-circle btn-small" value="수정">
                         </form>
                     </div>
 
