@@ -35,10 +35,9 @@
 
         <!-- Search Section -->
         <section class="small-section">
-                <div>
             
                     <!-- Search -->
-                    <form class="form-inline form" action="{% url 'musics:search' %}" role="form">
+                    <form class="form-inline form" action="{% url 'musics:search' %}">
                         
                         <div class="search-wrap column">
                             <div class="form-group">
@@ -48,7 +47,7 @@
                                 </select>
                             </div>
                                 <div class="search-wrap">    
-                                    <button class="search-button animate" type="submit" title="Start Search">
+                                    <button class="search-button animate" type="submit">
                                         <i class="fa fa-search" style="margin-top: 24px;"></i>
                                     </button>
                                     <input type="text" class="form-control search-field" placeholder="검색어" name="query">
@@ -58,9 +57,12 @@
                         </div>
                     </form> 
                     <!-- End Search -->
-                </div>
+
             </section>
             <!-- End Search Section -->
+            <div>
+                ddd
+            </div>
         
         <div class="row">
             <div class="col-md-10 col-md-offset-2">
