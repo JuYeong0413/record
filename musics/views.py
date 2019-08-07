@@ -67,7 +67,7 @@ def create(request):
         song = requests.get('https://www.melon.com/song/detail.htm?songId={}'.format(song_number), headers = header)
         song_html = song.text
         song_parse = BeautifulSoup(song_html, 'html.parser')
-        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-of-type(6)'))
+        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)'))
         genre = genre.replace('[<dd>', '').replace('</dd>]', '')
         if '&amp;' in genre:
             genre = genre.replace('&amp;', '&')
@@ -95,6 +95,10 @@ def create(request):
 
         video_title = driver.find_element_by_id('video-title')
         url = video_title.get_attribute('href')
+            
+        if url is None:
+            return redirect('musics:main')
+
         url = url.replace('watch?v=', 'embed/')
 
         driver.quit()
@@ -129,7 +133,7 @@ def update(request, music_id):
         song = requests.get('https://www.melon.com/song/detail.htm?songId={}'.format(song_number), headers = header)
         song_html = song.text
         song_parse = BeautifulSoup(song_html, 'html.parser')
-        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-of-type(6)'))
+        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)'))
         genre = genre.replace('[<dd>', '').replace('</dd>]', '')
         if '&amp;' in genre:
             genre = genre.replace('&amp;', '&')
@@ -155,6 +159,10 @@ def update(request, music_id):
 
         video_title = driver.find_element_by_id('video-title')
         url = video_title.get_attribute('href')
+
+        if url is None:
+            return redirect('musics:main')
+        
         url = url.replace('watch?v=', 'embed/')
 
         driver.quit()
