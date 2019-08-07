@@ -9,14 +9,10 @@
 }
 
 .playlist-list{
-    border: solid darkgray;
+    box-shadow: 1px 1px 1px 1px rgb(216, 211, 184);
 }
 
-.font-bold{
-    font-weight: bold;
-}
 .playlist-bar{
-    background-color: rgb(216, 211, 184);
     margin-bottom: 10px;
 }
 .btn-mod.btn-small {

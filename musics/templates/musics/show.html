@@ -41,7 +41,7 @@
 					
 					<!-- Date -->
 					<div class="blog-item-date">
-						<a href="{% url 'musics:main' %}"><span class="date-num"><img src="{% static 'bobae/images/back.png' %}" alt="" /></span></a>
+						<a href="{% url 'musics:main' %}"><span class="date-num" style="width: 50px;"><img src="{% static 'bobae/images/back.png' %}" alt="" /></span></a>
 					</div>
 					
 					<!-- Post Title -->
@@ -56,13 +56,18 @@
 						<span class="separator">&nbsp;</span>
 						<i class="fa fa-comments"></i> 글 작성자 : {{ music.writer }}
 
+						
+
 						{% if user == music.writer %}
+						<div class="kyjbox">
 							<span class="separator">&nbsp;</span>
-							<a class="btn btn-mod btn-circle btn-small" href="{% url 'musics:edit' music.id %}">수정</a>
+							<a class="btn btn-mod btn-circle btn-small kyj" href="{% url 'musics:edit' music.id %}">수정</a>
 							<!-- deleteModal -->
 							<button class="btn btn-mod btn-circle btn-small" data-toggle="modal" data-target="#deleteModal">
 								삭제
 							</button>
+
+						</div>	
 
 							<!-- deleteModal -->
 							<div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -79,8 +84,8 @@
 										삭제된 글은 복구할 수 없습니다.
 									</div>
 									<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-									<a class="btn btn-primary" href="{% url 'musics:delete' music.id %}">확인</a>
+									<button type="button" class="btn btn-mod btn-gray btn-round" id="modal-cancel" data-dismiss="modal">취소</button>
+									<a class="btn btn-mod btn-round" href="{% url 'musics:delete' music.id %}">확인</a>
 									</div>
 									</div>
 								</div>
@@ -123,7 +128,7 @@
 	<div class="blog-item-foot">
 		{% if user.is_authenticated %}
 			<!-- 플레이리스트에 곡 추가 -->
-			<button type="button" class="btn btn-mod btn-round  btn-small" data-toggle="modal" data-target="#addPlaylist">
+			<button type="button" class="btn btn-mod btn-round btn-small" style="background:transparent;color: #34495E;" data-toggle="modal" data-target="#addPlaylist">
 				<img src="{% static 'bobae/images/playlistplus.png' %}" alt=""/>
 				<br>
 				플레이리스트에 추가하기
@@ -143,8 +148,8 @@
 						기존 플레이리스트에 추가하시겠습니까?
 					</div>
 					<div class="modal-footer">
-					<a href="{% url 'playlists:new' %}?music={{ music.id }}" class="btn btn-success">새 플레이리스트 생성하기</a>
-					<a href="{% url 'musics:add' %}?music={{ music.id }}" class = "btn btn-info">기존 플레이리스트에 추가</a>
+					<a href="{% url 'playlists:new' %}?music={{ music.id }}" class="btn btn-mod btn-round">새 플레이리스트 생성하기</a>
+					<a href="{% url 'musics:add' %}?music={{ music.id }}" class="btn btn-mod btn-round">기존 플레이리스트에 추가</a>
 					</div>
 				</div>
 				</div>

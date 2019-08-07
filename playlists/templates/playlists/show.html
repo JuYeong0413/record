@@ -172,7 +172,7 @@
         <div class="tab-content tpl-tabs-cont">
             
             <div class="tab-pane fade active show in" id="two">
-                <h3>총 {{ playlist.musics.count }}개의 음악이 담겨있습니다.</h3>
+                <h3 class="mb-10">총 {{ playlist.musics.count }}개의 음악이 담겨있습니다.</h3>
                 
                 <table class="table table-striped shopping-cart-table">
                     <tr>
@@ -273,11 +273,11 @@
                         
                         <!-- Comment -->
                         <div class="mb-30 mb-md-10">
-                            <input type ="text" name="message" style="width:100%;" placeholder="Comment">
+                            <input type ="text" name="message" style="width: 100%; margin-right: 30px; max-width: 80%;" placeholder="댓글을 입력해 주세요.." class="input-lg col-md-9">
                         </div>
-                        
+
                         <!-- Send Button -->
-                        <button type="submit" class="btn btn-mod btn-medium btn-round">
+                        <button type="submit" class="btn btn-mod btn-round col-md-2 btn-large">
                             댓글달기
                         </button>
                         

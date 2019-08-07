@@ -78,7 +78,7 @@ def playlists(request, id):
     else:
         playlist_lists = Playlist.objects.filter(creator__id=id, kinds=0)
 
-    paginator = Paginator(playlist_lists, 10)
+    paginator = Paginator(playlist_lists, 9)
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
 
@@ -95,7 +95,7 @@ def likes(request, id):
     else:
         playlist_lists = Playlist.objects.filter(likes=user, kinds=0)
 
-    paginator = Paginator(playlist_lists, 10)
+    paginator = Paginator(playlist_lists, 9)
     page = request.GET.get('page')
     playlists = paginator.get_page(page)
 

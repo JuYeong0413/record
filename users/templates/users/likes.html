@@ -82,7 +82,7 @@
             <div class="col-sm-8 col-md-offset-1">
 
                     <!-- Post Title -->
-                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">My Playlists</a></h2>
+                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Playlists I Like</a></h2>
                     <br>
                     
                     <div class="row multi-columns-row">
@@ -93,7 +93,7 @@
                             <!-- Post Item -->
                             {% for playlist in playlists %}
                                 
-                                    <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list">
+                                    <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list" style="padding-top: 10px;">
                                 
                                         {% if playlist.cover %}
                                         <a href ="{% url 'playlists:show' playlist.id %}">

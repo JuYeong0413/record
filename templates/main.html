@@ -60,16 +60,19 @@
                 <div class="team-item">
                     
                     <a href="{% url 'playlists:show' playlist.id %}">
-                        <div class="team-item-image">
+                        <div class="team-item-image" style="padding-top: 10px;">
                             <img src="{{ playlist.cover.url }}" alt=""/>
                         </div>
                     </a>
                     <a href="{% url 'playlists:show' playlist.id %}">
                     <div class="team-item-descr font-alt playlist-bar">
                         
-                        <div class="team-item-name font-bold">
+                    <a href="{% url 'playlists:show' playlist.id %}">
+                        <div class="team-item-name">
+
                             {{ playlist.title }}
                         </div>
+                    </a>
                         
                         <div class="team-item-role">
                             {{ playlist.creator }}

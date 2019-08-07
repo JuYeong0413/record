@@ -1,18 +1,21 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner %}
-<h1>{% trans "Sign Up" %}</h1>
+<div class="text-center mt-50 signup-font">
+    <h1>회원가입</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+    <h4>이미 계정이 있으신가요? 바로 <a href="{{ login_url }}">로그인</a> 하세요.</h4>
+</div>
 
 
 <!-- Section -->
-<section class="page-section">
-    <div class="container relative" style="padding-left: 50px;">
+<section class="page-section signup-font" style="padding: 3% 0;">
+    <div class="container relative" style="padding-left: 15px;">
 
         <!-- Tab panes -->
         <div class="tab-content tpl-minimal-tabs-cont section-text">
@@ -22,40 +25,32 @@
                 <!-- Registry Form -->                            
                 <div class="row">
                     <div class="col-md-12">
-                        
-                        <form class="form contact-form" id="contact_form">
                             <div class="clearfix">
 
                                 <form class="signup" id="signup_form" method="POST" action="{% url 'account_signup' %}">
                                     {% csrf_token %}
                                     <!-- Email -->
                                     <div class="form-group">
-                                        <div id="div_id_email" class="control-group"> 
                                           <label for="id_email" class="control-label">
                                             이메일 (선택사항)
                                           </label> 
-                                          <div class="controls">
-                                          <input type="text" name="Email" id="Email" class="input-md round form-control" placeholder="이메일" pattern=".{3,100}" > </div> </div>                   
+                                          <input type="email" name="email" id="id_email" class="input-md round form-control" placeholder="이메일">           
                                     </div>
                                     
                                     <!-- Username -->
                                     <div class="form-group">
-                                        <div id="div_id_username" class="control-group"> 
                                           <label for="id_username" class="control-label">
                                             아이디<span class="asteriskField">*</span> 
-                                          </label> 
-                                            <div class="controls"> 
-                                              <input type="text" name="username" id="username" class="input-md round form-control" placeholder="아이디" pattern=".{3,100}" required> 
-                                            </div> 
-                                        </div>                   
-                                    </div>
+                                          </label>  
+                                              <input type="text" name="username" autofocus="autofocus" id="username" class="input-md round form-control" placeholder="아이디" required id="id_username">
+                                    </div>                   
                                     
                                     <!-- Password -->
                                     <div class="form-group">
                                         <label for="password" class="control-label">
                                             비밀번호<span class="asteriskField">*</span> 
                                           </label>    
-                                        <input type="password" name="password" id="password" class="input-md round form-control" placeholder="비밀번호" pattern=".{5,100}"required> 
+                                        <input type="password" name="password1" required id="id_password" class="input-md round form-control" placeholder="비밀번호"> 
                                                 
                                     </div>
                                     
@@ -65,16 +60,16 @@
                                         <label for="re-password" class="control-label">
                                             비밀번호 (확인) <span class="asteriskField">*</span> 
                                         </label>    
-                                        <input type="password" name="re-password" id="re-password" class="input-md round form-control" placeholder="비밀번호 확인" pattern=".{5,100}" required> 
+                                        <input type="password" name="password2" required id="id_password2" class="input-md round form-control" placeholder="비밀번호(확인)"> 
                                     </div>
                 
-                            
-                                    <!-- Send Button -->
-                                    <div class="pt-10">
+                                    
+                                    <div class="form-group">
+                                        <!-- Send Button -->
                                         {% if redirect_field_value %}
-                                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
                                         {% endif %}
-                                        <button class="submit_btn btn btn-mod btn-medium btn-round btn-full" id="reg-btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
+                                        <button class="submit_btn btn btn-mod btn-medium btn-round btn-full mt-30" type="submit">{% trans "Sign Up" %} &raquo;</button>
                                     </div>
                 
                                 </form>
@@ -93,8 +88,5 @@
     </div>
 </section>
 <!-- End Section -->
-
-
-
 
 {% endblock %}
