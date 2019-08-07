@@ -81,59 +81,57 @@
             <!-- Content -->
             <div class="col-sm-8 col-md-offset-1">
 
-                <!-- Post Title -->
-                <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Playlists I Like</a></h2>
-                <br>
-                
-                <div class="row multi-columns-row">
+                    <!-- Post Title -->
+                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">My Playlists</a></h2>
+                    <br>
                     
-                    {% if playlist_lists.exists %}
-                    
-                        <!-- Post Item -->
-                    
-                        {% for playlist in playlists %}
-                            <a href ="{% url 'playlists:show' playlist.id %}">
-                                <div class="col-md-6 col-lg-6 mb-60 mb-xs-40">
-                            
-                                    {% if playlist.cover %}
-                                        <div class="post-prev-img">
-                                            <img src= "{{ playlist.cover.url }}" alt="사진없음">
+                    <div class="row multi-columns-row">
+    
+                        
+                        {% if playlist_lists.exists %}
+                        
+                            <!-- Post Item -->
+                            {% for playlist in playlists %}
+                                
+                                    <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list">
+                                
+                                        {% if playlist.cover %}
+                                        <a href ="{% url 'playlists:show' playlist.id %}">
+                                            <div class="post-prev-img">
+                                                <img src= "{{ playlist.cover.url }}" alt="사진없음">
+                                            </div>
+                                        </a>
+                                        {% endif %}
+                                        
+                                        <div class="post-prev-title font-alt playlist-bar font-bold">
+                                            {{ playlist.title }}
                                         </div>
-                                    {% endif %}
-                            
-                                    <div class="post-prev-title font-alt">
-                                        {{ playlist.title }}
+                                        
                                     </div>
-
-                                    <div class="post-prev-info font-alt">
-                                        {{ playlist.creator }}
-                                    </div>
-                            
-                                </div>
-                            </a>
-                        {% endfor %}
-                        <!-- End Post Item -->
-                    {% else %}
-                        <h3>좋아하는 플레이리스트가 없습니다.</h3>
-                    {% endif %}
-
+                                
+                            {% endfor %}
+                            <!-- End Post Item -->
+                        {% else %}
+                            <h3>좋아하는 플레이리스트가 없습니다.</h3>
+                        {% endif %}
+                    </div>
+                    <br>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <a href=""><i class="fa fa-angle-left"></i></a>
+                        <a href="" class="active">1</a>
+                        <a href="">2</a>
+                        <a href="">3</a>
+                        <a class="no-active">...</a>
+                        <a href="">9</a>
+                        <a href=""><i class="fa fa-angle-right"></i></a>
+                    </div>
+                    <!-- End Pagination -->
+                    
                 </div>
-                <br>
-                <!-- Pagination -->
-                <div class="pagination">
-                    <a href=""><i class="fa fa-angle-left"></i></a>
-                    <a href="" class="active">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a class="no-active">...</a>
-                    <a href="">9</a>
-                    <a href=""><i class="fa fa-angle-right"></i></a>
-                </div>
-                <!-- End Pagination -->
-                
-            </div>
             <!-- End Content -->
-            
+
         </div>
         
     </div>
