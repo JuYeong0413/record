@@ -194,8 +194,14 @@ def search(request):
     else:
         search_list = Music.objects.filter(singer__contains=query)
 
-    page = request.GET.get('page', 1)
+    # page = request.GET.get('page', 1)
     paginator = Paginator(search_list, 10)
+    
+    try:
+        page = int(request.GET.get('page','1'))
+    except:
+        page = 1
+
     try:
         search_result = paginator.get_page(page)
     except PageNotAnInteger:

@@ -110,7 +110,7 @@
     {% if search_result.has_other_pages %}
         <ul class="pagination justify-content-center mb-40">
             {% if search_result.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page={{ search_result.previous_page_number }}">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ search_result.previous_page_number }}{% if request.GET.query%}&query={{ request.GET.query}}{% endif %}">&laquo;</a></li>
             {% else %}
                 <li class="page-item"><a class="page-link">&laquo;</a></li>
             {% endif %}
@@ -118,11 +118,11 @@
                 {% if playlists.number == i %}
                     <li class="page-item active"><a class="page-link">{{ i }}</a></li>
                 {% else %}
-                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET.query%}&query={{ request.GET.query}}{% endif %}">{{ i }}</a></li>
                 {% endif %}
             {% endfor %}
             {% if search_result.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ search_result.next_page_number }}">&raquo;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ search_result.next_page_number }}{% if request.GET.query%}&query={{ request.GET.query}}{% endif %}">&raquo;</a></li>
             {% else %}
                 <li class="page-item"><a class="page-link">&raquo;</a></li>
             {% endif %}
