@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 
-                <form action="{% url 'playlists:create' %}" method="POST" class="form contact-form" id="contact_form">
+                <form action="{% url 'playlists:create' %}" method="POST" class="form contact-form" id="contact_form" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="clearfix">
                             <input type="hidden" name="music_id" value="{{ request.GET.music }}">
@@ -62,7 +62,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputFile">커버사진</label>
-                                <input type="file" name="cover" id="exampleInputFile">
+                                <input type="file" name="cover" id="exampleInputFile" accept="image/*">
                             </div>
 
                             <!-- Message -->
