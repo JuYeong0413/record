@@ -9,11 +9,14 @@
 
 {% block inner %}
 
-<h1>{% trans "Sign In" %}</h1>
+<div class="text-center mt-50 signup-font">
+    <h1> 로그인</h1>
+</div>
+    
 
 <!-- Section -->
 <section class="page-section">
-<div class="container relative" style="padding-left:50px;" >
+<div class="container relative" style="padding-left:15px;" >
 
 
 <!-- Tab panes -->
@@ -29,11 +32,17 @@
                                 {% csrf_token %}
                                 <!-- Username -->
                                     <div class="form-group">
+                                        <label for="id_login" class="control-label">
+                                            아이디
+                                        </label>
                                         <input type="text" name="login" placeholder="아이디" autofocus="autofocus"  id="username" class="input-md round form-control" pattern=".{3,100}" required id = "id_login"> 
                                     </div>
                                     
                                     <!-- Password -->
                                     <div class="form-group">
+                                            <label for="id_password" class="control-label">
+                                                비밀번호
+                                            </label>
                                         <input type="password" name="password" placeholder = "비밀번호" required_id="id_password" class="input-md round form-control"  pattern=".{5,100}" >
                                     </div>
 
