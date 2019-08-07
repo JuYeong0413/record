@@ -1,3 +1,18 @@
+/* 가사 펼치기, 접기 */
 .hide {
     display: none;
+}
+
+/* 모바일 버전 navbar */
+.mobile-on .desktop-nav > ul {
+    background: #E8E5D2;
+}
+
+.mobile-on .desktop-nav ul li a {
+    color: #34495E;
+}
+
+.mobile-nav {
+    border-left: none;
+    border-right: none;
 }

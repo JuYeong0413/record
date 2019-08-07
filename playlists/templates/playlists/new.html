@@ -28,18 +28,83 @@
 </section>
 <!-- End Head Section -->
 
-<div style="margin-bottom:200px;">
-    <form action="{% url 'playlists:create' %}" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="music_id" value="{{ request.GET.music }}">
-        제목 : <input type="text" name ="title"><br>
-        커버사진 : <input type="file" name="cover"><br>
-        <input type="radio" name="kinds" value="0" checked>공개
-        <input type="radio" name="kinds" value="1">비공개
-        <br>
-        설명 : <textarea name="description" placeholder="플레이리스트 설명"></textarea><br>
-        태그 : <input type="text" name="tags" placeholder=",로 구분해주세요"><br>
-        <input type="submit" value="submit" class="btn btn-primary">
-    </form>
-</div>
+<!-- Contact Section -->
+<section class="page-section" id="contact">
+    <div class="container relative">
+        
+        <h2 class="section-title font-alt mb-70 mb-sm-40">
+            새 플레이리스트 생성하기
+        </h2>
+
+        <!-- Contact Form -->                            
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                
+                <form action="{% url 'playlists:create' %}" method="POST" class="form contact-form" id="contact_form">
+                    {% csrf_token %}
+                    <div class="clearfix">
+                            <input type="hidden" name="music_id" value="{{ request.GET.music }}">
+                            <div class="form-group">
+                                <label for="exampleInputFile">제목</label>
+                                <input type="text" name="title" id="name" class="input-md round form-control" placeholder="제목" required>
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                                <label for="exampleInputFile">태그</label>
+                                <input type="text" name="tags" id="email" class="input-md round form-control" placeholder=",로 구분해주세요">
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="radio" name="kinds" value="0" checked>공개
+                                <input type="radio" name="kinds" value="1">비공개
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputFile">커버사진</label>
+                                <input type="file" name="cover" id="exampleInputFile">
+                            </div>
+
+                            <!-- Message -->
+                            <div class="form-group"> 
+                                <label for="exampleInputFile">설명</label>                                         
+                                <textarea name="description" id="message" class="input-md round form-control" style="height: 84px;" placeholder="플레이리스트 설명"></textarea>
+                            </div>
+                            
+                        
+                        
+                    </div>
+                    
+                    <div class="clearfix">
+                        
+                        <div class="cf-left-col">
+                            
+                            <!-- Inform Tip -->                                        
+                            <div class="form-tip pt-20">
+                                <i class="fa fa-info-circle"></i> All the fields are required
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="cf-right-col">
+                            
+                            <!-- Send Button -->
+                            <div class="align-right pt-10">
+                                <input type="submit" value="생성" class="submit_btn btn btn-mod btn-medium btn-round">
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+
+                </form>
+                
+            </div>
+        </div>
+        <!-- End Contact Form -->
+        
+    </div>
+</section>
+<!-- End Contact Section -->
+
 {% endblock %}

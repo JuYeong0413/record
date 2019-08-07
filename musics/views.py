@@ -61,7 +61,7 @@ def create(request):
         song = requests.get('https://www.melon.com/song/detail.htm?songId={}'.format(song_number), headers = header)
         song_html = song.text
         song_parse = BeautifulSoup(song_html, 'html.parser')
-        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)'))
+        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-of-type(6)'))
         genre = genre.replace('[<dd>', '').replace('</dd>]', '')
         if '&amp;' in genre:
             genre = genre.replace('&amp;', '&')
@@ -204,7 +204,6 @@ def add(request):
     playlists = paginator.get_page(page)
 
     return render(request, 'musics/add.html', {'playlists':playlists, 'playlist_list':playlist_list})
-
 
 # 기존 플레이리스트에 곡 추가
 def add_music(request):

@@ -3,6 +3,7 @@ from playlists.models import Playlist
 
 # Create your views here.
 def main(request):
-	playlists = Playlist.objects.all()[:3]
+	playlists = Playlist.objects.filter(kinds=0)[:3]
+	tags = Playlist.tags.all()[:5]
 
-	return render(request, 'main.html', {'playlists': playlists})
+	return render(request, 'main.html', {'playlists': playlists, 'tags': tags})
