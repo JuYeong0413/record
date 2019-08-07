@@ -33,7 +33,7 @@
         
         <!-- Search -->
         <form class="form-inline form" action="{% url 'playlists:search' %}" role="form">
-            <div class="search-wrap">
+            <div class="search-wrap search-wrap2">
                 <button class="search-button animate" type="submit" title="Start Search">
                     <i class="fa fa-search"></i>
                 </button>
@@ -42,6 +42,12 @@
         </form>
         <!-- End Search -->
         
+        <div class="tag-frequency mb-xs-60 text-center">
+            자주 입력된 태그
+            {% for tag in tags %}
+                <a href="{% url 'playlists:tag' tag.id %}"><i class="fa fa-music"></i>{{ tag }}</a>
+            {% endfor %}
+        </div>
     </div>
 </section>
 <!-- End Search Section -->
@@ -99,29 +105,30 @@
     </div>
 </section>
 
+<!-- paginator -->
 <section>
-    <!--pagination-->
-        <hr class="mb-60 music-main-pagination" />
-            <div class="music-paginator-num">
-            
-            {% if playlists.has_previous %}
-                <a href="?page=1">first</a>
-                <a href="?page={{ playlists.previous_page_number }}">Preivous</a>
+    {% if search_result.has_other_pages %}
+        <ul class="pagination justify-content-center mb-40">
+            {% if search_result.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ search_result.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link">&laquo;</a></li>
             {% endif %}
-    
-            <span>{{ playlists.number }}</span>
-            <span>of</span>
-            <span>{{ playlists.paginator.num_pages }}</span>
-    
-            {% if playlists.has_next %}
-                <a href="?page={{ playlists.next_page_number }}">Next</a>
-                <a href="?page={{ playlists.paginator.num_pages }}">Last</a>
+            {% for i in search_result.paginator.page_range %}
+                {% if playlists.number == i %}
+                    <li class="page-item active"><a class="page-link">{{ i }}</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if search_result.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ search_result.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link">&raquo;</a></li>
             {% endif %}
-            
-            
-            </div>
-        <hr class="mb-60 music-main-pagination" />  
-    <!-- End Pagination -->
+        </ul>
+    {% endif %}
 </section>
+<!-- end paginator -->
 
 {% endblock %}

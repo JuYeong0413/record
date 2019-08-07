@@ -16,12 +16,12 @@
                 <!--record에 record하자-->
                 <h2 class="hs-line-14 font-alt mb-50 mb-xs-30">
                     <br>
-                    여러분이 알고 있는 <span style="color:red">명곡을</span> RE:CORD에 <span style="color:red">RECORD</span>하세요.
+                    여러분이 알고 있는 <span style="color:#FAAFAF">명곡을</span> RE:CORD에 <span style="color:#FAAFAF">RECORD</span>하세요.
                 </h2>
 
                 <!--검색어 입력공간-->
                 <form class="form-inline form" action="{% url 'playlists:search' %}" role="form">
-                    <div class="search-wrap">
+                    <div class="search-wrap search-wrap3">
                         <button class="search-button animate" type="submit" title="Start Search">
                             <i class="fa fa-search"></i>
                         </button>
@@ -65,11 +65,12 @@
                             <img src="{{ playlist.cover.url }}" alt=""/>
                         </div>
                     </a>
-                    
+                    <a href="{% url 'playlists:show' playlist.id %}">
                     <div class="team-item-descr font-alt playlist-bar">
                         
                     <a href="{% url 'playlists:show' playlist.id %}">
                         <div class="team-item-name">
+
                             {{ playlist.title }}
                         </div>
                     </a>
@@ -79,7 +80,7 @@
                         </div>
                         
                     </div>
-                    
+                    </a>
                 </div>
             </div>
             {% endfor %}
