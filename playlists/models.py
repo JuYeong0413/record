@@ -29,6 +29,10 @@ class Playlist(TimeStampedModel):
         verbose_name = '플레이리스트'
         verbose_name_plural = "플레이리스트"
 
+    @property
+    def likes_count(self):
+        return self.liked_users.count()
+
 
 class Comment(TimeStampedModel):
     playlist = models.ForeignKey(Playlist, verbose_name=_('플레이리스트'), on_delete=models.CASCADE)
@@ -38,3 +42,14 @@ class Comment(TimeStampedModel):
     class Meta:
         verbose_name = '댓글'
         verbose_name_plural = "댓글"
+
+class Like(TimeStampedModel):
+    creator = models.ForeignKey(User, verbose_name=_('작성자'), on_delete=models.CASCADE)
+    playlist = models.ForeignKey(Playlist, verbose_name=_('플레이리스트'), on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = '좋아요'
+        verbose_name_plural = '좋아요'
+        unique_together = (
+            ('creator', 'playlist')
+        )

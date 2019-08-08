@@ -129,21 +129,24 @@ def delete_comment(request, comment_id):
 
 
 # 좋아요
+@require_POST
+@login_required
 def like_toggle(request, playlist_id):
-    user = request.user
-    if user.is_anonymous:
-        return redirect('account_login')
     playlist = get_object_or_404(Playlist, pk=playlist_id)
+    playlist_like, playlist_like_created = playlist.like_set.get_or_create(creator=request.user)
 
-    is_like = user in playlist.likes.all()
-
-    if is_like:
-        playlist.likes.remove(user)
+    if not playlist_like_created:
+        playlist_like.delete()
+        result = "like_cancel"
     else:
-        playlist.likes.add(user)
+        result ="like"
 
-    return redirect('playlists:show', playlist_id)
+    context = {
+        'likes_count':playlist.likes_count,
+        'result': result
+    }    
 
+    return HttpResponse(json.dumps(context), content_type="application/json")
 
 # 태그 검색
 def tag(request, tag_id):
@@ -248,20 +251,51 @@ def create(request):
 
     
 # 팔로우, 언팔로우
-def follow_toggle(request, id):
-    user = request.user
-    if user.is_anonymous:
-        return redirect('account_login')
+# def follow_toggle(request, id):
+#     user = request.user
+#     if user.is_anonymous:
+#         return redirect('account_login')
     
 
-    playlist = get_object_or_404(Playlist, pk=id)
-    followed_user = get_object_or_404(User, pk=playlist.creator.id)
+#     playlist = get_object_or_404(Playlist, pk=id)
+#     followed_user = get_object_or_404(User, pk=playlist.creator.id)
 
-    is_follower = user in followed_user.followers.all()
+#     is_follower = user in followed_user.followers.all()
 
-    if is_follower:
-        user.followings.remove(followed_user)
+#     if is_follower:
+#         user.followings.remove(followed_user)
+#     else:
+#         user.followings.add(followed_user)
+
+#     return redirect('playlists:show', id)
+
+# 팔로우, 언팔로우
+@login_required
+@require_POST
+def follow_toggle(request, id):
+    # user = request.user
+    # if user.is_anonymous:
+    #     return redirect('account_login')
+    
+    followed_user = get_object_or_404(User, pk=id)
+    followers = followed_user.followers.set()
+    following_already, following_created = followed_user.followers.get_or_create(followers=request.user)
+
+    # is_follower = user in followed_user.followers.all()
+
+    # if is_follower:
+    #     user.followings.remove(followed_user)
+    # else:
+    #     user.followings.add(followed_user)
+
+    if not following_created:
+        follwoing_already.delete()
+        result = "following cancel"
     else:
-        user.followings.add(followed_user)
+        result = "following"
+    
+    context = {'result':result}
 
-    return redirect('playlists:show', id)
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+    # return redirect('users:main', id)
