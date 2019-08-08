@@ -163,7 +163,7 @@
                 <a href="#two" data-toggle="tab" class="active" aria-expanded="true">Music List</a>
             </li>
             <li>
-                <a href="#three" data-toggle="tab">Comments ({{ playlist.comments.count }})</a>
+                <a href="#three" data-toggle="tab">Comments</a>
             </li>
         </ul>
         <!-- End Nav tabs -->
@@ -225,40 +225,13 @@
                     
                 <div class="mb-60 mb-xs-30">
                     <!-- 등록된 댓글 -->
-                    {% if playlist.comments %}
-                        <ul class="media-list text comment-list clearlist">
-                            {% for comment in playlist.comments.all %}
 
-                                <!-- Comment Item -->
-
-                                <li class="media comment-item">
-                                    <a class="pull-left" href="{% url 'users:main' comment.writer.id %}"><img class="media-object comment-avatar" src="{{ comment.writer.image.url }}" alt=""></a>
-                                    <div class="media-body">
-                                        <div class="comment-item-data">
-                                            <div class="comment-author">
-                                                <a href="{% url 'users:main' comment.writer.id %}">{{ comment.writer }}</a>
-                                            </div>
-                                            <span class="separator">&mdash;</span>{{ comment.created_at }}
-                                            
-                                            <span>
-                                                {% if user == comment.writer %}
-                                                    <a href="{% url 'playlists:delete_comment' comment.id %}" style="float: right;">삭제</a></span>
-                                                {% endif %}
-                                            </span>
-                                            
-                                        </div>
-                                        <div class="comment">
-                                        <p>
-                                            {{ comment.message }}
-                                        </p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <!-- End Comment Item -->
+                        <ul class="media-list text comment-list clearlist" id="comment-list">
+                            {% for comment in playlist.comments %}
+                                {% include 'playlists/comment_new_ajax.html' with message=comment.message writer=comment.writer user=request.user created_at=comment.created_at comment_writer=comment.writer %}
                             {% endfor %}
-                            
                         </ul>
-                    {% endif %}
+
                     <!-- /등록된 댓글 -->
                 </div>
 
@@ -268,18 +241,18 @@
                     <h4 class="blog-page-title font-alt">Add Comment</h4>
                     
                     <!-- Form -->
-                    <form method="POST" action="{% url 'playlists:create_comment' playlist.pk %}" id="form" role="form" class="form">
+                    <form method="POST" action="#" id="form" role="form" class="form">
                         {% csrf_token %}
                         
                         <!-- Comment -->
                         <div class="mb-30 mb-md-10">
-                            <input type ="text" name="message" style="width: 100%; margin-right: 30px; max-width: 80%;" placeholder="댓글을 입력해 주세요.." class="input-lg col-md-9">
+                            <input type ="text" name="message" id="comment-message" style="width: 100%; margin-right: 30px; max-width: 80%;" placeholder="댓글을 입력해 주세요.." class="input-lg col-md-9">
                         </div>
 
                         <!-- Send Button -->
-                        <button type="submit" class="btn btn-mod btn-round col-md-2 btn-large">
+                        <span href="#" id="comment-submit" class="btn btn-mod btn-round col-md-2 btn-large">
                             댓글달기
-                        </button>
+                        </span>
                         
                     </form>
                     <!-- End Form -->
@@ -295,4 +268,83 @@
 </section>
 <!-- End Section -->
 
+{% endblock content %}
+
+{% block js %}
+    <script>
+        $('#comment-submit').on('click', function() {
+            var commentMessage = $('#comment-message').val();
+            if (commentMessage == "") {
+                alert('댓글 내용을 입력해 주세요.')
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'playlists:create_comment' playlist.pk %}",
+                    data: {'message': commentMessage, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.is_same == true) {
+                            $('#comment-list').append(
+                                '<ul class="media-list text comment-list clearlist">' +
+                                    '<li class="media comment-item">' +
+                                            '<a class="pull-left" href="/users/' + response.writer_id  +'"><img class="media-object comment-avatar" src="' + response.writer_image_url + '" alt=""></a>' +
+                                            '<div class="media-body">' +
+                                                '<div class="comment-item-data">' +
+                                                    '<div class="comment-author">' +
+                                                        '<a href="/users/' + response.writer_id  + '">' + response.writer + '</a>' +
+                                                    '</div>' +
+                                                    '<span class="separator">&mdash;</span>' + response.created_at +
+                                                
+                                                    '<span>' +
+                                                        '<a href="/playlists/delete_comment/' + response.comment_pk + '/" style="float: right;">' + '삭제' + '</a></span>' +
+                                                '</span>' +
+                                                
+                                            '</div>' +
+                                            '<div class="comment">' +
+                                            '<p>' +
+                                                response.message +
+                                            '</p>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</li>' +
+                                '</ul>'
+                            );
+
+                        }
+                        else {
+                            alert('??');
+                            $('#comment-list').append(
+                                '<ul class="media-list text comment-list clearlist">' +
+                                    '<li class="media comment-item">' +
+                                        '<a class="pull-left" href="/users/' + response.writer_id  +'"><img class="media-object comment-avatar" src="' + response.writer_image_url + '" alt=""></a>' +
+                                        '<div class="media-body">' +
+                                            '<div class="comment-item-data">' +
+                                                '<div class="comment-author">' +
+                                                    '<a href="/users/' + response.writer_id + '/">' + response.writer + '</a>' +
+                                                '</div>' +
+                                                '<span class="separator">&mdash;</span>' + response.created_at +
+                                                '<span>' +
+                                                '</span>' +
+                                            '</div>' +
+                                            '<div class="comment">' +
+                                            '<p>' +
+                                                response.message +
+                                            '</p>' +
+                                            '</div>' +
+                                        '</div>' +
+                                    '</li>' +
+                            '</ul>'
+
+                            );
+                        }
+                        $('#comment-message').val("");
+                    },
+                    error: function(request, status, error) {
+                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    },
+                });
+            }
+        });
+    </script>
 {% endblock %}

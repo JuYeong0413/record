@@ -209,12 +209,18 @@
         <script thpe="text/javascript" src="{% static 'js/juyeong.js' %}"></script>
         <script thpe="text/javascript" src="{% static 'js/loading-page.js' %}"></script> 
         <!--[if lt IE 10]><script type="text/javascript" src="js/placeholder.js"></script><![endif]-->
+
         <script type="text/javascript" src="{% static 'RecordPlayer/js/imagesloaded.pkgd.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'RecordPlayer/js/masonry.pkgd.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'RecordPlayer/js/classie.js' %}"></script>
-		<script type="text/javascript" src="{% static 'RecordPlayer/js/dynamics.min.js' %}"></script>
-		<script type="text/javascript" src="{% static 'RecordPlayer/js/abbey-load.js' %}"></script>
+        <script type="text/javascript" src="{% static 'RecordPlayer/js/masonry.pkgd.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'RecordPlayer/js/classie.js' %}"></script>
+        <script type="text/javascript" src="{% static 'RecordPlayer/js/dynamics.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'RecordPlayer/js/abbey-load.js' %}"></script>
         <script type="text/javascript" src="{% static 'RecordPlayer/js/main.js' %}"></script>
+
+        {% block js %}
+        
+        {% endblock %}
+
         
     </body>
 </html>
