@@ -58,9 +58,6 @@ def create(request):
         melon_parse = BeautifulSoup(melon_html, 'html.parser')
         detail = melon_parse.find(class_='btn_icon_detail')
 
-        if detail is None:
-            return redirect('musics:main') # 곡 정보가 없을 경우 처리 필요함
-
         song_link = detail['href'].split(';')
         song_number = song_link[1].split("'")[1]
 
@@ -85,10 +82,7 @@ def create(request):
         options.add_argument('window-size=1920x1080')
         options.add_argument('--disable-gpu')
 
-        if os.name == 'nt':
-            driver = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=options)
-        else:
-            driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+        driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
 
         driver.get('https://www.youtube.com/results?search_query={}+{}'.format(singer, title))
         time.sleep(2)
