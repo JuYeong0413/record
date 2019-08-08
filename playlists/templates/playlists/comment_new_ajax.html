@@ -1,1 +1,25 @@
-<li>{{ comment.writer }} : {{ comment. message }}</li>
+<ul class="media-list text comment-list clearlist">
+        <li class="media comment-item">
+            <a class="pull-left" href="{% url 'users:main' comment.writer.id %}"><img class="media-object comment-avatar" src="{{ comment.writer.image.url }}" alt=""></a>
+            <div class="media-body">
+                <div class="comment-item-data">
+                    <div class="comment-author">
+                        <a href="{% url 'users:main' comment.writer.id %}">{{ writer }}</a>
+                    </div>
+                    <span class="separator">&mdash;</span>{{ created_at }}
+                    
+                    <span>
+                        {% if user == comment_writer %}
+                            <a href="{% url 'playlists:delete_comment' comment.pk %}" style="float: right;">삭제</a></span>
+                        {% endif %}
+                    </span>
+                    
+                </div>
+                <div class="comment">
+                <p>
+                    {{ message }}
+                </p>
+                </div>
+            </div>
+        </li>
+</ul>

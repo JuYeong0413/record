@@ -2,9 +2,14 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Playlist, Comment
 from musics.models import Music
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from musics.models import Music
 from users.models import User
 import pdb
+import json
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
+from django.core.serializers.json import DjangoJSONEncoder
+import datetime
 
 # 플레이리스트 메인페이지
 def main(request):
@@ -87,21 +92,33 @@ def delete(request, id):
     return redirect('playlists:main')
 
 
+def default(o):
+    if isinstance(o, (datetime.date, datetime.datetime)):
+        return o.isoformat()
+
 # 댓글생성
+@require_POST
+@login_required
 def create_comment(request, playlist_id):
     user = request.user
     if user.is_anonymous:
         return redirect('account_login')
 
     if request.method == "POST":
-        user = request.user
-        if user.is_anonymous:
-            return redirect('account_login')
-        else:
-            playlist = get_object_or_404(Playlist, pk=playlist_id)
-            message = request.POST.get('message')
-            Comment.objects.create(writer=user, playlist=playlist, message=message)
-            return redirect('playlists:show', playlist_id)
+        playlist = get_object_or_404(Playlist, pk=playlist_id)
+        message = request.POST.get('message')
+        comment = Comment.objects.create(writer=user, playlist=playlist, message=message)
+
+        context = {
+            'writer': user.username,
+            'message': comment.message,
+            'is_same': user == comment.writer,
+            'comment_pk': comment.pk,
+            'created_at': comment.created_at,
+            'writer_id': comment.writer.id,
+            'writer_image_url': comment.writer.image.url
+        }
+        return HttpResponse(json.dumps(context, sort_keys=True, indent=1, default=default), content_type="application/json")
 
 
 # 댓글삭제
