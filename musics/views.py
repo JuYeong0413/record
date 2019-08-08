@@ -97,9 +97,9 @@ def create(request):
         url = video_title.get_attribute('href')
             
         if url is None:
-            return redirect('musics:main')
-
-        url = url.replace('watch?v=', 'embed/')
+            video_title = driver.find_elements_by_id('video-title')[1]
+            url = video_title.get_attribute('href')
+            url = url.replace('watch?v=', 'embed/')
 
         driver.quit()
         
@@ -161,9 +161,9 @@ def update(request, music_id):
         url = video_title.get_attribute('href')
 
         if url is None:
-            return redirect('musics:main')
-        
-        url = url.replace('watch?v=', 'embed/')
+            video_title = driver.find_elements_by_id('video-title')[1]
+            url = video_title.get_attribute('href')
+            url = url.replace('watch?v=', 'embed/')
 
         driver.quit()
         
