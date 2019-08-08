@@ -55,7 +55,7 @@
                             <div class="clearfix">
                                     <!-- Send Button -->
                                     <div class="align-center pt-20">
-                                        <button class="submit_btn btn btn-mod btn-medium btn-round btn-full" style="width:50%;" >{% trans "Sign In" %}</button>
+                                        <button class="submit_btn btn btn-mod btn-medium btn-round btn-full signup-font" style="width:50%;">로그인</button>
                                     </div>
                             </div>
                             
@@ -77,7 +77,7 @@
 
                 <button type="button" class="google" onclick="location.href='/accounts/google/login/?process=login'">
                     <img src="{% static 'img/google.png'%}" width=20%;>
-                    <span class = "socialaccount_provider google" >구글 로그인 </span>
+                    <span class="socialaccount_provider google signup-font">구글 로그인 </span>
                     <!-- <a title ="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login"> Google 로그인</a> -->
                     <!-- {% include "socialaccount/snippets/provider_list.html" with process="login" %} -->
                 </button>
@@ -90,7 +90,7 @@
                 <input type="hidden" name="password" required_id="id_password" class="input-md round form-control" value="testuserpassword" >
                 <button type="submit" class="test">
                     <img src="{% static 'img/record.png'%}" width=20%; >
-                    <input type="submit" style="display: none;"><span>테스트 계정 접속</span>
+                    <input type="submit" style="display: none;"><span class="signup-font">테스트 계정 접속</span>
                 </button>
             </form>
         </div> 
