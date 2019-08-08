@@ -85,3 +85,8 @@
 .work-descr {
     font-size: 14px;
 }
+
+/* buy(scroll) button */
+.buy-button:before {
+    background: #34495E;
+}
