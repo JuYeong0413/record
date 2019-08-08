@@ -72,21 +72,27 @@
         <!-- <p>{% blocktrans with site.name as site_name %}Please sign in with one
         of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
         for a {{ site_name }} account and sign in below:{% endblocktrans %}</p> -->
-            <div class="socialaccount_ballot text-center pt-20">
-                <span class="socialaccount_providers">
+        <div class="socialaccount_ballot text-center pt-20">
+            <span class="socialaccount_providers">
 
-                    <button type="button" class="google" onclick="location.href='/accounts/google/login/?process=login'">
-                        <img src="{% static 'img/google.png'%}" width=20%;>
-                        <span class = "socialaccount_provider google" >구글로그인 </span>
-                        <!-- <a title ="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login"> Google 로그인</a> -->
-                        <!-- {% include "socialaccount/snippets/provider_list.html" with process="login" %} -->
-                    </button>
-                </span>
+                <button type="button" class="google" onclick="location.href='/accounts/google/login/?process=login'">
+                    <img src="{% static 'img/google.png'%}" width=20%;>
+                    <span class = "socialaccount_provider google" >구글 로그인 </span>
+                    <!-- <a title ="Google" class="socialaccount_provider google" href="/accounts/google/login/?process=login"> Google 로그인</a> -->
+                    <!-- {% include "socialaccount/snippets/provider_list.html" with process="login" %} -->
+                </button>
+            </span>
+            
 
-            <button type="button" class="test" onlick="#">
-                <img src="{% static 'img/record.png'%}" width=20%; >
-                <span>테스트 계정</span>
-            </button>
+            <form class="login" method="POST" action="{% url 'account_login' %}" style="display: inline;">
+                {% csrf_token %}
+                <input type="hidden" name="login" id="username" class="input-md round form-control" value="testuser" required id = "id_login"> 
+                <input type="hidden" name="password" required_id="id_password" class="input-md round form-control" value="testuserpassword" >
+                <button type="submit" class="test">
+                    <img src="{% static 'img/record.png'%}" width=20%; >
+                    <input type="submit" style="display: none;"><span>테스트 계정 접속</span>
+                </button>
+            </form>
         </div> 
 
         <!--         
