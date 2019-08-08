@@ -66,7 +66,6 @@ def create(request):
         driver.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title))
         time.sleep(2)
 
-        pdb.set_trace()
 
         driver.find_element_by_class_name('btn_icon_detail').click()
         time.sleep(2)
