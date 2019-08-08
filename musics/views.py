@@ -63,15 +63,15 @@ def create(request):
         options.add_argument("--disable-dev-shm-usage")
 
         driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
-        driver.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title))
+        driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
         time.sleep(2)
 
 
-        driver.find_element_by_class_name('btn_icon_detail').click()
+        driver.find_elements_by_class_name("btn-info").click()
         time.sleep(2)
 
-        genre = driver.find_element_by_xpath('//*[@id="downloadfrm"]/div/div/div[2]/div[2]/dl/dd[3]').text
-        lyrics = driver.find_element_by_id('d_video_summary').text
+        genre = driver.find_element_by_xpath('//*[@id="body-content"]/div[2]/div[2]/ul/li[3]/span[2]').text
+        lyrics = driver.find_element_by_xpath('//*[@id="pLyrics"]/p').text
 
         music.genre = genre
         music.lyrics = lyrics
