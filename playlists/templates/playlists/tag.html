@@ -57,59 +57,58 @@
 <hr class="mt-0 mb-0"/>
 <!-- End Divider -->
 
-<section class="recoders-list">
-        <div class="container relative">     
-            <h2 class="section-title font-alt align-left mb-70 mb-sm-40">
-                태그검색결과
-            </h2>
-            <div class="row">
+<!--효정's 레코드플레이리스트-->
+<body style="overflow-x: visible;">
+		
+    <main>
+        <h2 class="section-title font-alt align-left mb-70 mb-sm-40" style="text-align: center;">
+            태그검색결과
+        </h2>
 
-                <!-- Content -->
-                <div class="col-sm-10 col-md-offset-1">
-
-                    <!-- Portfolio Section -->
-                    <section class="page-section">
-                        <div class="container relative">
-                            
-                            <!-- Works Grid -->
-                            <ul class="works-grid work-grid-3 work-grid-gut clearfix font-alt hover-white" id="work-grid">
-                                
-        
-                                {% for playlist in playlists %}
-                                    {% if playlist.kinds == 0 or playlist.kinds == 1 %}
-                                        <!-- Work Item (Lightbox) -->
-                                        <li class="work-item mix photography">
-                                            <a href="{% url 'playlists:show' playlist.pk %}">
-                                                <div class="work-img">
-                                                    <img src="{{ playlist.cover.url }}" alt="" />
-                                                </div>
-                                                <div class="work-intro">
-                                                    <h3 class="work-title">{{ playlist.title }}</h3>
-                                                    <div class="work-descr">
-                                                        {{ playlist.creator }}
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <!-- End Work Item -->
-                                    {% endif %}
-                                {% endfor %}
+        <div class="view view--grid view--current" style="margin: 10px">
             
-                            </ul>
-                            <!-- End Works Grid -->
-                            
-                        </div>
-                    </section>
-                    <!-- End Portfolio Section -->
-    
-                </div>
-                <!-- End Content -->
-    
-            </div>
+            <ul class="grid">
+                {% for playlist in playlists %}
+                    <!-- Work Item (Lightbox) -->
+                    <li class="grid__item">
+                        <a class="grid__link" href="{% url 'playlists:show' playlist.pk %}">
+                            <div class="img-wrap img-wrap--grid">
+                                <svg class="lp lp--grid">
+                                    <use xlink:href="#icon-lp-mini"></use>
+                                </svg>
+                                <img class="img img--grid" src="{{ playlist.cover.url }}" alt="album1" />
+                            </div>
+                            <br>
+                            <h3 class="font-alt" style="text-align: center; font-weight: bold;">{{ playlist.title }}</h3>
+                            <h4 class="font-alt" style="text-align: center;">{{ playlist.creator }}</h3>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            
+        </div><!-- /view-grid -->
         
+        <div class="view view--player">
+            <!-- 배열을 완성하기 위한 공간 -->	
         </div>
         
-</section>
+        
+    </main>
+
+    <!-- 
+    - position expander: set opacity to 1, set top and left to the point where the mouse it. Animate to scale3d(1,1,1). To do the opposite, animate to scale3d(0,0,1) or scale(0.001,0.001,1).
+    - set class current of the respective single (set class single--current)
+    - then set view view--single to view view--single view--current
+    - to navigate, set new single to single--current and remove single--current from previous one (needs some adjustment)
+    -->
+    
+
+<!-- For the demo ad only  
+<script type="text/javascript" src="{% static 'RecordPlayer//tympanus.net/codrops/adpacks/demoad.js' %}"></script>
+-->  
+</body>
+<!--효정's 레코드판플레이리스트-->
+
 
 <!-- paginator -->
 <section>

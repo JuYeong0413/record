@@ -1,0 +1,37 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+beautifulsoup4 = "==4.8.0"
+certifi = "==2019.6.16"
+chardet = "==3.0.4"
+defusedxml = "==0.6.0"
+dj-database-url = "==0.5.0"
+django-allauth = "==0.39.1"
+django-crispy-forms = "==1.7.2"
+django-el-pagination = "==3.2.4"
+django-endless-pagination = "==2.0"
+django-taggit = "==1.1.0"
+gunicorn = "==19.9.0"
+idna = "==2.8"
+oauthlib = "==3.0.2"
+psycopg2-binary = "==2.8.3"
+python3-openid = "==3.1.0"
+pytz = "==2019.1"
+requests = "==2.22.0"
+requests-oauthlib = "==1.2.0"
+selenium = "==3.141.0"
+soupsieve = "==1.9.2"
+sqlparse = "==0.3.0"
+urllib3 = "==1.25.3"
+whitenoise = "==4.1.2"
+Django = "==2.2.3"
+Pillow = "==6.1.0"
+lxml = "*"
+
+[requires]
+python_version = "3.7"
