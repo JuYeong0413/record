@@ -60,8 +60,7 @@ def create(request):
         driver.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title))
         time.sleep(2)
 
-        btn = driver.find_element_by_xpath('//*[@id="frm_defaultList"]/div/table/tbody/tr/td[3]/div/div/a[1]')
-        btn.click()
+        btn = driver.find_element_by_css_selector('.btn_icon_detail').click()
         time.sleep(2)
 
         genre = driver.find_element_by_xpath('//*[@id="downloadfrm"]/div/div/div[2]/div[2]/dl/dd[3]').text
