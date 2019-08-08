@@ -64,11 +64,11 @@ def create(request):
 
         driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
         driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
-        time.sleep(2)
+        time.sleep(1)
 
 
         driver.find_element_by_class_name("btn-info").click()
-        time.sleep(2)
+        time.sleep(1)
 
         genre = driver.find_element_by_xpath('//*[@id="body-content"]/div[2]/div[2]/ul/li[3]/span[2]').text
         lyrics = driver.find_element_by_xpath('//*[@id="pLyrics"]/p').text
@@ -142,11 +142,11 @@ def update(request, music_id):
 
         driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
         driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
-        time.sleep(2)
+        time.sleep(1)
 
 
         driver.find_element_by_class_name("btn-info").click()
-        time.sleep(2)
+        time.sleep(1)
 
         genre = driver.find_element_by_xpath('//*[@id="body-content"]/div[2]/div[2]/ul/li[3]/span[2]').text
         lyrics = driver.find_element_by_xpath('//*[@id="pLyrics"]/p').text
