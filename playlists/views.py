@@ -9,7 +9,9 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.core.serializers.json import DjangoJSONEncoder
-import datetime
+from datetime import datetime
+from django.forms.models import model_to_dict
+
 
 # 플레이리스트 메인페이지
 def main(request):
@@ -92,9 +94,6 @@ def delete(request, id):
     return redirect('playlists:main')
 
 
-def default(o):
-    if isinstance(o, (datetime.date, datetime.datetime)):
-        return o.isoformat()
 
 # 댓글생성
 @require_POST
@@ -114,11 +113,11 @@ def create_comment(request, playlist_id):
             'message': comment.message,
             'is_same': user == comment.writer,
             'comment_pk': comment.pk,
-            'created_at': comment.created_at,
+            'created_at': comment.created_at.strftime('%Y/%m/%d %H:%M'),
             'writer_id': comment.writer.id,
             'writer_image_url': comment.writer.image.url
         }
-        return HttpResponse(json.dumps(context, sort_keys=True, indent=1, default=default), content_type="application/json")
+        return HttpResponse(json.dumps(context, cls=DjangoJSONEncoder))
 
 
 # 댓글삭제
