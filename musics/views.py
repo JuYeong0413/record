@@ -53,7 +53,7 @@ def create(request):
 
         # crawling genre and lyrics
         header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'} # 튕기는 현상이 있어서 header 추가
-        melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header)
+        melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header, commit=False)
         melon_html = melon.text
         melon_parse = BeautifulSoup(melon_html, 'html.parser')
         detail = melon_parse.find(class_='btn_icon_detail')
