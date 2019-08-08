@@ -8,6 +8,7 @@ from selenium.webdriver.common.keys import Keys
 import time
 import os
 from playlists.models import Playlist
+import pdb
 
 # 노래 메인 페이지
 def main(request):
@@ -59,6 +60,8 @@ def create(request):
         driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
         driver.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title))
         time.sleep(2)
+
+        pdb.set_trace()
 
         driver.find_element_by_class_name('btn_icon_detail').click()
         time.sleep(2)
