@@ -87,7 +87,8 @@ def create(request):
         if url is None:
             video_title = driver.find_elements_by_id('video-title')[1]
             url = video_title.get_attribute('href')
-            url = url.replace('watch?v=', 'embed/')
+        
+        url = url.replace('watch?v=', 'embed/')
 
         driver.quit()
         
