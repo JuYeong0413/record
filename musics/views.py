@@ -129,9 +129,7 @@ def update(request, music_id):
         # lyrics = str(song_parse.find(id='d_video_summary'))
         # lyrics = lyrics.replace('<div class="lyric" id="d_video_summary"><!-- height:auto; 로 변경시, 확장됨 -->','').replace('</div>','').strip()
         # lyrics = lyrics.replace('<br/>', '\n')
-        
 
-        # crawling video link
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x1080')
@@ -141,6 +139,23 @@ def update(request, music_id):
         options.add_argument("--disable-extensions")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
+
+        driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+        driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
+        time.sleep(2)
+
+
+        driver.find_element_by_class_name("btn-info").click()
+        time.sleep(2)
+
+        genre = driver.find_element_by_xpath('//*[@id="body-content"]/div[2]/div[2]/ul/li[3]/span[2]').text
+        lyrics = driver.find_element_by_xpath('//*[@id="pLyrics"]/p').text
+
+        music.genre = genre
+        music.lyrics = lyrics
+        
+
+        # crawling video link
 
         
         driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
