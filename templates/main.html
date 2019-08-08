@@ -55,36 +55,43 @@
         </h2>
         <div class="row">
 
-            {% for playlist in playlists %}
-            <!-- playlist -->
-            <div class="col-sm-4 mb-xs-30 wow fadeInUp music-new playlist-list" style="visibility: visible; animation-name: fadeInUp;">
-                <div class="team-item" style="padding-top:10px;">
-                    
-                    <a href="{% url 'playlists:show' playlist.id %}">
-                        <div class="team-item-image">
-                            <img src="{{ playlist.cover.url }}" alt=""/>
-                        </div>
-                    </a>
-                    <a href="{% url 'playlists:show' playlist.id %}">
-                    <div class="team-item-descr font-alt playlist-bar">
-                        
-                    <a href="{% url 'playlists:show' playlist.id %}">
-                        <div class="team-item-name">
+            <!-- Content -->
+            <div class="col-sm-10 col-md-offset-1">
 
-                            {{ playlist.title }}
+                    <!-- Portfolio Section -->
+                    <section class="page-section">
+                        <div class="container relative">
+                            
+                            <!-- Works Grid -->
+                            <ul class="works-grid work-grid-3 work-grid-gut clearfix font-alt hover-white" id="work-grid">
+                                
+                                {% for playlist in playlists %}
+                                    <!-- Work Item (Lightbox) -->
+                                    <li class="work-item mix photography">
+                                        <a href="{% url 'playlists:show' playlist.pk %}">
+                                            <div class="work-img">
+                                                <img src="{{ playlist.cover.url }}" alt="" />
+                                            </div>
+                                            <div class="work-intro">
+                                                <h3 class="work-title">{{ playlist.title }}</h3>
+                                                <div class="work-descr">
+                                                    {{ playlist.creator }}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- End Work Item -->
+                                {% endfor %}
+            
+                            </ul>
+                            <!-- End Works Grid -->
+                            
                         </div>
-                    </a>
-                        
-                        <div class="team-item-role">
-                            {{ playlist.creator }}
-                        </div>
-                        
-                    </div>
-                    </a>
+                    </section>
+                    <!-- End Portfolio Section -->
+    
                 </div>
-            </div>
-            {% endfor %}
-            <!-- End playlist -->
+                <!-- End Content -->
             
         </div>
     </div>

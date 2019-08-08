@@ -63,6 +63,8 @@
 
 .team-item-name {
     text-transform: none;
+    margin-top: 0px;
+    padding-bottom: 23px;
 }
 
 #modal-cancel:hover {
@@ -75,3 +77,11 @@
     border-color: #999!important;
 }
 
+/* playlists font size */
+.work-title {
+    font-size: 16px;
+}
+
+.work-descr {
+    font-size: 14px;
+}

@@ -81,43 +81,45 @@
             <!-- Content -->
             <div class="col-sm-8 col-md-offset-1">
 
-                    <!-- Post Title -->
-                    <h2 class="blog-item-title font-alt"><a href="blog-single-sidebar-right.html">Playlists I Like</a></h2>
-                    <br>
-                    
-                    <div class="row multi-columns-row">
-    
+                <!-- Portfolio Section -->
+                <section class="page-section">
+                    <div class="container relative">
                         
+                        <!-- Works Grid -->
+                        <ul class="works-grid work-grid-2 work-grid-gut clearfix font-alt hover-white" id="work-grid">
+                            
                         {% if playlist_lists.exists %}
-                        
-                            <!-- Post Item -->
+    
                             {% for playlist in playlists %}
-                                
-                                    <div class="col-md-6 col-lg-6 mb-60 mb-xs-40 music-new playlist-list" style="padding-top: 10px;">
-                                
-                                        {% if playlist.cover %}
-                                        <a href ="{% url 'playlists:show' playlist.id %}">
-                                            <div class="post-prev-img">
-                                                <img src= "{{ playlist.cover.url }}" alt="사진없음">
-                                            </div>
-                                        </a>
-                                        {% endif %}
-                                        
-                                        <div class="post-prev-title font-alt playlist-bar font-bold">
-                                            {{ playlist.title }}
-                                        </div>
-                                        
+                            <!-- Work Item (Lightbox) -->
+                            <li class="work-item mix photography">
+                                <a href="{% url 'playlists:show' playlist.pk %}">
+                                    <div class="work-img">
+                                        <img src="{{ playlist.cover.url }}" alt="" />
                                     </div>
-                                
+                                    <div class="work-intro">
+                                        <h3 class="work-title">{{ playlist.title }}</h3>
+                                        <div class="work-descr">
+                                            {{ playlist.creator }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- End Work Item -->
                             {% endfor %}
-                            <!-- End Post Item -->
+    
                         {% else %}
-                            <h3>좋아하는 플레이리스트가 없습니다.</h3>
+                            <h3>생성한 플레이리스트가 없습니다.</h3>
                         {% endif %}
+        
+                        </ul>
+                        <!-- End Works Grid -->
+                        
                     </div>
-                    <br>
+                </section>
+                <!-- End Portfolio Section -->
 
-                </div>
+            </div>
             <!-- End Content -->
 
         </div>
