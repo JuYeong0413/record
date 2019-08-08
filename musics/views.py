@@ -51,38 +51,26 @@ def create(request):
         music.title = title
         music.singer = singer
 
-        # crawling genre and lyrics
-        header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
-        melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header)
-        melon_html = melon.text
-        melon_parse = BeautifulSoup(melon_html, 'html.parser')
-        detail = melon_parse.find(class_='btn_icon_detail')
-
-        song_link = detail['href'].split(';')
-        song_number = song_link[1].split("'")[1]
-
-        song = requests.get('https://www.melon.com/song/detail.htm?songId={}'.format(song_number), headers = header)
-        song_html = song.text
-        song_parse = BeautifulSoup(song_html, 'html.parser')
-        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)'))
-        genre = genre.replace('[<dd>', '').replace('</dd>]', '')
-        if '&amp;' in genre:
-            genre = genre.replace('&amp;', '&')
-
-        lyrics = str(song_parse.find(id='d_video_summary'))
-        lyrics = lyrics.replace('<div class="lyric" id="d_video_summary"><!-- height:auto; 로 변경시, 확장됨 -->','').replace('</div>','').strip()
-        lyrics = lyrics.replace('<br/>', '\n')
-
-        music.genre = genre
-        music.lyrics = lyrics
-
-        # crawling video link
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x1080')
         options.add_argument('--disable-gpu')
 
         driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+        driver.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title))
+        time.sleep(2)
+
+        btn = driver.find_element_by_xpath('//*[@id="frm_defaultList"]/div/table/tbody/tr/td[3]/div/div/a[1]')
+        btn.click()
+        time.sleep(2)
+
+        genre = driver.find_element_by_xpath('//*[@id="downloadfrm"]/div/div/div[2]/div[2]/dl/dd[3]').text
+        lyrics = driver.find_element_by_id('d_video_summary').text
+
+        music.genre = genre
+        music.lyrics = lyrics
+
+        # crawling video link
 
         driver.get('https://www.youtube.com/results?search_query={}+{}'.format(singer, title))
         time.sleep(2)
