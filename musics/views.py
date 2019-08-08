@@ -107,28 +107,28 @@ def update(request, music_id):
         singer = request.POST.get('singer')
 
         # crawling genre and lyrics
-        header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
-        melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header)
-        melon_html = melon.text
-        melon_parse = BeautifulSoup(melon_html, 'html.parser')
-        detail = melon_parse.find(class_='btn_icon_detail')
+        # header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+        # melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header)
+        # melon_html = melon.text
+        # melon_parse = BeautifulSoup(melon_html, 'html.parser')
+        # detail = melon_parse.find(class_='btn_icon_detail')
 
         
 
-        song_link = detail['href'].split(';')
-        song_number = song_link[1].split("'")[1]
+        # song_link = detail['href'].split(';')
+        # song_number = song_link[1].split("'")[1]
 
-        song = requests.get('https://www.melon.com/song/detail.htm?songId={}'.format(song_number), headers = header)
-        song_html = song.text
-        song_parse = BeautifulSoup(song_html, 'html.parser')
-        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)'))
-        genre = genre.replace('[<dd>', '').replace('</dd>]', '')
-        if '&amp;' in genre:
-            genre = genre.replace('&amp;', '&')
+        # song = requests.get('https://www.melon.com/song/detail.htm?songId={}'.format(song_number), headers = header)
+        # song_html = song.text
+        # song_parse = BeautifulSoup(song_html, 'html.parser')
+        # genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-child(6)'))
+        # genre = genre.replace('[<dd>', '').replace('</dd>]', '')
+        # if '&amp;' in genre:
+        #     genre = genre.replace('&amp;', '&')
 
-        lyrics = str(song_parse.find(id='d_video_summary'))
-        lyrics = lyrics.replace('<div class="lyric" id="d_video_summary"><!-- height:auto; 로 변경시, 확장됨 -->','').replace('</div>','').strip()
-        lyrics = lyrics.replace('<br/>', '\n')
+        # lyrics = str(song_parse.find(id='d_video_summary'))
+        # lyrics = lyrics.replace('<div class="lyric" id="d_video_summary"><!-- height:auto; 로 변경시, 확장됨 -->','').replace('</div>','').strip()
+        # lyrics = lyrics.replace('<br/>', '\n')
         
 
         # crawling video link
@@ -136,6 +136,11 @@ def update(request, music_id):
         options.add_argument('headless')
         options.add_argument('window-size=1920x1080')
         options.add_argument('--disable-gpu')
+        options.add_argument("start-maximized")
+        options.add_argument("disable-infobars")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
 
         
         driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
@@ -149,7 +154,8 @@ def update(request, music_id):
         if url is None:
             video_title = driver.find_elements_by_id('video-title')[1]
             url = video_title.get_attribute('href')
-            url = url.replace('watch?v=', 'embed/')
+
+        url = url.replace('watch?v=', 'embed/')
 
         driver.quit()
         
