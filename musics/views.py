@@ -52,8 +52,8 @@ def create(request):
         music.singer = singer
 
         # crawling genre and lyrics
-        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'} # 튕기는 현상이 있어서 header 추가
-        melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header, commit=False)
+        header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
+        melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header)
         melon_html = melon.text
         melon_parse = BeautifulSoup(melon_html, 'html.parser')
         detail = melon_parse.find(class_='btn_icon_detail')
@@ -112,7 +112,7 @@ def update(request, music_id):
         singer = request.POST.get('singer')
 
         # crawling genre and lyrics
-        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'} # 튕기는 현상이 있어서 header 추가
+        header = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
         melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header)
         melon_html = melon.text
         melon_parse = BeautifulSoup(melon_html, 'html.parser')
