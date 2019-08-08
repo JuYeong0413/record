@@ -7,7 +7,9 @@
 .font-only{
     font-family: 'GyeonggiBatang';
 }
-
+.color-only{
+    color: #34495E;
+}
 .playlist-bar{
     margin-bottom: 10px;
 }
@@ -22,4 +24,16 @@
     background-color: #E8E5D2;
 }
 
+/*lp껍질*/
+.lp-cover img {
+    width: auto; height: auto;
+    max-width: 300px;
+    max-height: 300px;
+    display: block; margin: 0px auto;
+}
 
+/*user playlists 2column배치*/
+.playlist-padding{
+    padding-left: 15px; 
+    padding-right: 15px;
+}

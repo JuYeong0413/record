@@ -81,42 +81,37 @@
             <!-- Content -->
             <div class="col-sm-8 col-md-offset-1">
 
-                <!-- Portfolio Section -->
-                <section class="page-section">
-                    <div class="container relative">
-                        
-                        <!-- Works Grid -->
-                        <ul class="works-grid work-grid-2 work-grid-gut clearfix font-alt hover-white" id="work-grid">
-                            
-                        {% if playlist_lists.exists %}
-    
-                            {% for playlist in playlists %}
-                            <!-- Work Item (Lightbox) -->
-                            <li class="work-item mix photography">
-                                <a href="{% url 'playlists:show' playlist.pk %}">
-                                    <div class="work-img">
-                                        <img src="{{ playlist.cover.url }}" alt="" />
-                                    </div>
-                                    <div class="work-intro">
-                                        <h3 class="work-title" style="font-size: 20px;">{{ playlist.title }}</h3>
-                                        
-                                    </div>
-                                </a>
-                            </li>
-                            <!-- End Work Item -->
-                            {% endfor %}
-    
-                        {% else %}
-                            <h3>생성한 플레이리스트가 없습니다.</h3>
-                        {% endif %}
-     
-                        </ul>
-                        <!-- End Works Grid -->
-                        
-                    </div>
-                </section>
-                <!-- End Portfolio Section -->
                 
+                {% if playlist_lists.exists %}    
+                    <div class="view view--grid view--current">
+                    
+                            <ul class="grid">
+                                {% for playlist in playlists %}
+                                    <!-- Work Item (Lightbox) -->
+                                    <li class="grid__item playlist-padding">
+                                        <a class="grid__link" href="{% url 'playlists:show' playlist.pk %}">
+                                            <div class="img-wrap img-wrap--grid">
+                                                <svg class="lp lp--grid">
+                                                    <use xlink:href="#icon-lp-mini"></use>
+                                                </svg>
+                                                <img class="img img--grid" src="{{ playlist.cover.url }}" alt="album1" />
+                                            </div>
+                                            <br>
+                                            <h3 class="font-alt" style="text-align: center; font-weight: bold;">{{ playlist.title }}</h3>
+                                            
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            
+                    </div><!-- /view-grid -->
+                        
+                    <div class="view view--player">
+                        <!-- 배열을 완성하기 위한 공간 -->	
+                    </div>
+                {% else %}
+                    <h3>생성한 플레이리스트가 없습니다.</h3>
+                {% endif %}    
                 
             </div>
             <!-- End Content -->
