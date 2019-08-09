@@ -30,7 +30,7 @@
 
 <!-- Contact Section -->
 <section class="page-section" id="contact">
-    <div class="container relative">
+    <div class="container relative font-only">
         
         <h2 class="section-title font-alt mb-70 mb-sm-40">
             새 플레이리스트 생성하기
@@ -44,29 +44,29 @@
                     {% csrf_token %}
                     <div class="clearfix">
                             <input type="hidden" name="music_id" value="{{ request.GET.music }}">
-                            <div class="form-group">
+                            <div class="form-group-playlistnew">
                                 <label for="exampleInputFile">제목</label>
                                 <input type="text" name="title" id="name" class="input-md round form-control" placeholder="제목">
                             </div>
                             
                             
-                            <div class="form-group">
+                            <div class="form-group-playlistnew">
                                 <label for="exampleInputFile">태그</label>
                                 <input type="text" name="tags" id="email" class="input-md round form-control" placeholder=",로 구분해주세요" >
                             </div>
                             
-                            <div class="form-group">
+                            <div class="form-group-playlistnew">
                                 <input type="radio" name="kinds" value="0" checked>공개
                                 <input type="radio" name="kinds" value="1">비공개
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group-playlistnew">
                                 <label for="exampleInputFile">커버사진</label>
                                 <input type="file" name="cover" id="exampleInputFile" accept="image/*">
                             </div>
 
                             <!-- Message -->
-                            <div class="form-group"> 
+                            <div class="form-group-playlistnew"> 
                                 <label for="exampleInputFile">설명</label>                                         
                                 <textarea name="description" id="message" class="input-md round form-control" style="height: 84px;" placeholder="플레이리스트 설명"></textarea>
                             </div>
