@@ -32,14 +32,14 @@
     <div class="container relative font-only">
         
         <!-- Product Content -->
-        <div class="row mb-60 mb-xs-30" style="margin:60px 0 10px 0;">
+        <div class="row mb-60 mb-xs-30">
             
             <!-- Product Images -->
             <div class="col-md-4 mb-md-30">
                 
                 <div class="post-prev-img">
                     {% if playlist.cover %}
-                        <img width="250px" height="250px" src="{{ playlist.cover.url }}" alt="사진없음"><br>
+                        <img src="{{ playlist.cover.url }}" alt="사진없음"><br>
                     {% endif %}
                 </div>
                 
@@ -132,14 +132,12 @@
                 <div class="alt-service-item" id ="like_toggle">
                         
                     <span href="#" class="like" name ="{{playlist.id}}" value="Like">
+                        {% if user in playlist.liked_users.all %}
                         <div class="alt-service-icon">
-                            {% if user in playlist.liked_users.all %}
                                 <i class="fa fa-heart" id="like-icon"></i>
-                                    <!-- <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요취소</a> -->
                         </div>
-                        <!-- <h3 class="alt-services-title font-alt">{{ playlist.likes_count }} <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요 취소</a></h3> -->
+                        {% else %}
                         <div class="alt-service-icon">
-                            {% else %}
                                 <i class="fa fa-heart-o" id="like-icon"></i>
                         </div>
                         {% endif %}    
@@ -147,6 +145,7 @@
                             <!-- <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요</a> -->
                        </span> 
                     </span>   
+                    
                 </div>
             
             <!-- End Features Item -->

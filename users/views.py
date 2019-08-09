@@ -3,6 +3,7 @@ from musics.models import Music
 from playlists.models import Playlist
 from .models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import pdb
 
 # 프로필 페이지
 def main(request, id):
@@ -27,14 +28,19 @@ def update(request, id):
         user = get_object_or_404(User, pk=id)
         username = request.POST.get('username')
         introduction = request.POST.get('introduction')
-        user.username = username
-        user.introduction = introduction
-
+        
         if request.FILES.get('image'):
             user.image = request.FILES.get('image')
-
+            
         if request.POST.get('checkbox'):
             user.image = 'images/default_profile.jpg'
+
+        if user.username == 'testuser':
+            pass
+        else:
+            user.username = username
+
+        user.introduction = introduction
 
         user.save()
         return redirect('users:main', id)
