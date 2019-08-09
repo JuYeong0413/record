@@ -63,7 +63,11 @@ def create(request):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
 
-        driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+        if os.name == 'nt':
+            driver = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=options)
+        else:
+            driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+
         driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
         time.sleep(1)
 
@@ -122,7 +126,12 @@ def update(request, music_id):
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
 
-        driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+
+        if os.name == 'nt':
+            driver = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=options)
+        else:
+            driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
+
         driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
         time.sleep(1)
 
