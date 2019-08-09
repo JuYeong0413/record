@@ -136,7 +136,7 @@
                         
                     <div href="#" class="like" name ="{{playlist.id}}" value="Like">
                         <div class="alt-service-icon">
-                        {% if user in playlist.liked_users.all %}
+                        {% if user in playlist.likes.all %}
                             <i class="fa fa-heart" id="like-icon"></i>
                             <div id="count-{{ playlist.id }}" class="alt-services-title font-alt">좋아요{{ playlist.likes_count }}개
                                 <!-- <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요취소</a> -->

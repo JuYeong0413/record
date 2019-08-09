@@ -1,5 +1,5 @@
 /*
- * abbeyload.js
+ * load.js
  * A music asset loader by Stuart Memo 
  */
 
@@ -11,14 +11,14 @@
         context = new AudioContext(),
         buffers = [];
 
-    var AbbeyLoad = function (files, callback, onProgress) {
+    var Load = function (files, callback, onProgress) {
         this.files = files || {}; 
         filesLoaded = 0;
         numberOfFiles = 0;
         loadFiles(this.files, callback, onProgress);
     };
 
-    AbbeyLoad.size = function(obj) {
+    Load.size = function(obj) {
         var size = 0;
 
         for (var key in obj) {
@@ -41,9 +41,9 @@
             context.decodeAudioData(request.response, function (decodedBuffer) {
                 returnObj[fileKey] = decodedBuffer;
                 if( typeof onProgress === 'function' ) {
-                    onProgress(AbbeyLoad.size(returnObj)*100/numberOfFiles);
+                    onProgress(Load.size(returnObj)*100/numberOfFiles);
                 }
-                if (AbbeyLoad.size(returnObj) === numberOfFiles) {
+                if (Load.size(returnObj) === numberOfFiles) {
                     callback(returnObj);
                 }
             });
@@ -57,7 +57,7 @@
 
         files.forEach(function (file, index) {
 		    
-            numberOfFiles = AbbeyLoad.size(file);
+            numberOfFiles = Load.size(file);
 
             for (var key in file) {
                 if (file.hasOwnProperty(key)) {
@@ -68,5 +68,5 @@
         });
     };
 
-    window.AbbeyLoad = AbbeyLoad;
+    window.Load = Load;
 })(window);
