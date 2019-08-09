@@ -286,7 +286,11 @@
             // 서버측에서 전송한 Response 데이터 형식 (json)
             // {'likes_count': post.like_count, 'message': message }
             success: function(response){ // 통신 성공시 - 동적으로 좋아요 갯수 변경, 유저 목록 변경
-                if (response.result == "like") {
+                if (response.likes_count == null) {
+                    alert("로그인이 필요합니다.");
+                    window.location.replace("/accounts/login/");
+                }
+                else {
                     if (response.result == "like") {
                         $('#like-icon').removeClass();
                         $('#like-icon').addClass('fa fa-heart');
@@ -296,11 +300,6 @@
                         $('#like-icon').addClass('fa fa-heart-o');
                     }
                     $('#count-{{ playlist.id }}').html('좋아요'+response.likes_count+'개');
-
-                }
-                else {
-                    alert("로그인이 필요합니다.");
-                    window.location.replace("/accounts/login/");
                 }
             },
             error: function(request, status, error){ // 통신 실패시 - 로그인 페이지 리다이렉트
