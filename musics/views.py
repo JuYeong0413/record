@@ -71,9 +71,10 @@ def create(request):
         driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
         time.sleep(1)
 
-        btn = driver.find_element_by_class_name("btn-info").click()
+        btn = driver.find_element_by_class_name("btn-info")
         if btn is None:
             return redirect('musics:main')
+        btn.click()
         time.sleep(1)
 
         genre = driver.find_element_by_xpath('//*[@id="body-content"]/div[2]/div[2]/ul/li[3]/span[2]').text
@@ -135,9 +136,10 @@ def update(request, music_id):
         driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
         time.sleep(1)
 
-        btn = driver.find_element_by_class_name("btn-info").click()
+        btn = driver.find_element_by_class_name("btn-info")
         if btn is None:
             return redirect('musics:main')
+        btn.click()
         time.sleep(1)
 
         genre = driver.find_element_by_xpath('//*[@id="body-content"]/div[2]/div[2]/ul/li[3]/span[2]').text
