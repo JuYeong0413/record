@@ -160,8 +160,8 @@
             <div class="modal-body">
                 {% for follower in user_profile.followers.all %}
                     <a href="{% url 'users:main' follower.id %}">
-                        <img src="{{ follower.image.url }}" alt="" width="50" height="50">
-                        {{ follower.username }}
+                        <img src="{{ follower.image.url }}" alt="" width="50" height="50" style="border-radius: 100%;">
+                        &nbsp;{{ follower.username }}
                     </a>
                 {% endfor %}
             </div>
@@ -182,14 +182,14 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                {% for following in user_profile.followings.all %}
                 <div class="modal-body">
-                    {% for following in user_profile.followings.all %}
                         <a href="{% url 'users:main' following.id %}">
-                            <img src="{{ following.image.url }}" alt="" width="50" height="50">
-                            {{ following.username }}
+                            <img src="{{ following.image.url }}" alt="" width="50" height="50"style="border-radius: 100%;">
+                            &nbsp;{{ following.username }}
                         </a>
-                    {% endfor %}
                 </div>
+                {% endfor %}
                 <div class="modal-footer">
                     <button type="button" class="btn btn-mod btn-round" data-dismiss="modal">Close</button>
                 </div>
