@@ -53,7 +53,7 @@
                 
                 
                 <div class="section-text mb-30">
-                    <form action="{% url 'musics:update' music.id %}" method="POST">
+                    <form action="{% url 'musics:update' music.id %}" method="POST" id="next">
                         {% csrf_token %}
                         <input type="text" name="title" class="search-field" value="{{ music.title }}">
                         <br>
@@ -73,5 +73,8 @@
     </div>
 </section>
 <!-- End Section -->
-
+<div id="loading">
+    <img src="{% static 'bobae/images/loader.gif' %}" alt="loading" />
+    
+</div>
 {% endblock %}
