@@ -106,26 +106,23 @@
                 <!--팔로워, 팔로잉-->
                 <!-- Features Item -->
                 {% if user != playlist.creator %}
-                
-                    <div class="alt-service-item">
+                <div class="alt-service-item">
                         <a href="{% url 'playlists:follow_toggle' playlist.id %}">
-
-                        <div class="alt-servce-icon">
+                        <div class="alt-service-icon">
                             <i class="fa fa-users"></i>
                         </div>
 
-                            <h3 class="alt-services-title font-alt">
+                        <h3 class="alt-services-title font-alt">
                             {% if user in playlist.creator.followers.all %}
-                                팔로우 취소</a>
+                                팔로우 취소
                             {% else %}
-                                팔로우</a>
+                                팔로우
                             {% endif %}
-
-                            </h3>
-                    
-                    </div>
-                
-                {% endif %}   
+                        </h3>
+                        </a>
+                </div>
+                {% endif %}
+                 
                 <!-- End Features Item -->
 
 
@@ -134,22 +131,22 @@
                 
                 <div class="alt-service-item" id ="like_toggle">
                         
-                    <div href="#" class="like" name ="{{playlist.id}}" value="Like">
+                    <span href="#" class="like" name ="{{playlist.id}}" value="Like">
                         <div class="alt-service-icon">
-                        {% if user in playlist.liked_users.all %}
-                            <i class="fa fa-heart" id="like-icon"></i>
-                            <div id="count-{{ playlist.id }}" class="alt-services-title font-alt">좋아요{{ playlist.likes_count }}개
-                                <!-- <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요취소</a> -->
-                            </div>
-                        </div> 
+                            {% if user in playlist.liked_users.all %}
+                                <i class="fa fa-heart" id="like-icon"></i>
+                                    <!-- <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요취소</a> -->
+                        </div>
                         <!-- <h3 class="alt-services-title font-alt">{{ playlist.likes_count }} <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요 취소</a></h3> -->
-                        {% else %}
-                            <i class="fa fa-heart-o" id="like-icon"></i>
-                            <span id="count-{{ playlist.id }}" class="alt-services-title font-alt">좋아요{{ playlist.likes_count }}개
-                                 <!-- <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요</a> -->
-                            </span> 
-                        {% endif %}
-                    </div>   
+                        <div class="alt-service-icon">
+                            {% else %}
+                                <i class="fa fa-heart-o" id="like-icon"></i>
+                        </div>
+                        {% endif %}    
+                        <span id="count-{{ playlist.id }}" class="alt-services-title font-alt">좋아요{{ playlist.likes_count }}개
+                            <!-- <a href="{% url 'playlists:like_toggle' playlist.id %}">좋아요</a> -->
+                       </span> 
+                    </span>   
                 </div>
             
             <!-- End Features Item -->
