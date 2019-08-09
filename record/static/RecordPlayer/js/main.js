@@ -193,11 +193,11 @@
 	/**
 	 * Loads assets usong the AbbeyLoad script.
 	 */
-	Turntable.prototype._loadAssets = function(assets, callback, onProgress) {
-		new AbbeyLoad(assets, function(bufferList) {
-			callback(bufferList);
-		}, onProgress);
-	};
+	// Turntable.prototype._loadAssets = function(assets, callback, onProgress) {
+	// 	new AbbeyLoad(assets, function(bufferList) {
+	// 		callback(bufferList);
+	// 	}, onProgress);
+	// };
 
 	/**
 	 * Loads a record obj.
@@ -1320,16 +1320,16 @@
 	}
 
 	function loadTurntableAssets(callback) {
-		new AbbeyLoad([{ 
-			'room1' : 'mp3/room1.mp3',
-			'room2' : 'mp3/room2.mp3',
-			'room3' : 'mp3/room3.mp3',
-			'noise' : 'mp3/noise1.mp3'
-		}], function(bufferList) {
-			if( typeof callback === 'function' ) {
-				callback(bufferList);
-			}
-		});
+		// new AbbeyLoad([{ 
+		// 	'room1' : 'mp3/room1.mp3',
+		// 	'room2' : 'mp3/room2.mp3',
+		// 	'room3' : 'mp3/room3.mp3',
+		// 	'noise' : 'mp3/noise1.mp3'
+		// }], function(bufferList) {
+		// 	if( typeof callback === 'function' ) {
+		// 		callback(bufferList);
+		// 	}
+		// });
 	};
 
 	function initTurntable(bufferList) {
