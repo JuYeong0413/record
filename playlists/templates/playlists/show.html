@@ -327,6 +327,10 @@
                 data: {'message': commentMessage, 'csrfmiddlewaretoken': '{{ csrf_token }}'},
                 dataType: "json",
                 success: function(response) {
+                    if (response.writer == null) {
+                        alert("로그인이 필요합니다.");
+                        window.location.replace("/accounts/login/");
+                    }
                     if (response.is_same == true) {
                         $('#comment-list').append(
                             '<ul class="media-list text comment-list clearlist">' +
