@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Playlist, Comment
+from .models import Playlist, Comment, Like
 
 # Register your models here.
 # admin.ModelAdmin 상속을 통해 커스터마이징, 장식자(decorator) 형태로 등록
@@ -50,4 +50,16 @@ class CommentAdmin(admin.ModelAdmin):
         'playlist',
         'created_at',
         'updated_at',
+    )
+
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+
+    list_filter = (
+        
+    )
+
+    list_display = (
+        'playlist',
     )
