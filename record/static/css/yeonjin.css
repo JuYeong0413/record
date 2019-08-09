@@ -68,3 +68,7 @@
 .kyj_login{
     text-align:center;
 }
+
+.flex-container{
+    flex-direction: row;
+}

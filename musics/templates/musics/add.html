@@ -26,44 +26,49 @@
     </div>
 </section>
 <!-- End Head Section -->
+
 <section class="recoders-list">
     <div class="container relative">     
         <h2 class="section-title font-alt align-left mb-70 mb-sm-40">
             MY PLAYLIST
         </h2>
 
-        <div class="row">
+        
         {% if playlist_list.exists %}
+        <div class="row " style = "flex-direction: row;">
             {% for playlist in playlists %}
                 <form action="{% url 'musics:add_music' %}" method="POST" style="width:100%;">
                     {% csrf_token %}
-                    <div class="col-sm-4 mb-xs-30 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-                        <div class="team-item">
-                            
-                            <div class="team-item-image">
+                    <!-- mb-xs-30 -->
+                        <div class=" form-check form-check-inline wow fadeInUp" style="visibility: visible; animation-name: fadeInUp; width: 300px; margin-right: 10px !important;">
+                            <div class="team-item">
                                 
-                                <img src="{{ playlist.cover.url }}" alt=""/>
-                            
-                            </div>
-                            <div class="team-item-descr font-alt">
-                                        
-                                <div class="team-item-name">
-                                    {{ playlist.title }}
+                                <div class="team-item-image">
+                                    
+                                    <img src="{{ playlist.cover.url }}" alt=""/>
+                                
                                 </div>
-                        
+                                <div class="team-item-descr font-alt">
+                                            
+                                    <div class="team-item-name">
+                                        {{ playlist.title }}
+                                    </div>
+                            
+                                </div>
+                                <div class="team-item-name mb-20" style="text-align: center;">
+                                    <input class = "form-check-input" type="radio" name="playlist_id" value="{{ playlist.id }}">
+                                    <input type="hidden" name="music_id" value="{{ request.GET.music }}">
+                                    <br>
+                                </div>
                             </div>
-                            <div class="team-item-name mb-20" style="text-align: center;">
-                                <input type="radio" name="playlist_id" value="{{ playlist.id }}">
-                                <input type="hidden" name="music_id" value="{{ request.GET.music }}">
-                                <br>
-                            </div>
+                            
                         </div>
-                        
-                    </div>
-                    {% endfor %}
-                    <div class="blog-item-foot">
-                        <input type="submit" class="add-submit" value="선택">
-                    </div>
+                    
+                   
+            {% endfor %}
+            <div class="blog-item-foot">
+                <input type="submit" class="add-submit" value="선택">
+            </div>
                     <br><br>
                 </form>
         </div>
@@ -74,37 +79,7 @@
             </div>
         {% endif %}
 
-        {% endblock %}
+        
     </div>
 </section>
-<!--<div class="row">
-
-    {% for playlist in playlists %}-->
-    <!-- playlist -->
-    <!--<div class="col-sm-4 mb-xs-30 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
-        <div class="team-item">
-            
-            <div class="team-item-image">
-                
-                <img src="{% static 'rhythm/images/team/team-1.jpg' %}" alt=""/>
-            
-            </div>
-            <div class="team-item-descr font-alt">
-                        
-                <div class="team-item-name">
-                    {{ playlist.title }}
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    <form action ="{% url 'musics:add_music' playlist.id %}?music={{music.id}}" method ="POST">
-        {% csrf_token %}
-        <input type ="radio" name="playlist_id" value = "playlist.id">
-        <input type ="hidden" name="music_id" value = "{{request.GET.music}}">
-        {% endfor %}
-        <input type="submit" class ="btn btn-primary">
-    </form>-->
-    <!-- End playlist -->
-            
-<!--</div>-->
+{% endblock %}
