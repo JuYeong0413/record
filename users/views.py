@@ -103,9 +103,9 @@ def likes(request, id):
     user = get_object_or_404(User, pk=id)
 
     if user == current_user:
-        playlist_lists = Playlist.objects.filter(likes=user)
+        playlist_lists = Playlist.objects.filter(liked_users=user)
     else:
-        playlist_lists = Playlist.objects.filter(likes=user, kinds=0)
+        playlist_lists = Playlist.objects.filter(liked_users=user, kinds=0)
 
     page = request.GET.get('page', 1)
     paginator = Paginator(playlist_lists, 8)

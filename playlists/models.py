@@ -18,7 +18,7 @@ class Playlist(TimeStampedModel):
     kinds = models.PositiveSmallIntegerField(_('종류'), choices=PLAYLIST_KIND_CHOICES)
     description = models.TextField(_('설명'), blank=True)
     tags = TaggableManager(blank=True)
-    likes = models.ManyToManyField(User, verbose_name=_('좋아요'), related_name="liked_users")
+    liked_users = models.ManyToManyField(User, blank=True, related_name="liked_users", through='Like')
     cover = models.ImageField(_('커버이미지'), null=True, upload_to="playlist_cover/",  default="images/default_cover.png")
     title = models.CharField(_('제목'), max_length=200)
 
