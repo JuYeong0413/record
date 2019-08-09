@@ -3,6 +3,7 @@ from musics.models import Music
 from playlists.models import Playlist
 from .models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import pdb
 
 # 프로필 페이지
 def main(request, id):
@@ -27,14 +28,19 @@ def update(request, id):
         user = get_object_or_404(User, pk=id)
         username = request.POST.get('username')
         introduction = request.POST.get('introduction')
-        user.username = username
-        user.introduction = introduction
-
+        
         if request.FILES.get('image'):
             user.image = request.FILES.get('image')
-
+            
         if request.POST.get('checkbox'):
             user.image = 'images/default_profile.jpg'
+
+        if user.username == 'testuser':
+            pass
+        else:
+            user.username = username
+
+        user.introduction = introduction
 
         user.save()
         return redirect('users:main', id)
@@ -61,7 +67,7 @@ def follow_toggle(request, id):
 # 작성한 노래 게시글
 def musics(request, id):
     music_lists = Music.objects.filter(writer__id=id)
-    user = get_object_or_404(User, pk=id)
+    profile_user = get_object_or_404(User, pk=id)
 
     page = request.GET.get('page', 1)
     paginator = Paginator(music_lists, 10)
@@ -72,15 +78,15 @@ def musics(request, id):
     except EmptyPage:
         musics = paginator.page(paginator.num_pages)
 
-    return render(request, 'users/musics.html', {'musics': musics, 'music_lists':music_lists, 'user':user})
+    return render(request, 'users/musics.html', {'musics': musics, 'music_lists': music_lists, 'profile_user': profile_user})
 
 
 # 생성한 플레이리스트 게시글
 def playlists(request, id):
     current_user = request.user
-    user = get_object_or_404(User, pk=id)
+    profile_user = get_object_or_404(User, pk=id)
 
-    if user == current_user:
+    if current_user == profile_user:
         playlist_lists = Playlist.objects.filter(creator__id=id)
     else:
         playlist_lists = Playlist.objects.filter(creator__id=id, kinds=0)
@@ -94,18 +100,18 @@ def playlists(request, id):
     except EmptyPage:
         playlists = paginator.page(paginator.num_pages)
 
-    return render(request, 'users/playlists.html', {'playlists': playlists, 'playlist_lists':playlist_lists, 'user':user})
+    return render(request, 'users/playlists.html', {'playlists': playlists, 'playlist_lists': playlist_lists, 'profile_user': profile_user})
 
 
 # 좋아하는 플레이리스트 목록
 def likes(request, id):
     current_user = request.user
-    user = get_object_or_404(User, pk=id)
+    profile_user = get_object_or_404(User, pk=id)
 
-    if user == current_user:
-        playlist_lists = Playlist.objects.filter(liked_users=user)
+    if current_user == profile_user:
+        playlist_lists = Playlist.objects.filter(liked_users=profile_user)
     else:
-        playlist_lists = Playlist.objects.filter(liked_users=user, kinds=0)
+        playlist_lists = Playlist.objects.filter(liked_users=profile_user, kinds=0)
 
     page = request.GET.get('page', 1)
     paginator = Paginator(playlist_lists, 8)
@@ -116,4 +122,4 @@ def likes(request, id):
     except EmptyPage:
         playlists = paginator.page(paginator.num_pages)
 
-    return render(request, 'users/likes.html', {'playlists': playlists, 'playlist_lists':playlist_lists, 'user':user})
+    return render(request, 'users/likes.html', {'playlists': playlists, 'playlist_lists': playlist_lists, 'profile_user': profile_user})

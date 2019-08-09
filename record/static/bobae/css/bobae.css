@@ -157,27 +157,48 @@ hr {
 }
 
 /*main.html css*/
-/*main 사진 있는데! */
+/*main 사진 수정! */
 .bg-dark-alfa-50:before, .bg-dark-alfa-50 .YTPOverlay:before {
-    background-image: url("mainback.gif");
+    background-image: url("record.gif");
     background-repeat: no-repeat;
-    background-size: 60%;
     background-position: center center;
+    background-size: 100%;
     background-color: #E8E5D2;
 
-    filter: brightness(50%);
+}
+@media only screen and (max-width: 767px) {
+
+    .bg-dark-alfa-50:before, .bg-dark-alfa-50 .YTPOverlay:before {
+        background-size: 140%;
+    }
+}
+.main-a{
+    height:800px!important;
+}
+@media only screen and (max-width: 900px) {
+
+    .main-a {
+        height:350px!important;
+        margin-bottom: 200px;
+    }
+    .main-b{
+        margin-top:16%;
+    }
+}
+
+    /* filter: brightness(50%);
     animation-name: mainback;
     animation-duration: 5s;
-    animation-iteration-count: 1;
-}
-@-webkit-keyframes mainback {
+    animation-iteration-count: 1; */
+
+/* @-webkit-keyframes mainback {
     0% {
       filter: brightness(130%);
     }
     100% {
       filter: brightness(50%);
     }
-  }
+  } */
 
 .home-content {
     position: absolute;
