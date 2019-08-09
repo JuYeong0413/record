@@ -28,7 +28,7 @@
 
 <!-- Contact Section -->
 <section class="page-section" id="contact">
-        <div class="container relative">
+        <div class="container relative font-only">
             
             <h2 class="section-title font-alt mb-70 mb-sm-40">
                 플레이리스트 수정하기
@@ -42,18 +42,18 @@
                         {% csrf_token %}
                         <div class="clearfix">
                                 
-                                <div class="form-group">
+                                <div class="form-group-playlistnew">
                                     <label for="exampleInputFile">제목</label>
                                     <input type="text" name="title" id="name" class="input-md round form-control" value="{{ playlist.title }}">
                                 </div>
                                 
                                 
-                                <div class="form-group">
+                                <div class="form-group-playlistnew">
                                     <label for="exampleInputFile">태그</label>
                                     <input type="text" name="tags" value = "{{ content }}" class="input-md round form-control" placeholder=",로 구분해주세요">
                                 </div>
                                 
-                                <div class="form-group">
+                                <div class="form-group-playlistnew">
                                     {% if playlist.kinds == 0 %}
                                         <input type="radio" name="kinds" value="0" checked>공개
                                         <input type="radio" name="kinds" value="1">비공개
@@ -63,19 +63,19 @@
                                     {% endif %}
                                 </div>
     
-                                <div class="form-group">
+                                <div class="form-group-playlistnew">
                                     <label for="exampleInputFile">커버사진</label>
                                     <input type="file" name="cover" id="exampleInputFile">{{ playlist.cover }}
                                 </div>
     
                                 <!-- Message -->
-                                <div class="form-group"> 
+                                <div class="form-group-playlistnew"> 
                                     <label for="exampleInputFile">설명</label>                                         
                                     <textarea name="description" id="message" class="input-md round form-control" style="height: 84px;" placeholder="플레이리스트 설명">{{ playlist.description }}</textarea>
                                 </div>
                                 
                             
-                                <div class="form-group">
+                                <div class="form-group-playlistnew">
                                     <label for="exampleInputFile">노래목록</label>
                                         <table class="table table-striped shopping-cart-table">
                                                 <tr>
