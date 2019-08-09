@@ -342,6 +342,7 @@ hr {
     font-family: 'GyeonggiBatang';
     text-align: center;
     font-size: 2rem;
+    position:relative;
 }
 .modal-content {
     color:#34495E;
@@ -366,6 +367,18 @@ hr {
     text-align: center;
     font-size: 2rem;
     color: #34495E;
+    position:relative;
+}
+
+/*show에 back css */
+.blog-item-date.back {
+    display: inline;left: 0%; z-index:2;
+}
+@media only screen and (max-width: 767px) {
+
+    .blog-item-date.back {
+        width:50px;
+    }
 }
 
 /*musics.add.html */
@@ -378,7 +391,12 @@ hr {
 .add-submit:hover{
     background-color : rgba(0,0,0, .1);
 }
-
+.playlist-add-warn {
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 2rem;
+    color: #34495E;
+}
 /*users/main.html */
 .blog-media img {
     border-radius:100%;
@@ -441,44 +459,72 @@ hr {
 
 /*loading-page.html 시험 */
 #loading {
-
 	width: 100%;
-
 	height: 100%;
-
 	top: 0;
-
 	left: 0;
-
 	position: fixed;
-
 	display: block;
-
 	opacity: 0.8;
-
-	background: white;
-
+	background: transparent;
 	z-index: 99;
-
     text-align: center;
-   
-
 }
 
 
 
 #loading > img {
-
 	position: absolute;
-
 	top: 50%;
-
 	left: 50%;
-
     z-index: 100;
-    
+    transform: translate(-50%, -50%);
 }
 /* signup font */
 .signup-font {
     font-family: 'GyeonggiBatang';
+}
+
+/*playlist의 list 수정*/
+.playlist-list {
+    background-color: #E8E5D2;
+    max-width: 250px;
+    height: 350px;
+}
+.work-img {
+    max-width: 250px;
+    overflow: hidden;
+    max-height: 300px;
+}
+.work-img img {
+    border-radius :3%;
+    padding:4%;
+    max-width: initial;
+    max-height: initial;
+}
+/*playlist.new.html css */
+.form-group-playlistnew {
+    width:100%;
+    height:100%;
+    margin:0 auto;
+    font-size: 1.4rem;
+}
+.form-group-playlistnew > .form-control {
+    background-color: #E8E5D2;
+    font-family: 'GyeonggiBatang';
+    text-align: center;
+    font-size: 1.4rem;
+    color: #34495E;
+}
+/*modal css*/
+.modal {
+    position: absolute!important;
+    height: auto!important;
+}
+
+.font-only { 
+    background:#FFF8E5;
+    box-shadow: 1px 1px 5px grey;
+    opacity:0.8;
+    padding-bottom: 30px;
 }

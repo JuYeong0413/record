@@ -46,56 +46,55 @@ def create(request):
     if request.method =="POST":
         title = request.POST.get('title')
         singer = request.POST.get('singer')
-
         music = Music()
         music.writer = user
         music.title = title
         music.singer = singer
-
+        # crawling genre and lyrics
+        header = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'} # 튕기는 현상이 있어서 header 추가
+        melon = requests.get('https://www.melon.com/search/song/index.htm?q={}+{}&section=&searchGnbYn=Y&kkoSpl=Y&kkoDpType=&linkOrText=T&ipath=srch_form'.format(singer, title), headers = header)
+        melon_html = melon.text
+        melon_parse = BeautifulSoup(melon_html, 'html.parser')
+        detail = melon_parse.find(class_='btn_icon_detail')
+        if detail is None:
+            return redirect('musics:main') # 곡 정보가 없을 경우 처리 필요함
+        song_link = detail['href'].split(';')
+        song_number = song_link[1].split("'")[1]
+        song = requests.get('https://www.melon.com/song/detail.htm?songId={}'.format(song_number), headers = header)
+        song_html = song.text
+        song_parse = BeautifulSoup(song_html, 'html.parser')
+        genre = str(song_parse.select('#downloadfrm > div > div > div.entry > div.meta > dl > dd:nth-of-type(6)'))
+        genre = genre.replace('[<dd>', '').replace('</dd>]', '')
+        if '&amp;' in genre:
+            genre = genre.replace('&amp;', '&')
+        lyrics = str(song_parse.find(id='d_video_summary'))
+        lyrics = lyrics.replace('<div class="lyric" id="d_video_summary"><!-- height:auto; 로 변경시, 확장됨 -->','').replace('</div>','').strip()
+        lyrics = lyrics.replace('<br/>', '\n')
+        music.genre = genre
+        music.lyrics = lyrics
+        # crawling video link
         options = webdriver.ChromeOptions()
         options.add_argument('headless')
         options.add_argument('window-size=1920x1080')
-        options.add_argument('--disable-gpu')
-        options.add_argument("start-maximized")
-        options.add_argument("disable-infobars")
-        options.add_argument("--disable-extensions")
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-
-        driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
-        driver.get('https://www.genie.co.kr/search/searchSong?query={}+{}'.format(singer, title))
-        time.sleep(1)
-
-
-        driver.find_element_by_class_name("btn-info").click()
-        time.sleep(1)
-
-        genre = driver.find_element_by_xpath('//*[@id="body-content"]/div[2]/div[2]/ul/li[3]/span[2]').text
-        lyrics = driver.find_element_by_xpath('//*[@id="pLyrics"]/p').text
-
-        music.genre = genre
-        music.lyrics = lyrics
-
-        # crawling video link
-
+        options.add_argument('—disable-gpu')
+        if os.name == 'nt':
+            driver = webdriver.Chrome(executable_path='./chromedriver.exe', chrome_options=options)
+        else:
+            driver = webdriver.Chrome(executable_path='./chromedriver', chrome_options=options)
         driver.get('https://www.youtube.com/results?search_query={}+{}'.format(singer, title))
         time.sleep(2)
-
         video_title = driver.find_element_by_id('video-title')
         url = video_title.get_attribute('href')
             
         if url is None:
             video_title = driver.find_elements_by_id('video-title')[1]
             url = video_title.get_attribute('href')
-        
-        url = url.replace('watch?v=', 'embed/')
-
+            url = url.replace('watch?v=', 'embed/')
         driver.quit()
         
         
         music.link = url
         music.save()
-
     return redirect('musics:main')
 
 

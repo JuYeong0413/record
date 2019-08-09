@@ -69,7 +69,7 @@
                 {% for playlist in playlists %}
                     <!-- Work Item (Lightbox) -->
                     <li class="grid__item">
-                        <a class="grid__link" href="{% url 'playlists:show' playlist.pk %}">
+                        <a class="grid__link" href="{% url 'playlists:show' playlist.pk %}" class="playlist-list">
                             <div class="img-wrap img-wrap--grid">
                                 <svg class="lp lp--grid">
                                     <use xlink:href="#icon-lp-mini"></use>
