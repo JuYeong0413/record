@@ -148,7 +148,7 @@
 
 
 <!-- Follow Modal -->
-<div class="modal" id="followModal" tabindex="-1" role="dialog" aria-labelledby="followModalLabel" aria-hidden="true">
+<div class="modal signup-font" id="followModal" tabindex="-1" role="dialog" aria-labelledby="followModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -159,7 +159,7 @@
             </div>
             <div class="modal-body">
                 {% for follower in user_profile.followers.all %}
-                    <a href="{% url 'users:main' follower.id %}">
+                    <a href="{% url 'users:main' follower.id %}" class="users-name" style="text-decoration: none;">
                         <img src="{{ follower.image.url }}" alt="" width="50" height="50" style="border-radius: 100%;">
                         &nbsp;{{ follower.username }}
                     </a>
@@ -173,7 +173,7 @@
 </div>
 
 <!-- Following Modal -->
-<div class="modal" id="followingModal" tabindex="-1" role="dialog" aria-labelledby="followingModalLabel" aria-hidden="true">
+<div class="modal signup-font" id="followingModal" tabindex="-1" role="dialog" aria-labelledby="followingModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -184,8 +184,8 @@
                 </div>
                 {% for following in user_profile.followings.all %}
                 <div class="modal-body">
-                        <a href="{% url 'users:main' following.id %}">
-                            <img src="{{ following.image.url }}" alt="" width="50" height="50"style="border-radius: 100%;">
+                        <a href="{% url 'users:main' following.id %}" class="users-name" style="text-decoration: none;">
+                            <img src="{{ following.image.url }}" alt="" width="50" height="50" style="border-radius: 100%;">
                             &nbsp;{{ following.username }}
                         </a>
                 </div>

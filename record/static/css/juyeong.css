@@ -90,3 +90,15 @@
 .buy-button:before {
     background: #34495E;
 }
+
+/* footer */
+.footer-copy {
+    letter-spacing: 0.4em;
+}
+
+/* mobile footer */
+@media only screen and (max-width: 767px) {
+    .mb-xs-60 {
+        margin-bottom: 30px;
+    }
+}
