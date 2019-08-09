@@ -251,51 +251,20 @@ def create(request):
 
     
 # 팔로우, 언팔로우
-# def follow_toggle(request, id):
-#     user = request.user
-#     if user.is_anonymous:
-#         return redirect('account_login')
-    
-
-#     playlist = get_object_or_404(Playlist, pk=id)
-#     followed_user = get_object_or_404(User, pk=playlist.creator.id)
-
-#     is_follower = user in followed_user.followers.all()
-
-#     if is_follower:
-#         user.followings.remove(followed_user)
-#     else:
-#         user.followings.add(followed_user)
-
-#     return redirect('playlists:show', id)
-
-# 팔로우, 언팔로우
-@login_required
-@require_POST
 def follow_toggle(request, id):
-    # user = request.user
-    # if user.is_anonymous:
-    #     return redirect('account_login')
+    user = request.user
+    if user.is_anonymous:
+        return redirect('account_login')
     
-    followed_user = get_object_or_404(User, pk=id)
-    followers = followed_user.followers.set()
-    following_already, following_created = followed_user.followers.get_or_create(followers=request.user)
 
-    # is_follower = user in followed_user.followers.all()
+    playlist = get_object_or_404(Playlist, pk=id)
+    followed_user = get_object_or_404(User, pk=playlist.creator.id)
 
-    # if is_follower:
-    #     user.followings.remove(followed_user)
-    # else:
-    #     user.followings.add(followed_user)
+    is_follower = user in followed_user.followers.all()
 
-    if not following_created:
-        follwoing_already.delete()
-        result = "following cancel"
+    if is_follower:
+        user.followings.remove(followed_user)
     else:
-        result = "following"
-    
-    context = {'result':result}
+        user.followings.add(followed_user)
 
-    return HttpResponse(json.dumps(context), content_type="application/json")
-
-    # return redirect('users:main', id)
+    return redirect('playlists:show', id)
