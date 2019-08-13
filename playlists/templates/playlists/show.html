@@ -164,7 +164,7 @@
                 <a href="#two" data-toggle="tab" class="active" aria-expanded="true">Music List</a>
             </li>
             <li>
-                <a href="#three" data-toggle="tab">Comments</a>
+                <a href="#three" data-toggle="tab" id="comment-count">Comments ({{ playlist.comments.count }})</a>
             </li>
         </ul>
         <!-- End Nav tabs -->
@@ -381,6 +381,7 @@
                         );
                     }
                     $('#comment-message').val("");
+                    $('#comment-count').html("Comments (" + response.comments_count + ")");
                 },
                 error: function(request, status, error) {
                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

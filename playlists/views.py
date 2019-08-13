@@ -115,9 +115,10 @@ def create_comment(request, playlist_id):
             'comment_pk': comment.pk,
             'created_at': comment.created_at.strftime('%Y/%m/%d %H:%M'),
             'writer_id': comment.writer.id,
-            'writer_image_url': comment.writer.image.url
+            'writer_image_url': comment.writer.image.url,
+            'comments_count': playlist.comments_count
         }
-        return HttpResponse(json.dumps(context, cls=DjangoJSONEncoder))
+        return HttpResponse(json.dumps(context, cls=DjangoJSONEncoder), content_type="application/json")
 
 
 # 댓글삭제

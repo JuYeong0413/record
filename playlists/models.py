@@ -24,6 +24,11 @@ class Playlist(TimeStampedModel):
 
     def comments(self):
         return Comment.objects.filter(playlist=self)
+    
+    @property
+    def comments_count(self):
+        comments = Comment.objects.filter(playlist=self)
+        return comments.count()
 
     class Meta:
         verbose_name = '플레이리스트'
