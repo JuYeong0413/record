@@ -116,7 +116,33 @@
                                     </td>
                                     <td>
                                         {% if user == profile_user %}
-                                            <a href="{% url 'musics:delete' music.pk %}"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>
+                                            <a href="#" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-times"></i> <span class="hidden-xs">삭제</span></a>                                            
+                
+                                            <!-- deleteModal -->
+                                            <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                    <h5 class="modal-title" id="deletModalLabel">게시글 삭제하기</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        정말로 게시글을 삭제하시겠습니까?<br>
+                                                        삭제된 글은 복구할 수 없습니다.
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    <button type="button" class="btn btn-mod btn-gray btn-round" id="modal-cancel" data-dismiss="modal">취소</button>
+                                                    <form action="{% url 'musics:delete' music.id %}" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="submit" class="btn btn-mod btn-round" value="확인"></input>
+                                                    </form>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
                                         {% endif %}
                                     </td>
                                 </tr>

@@ -125,8 +125,11 @@
 										삭제된 글은 복구할 수 없습니다.
 									</div>
 									<div class="modal-footer">
-									<button type="button" class="btn btn-mod btn-gray btn-round" id="modal-cancel" data-dismiss="modal">취소</button>
-									<a class="btn btn-mod btn-round" href="{% url 'musics:delete' music.id %}">확인</a>
+                                    <button type="button" class="btn btn-mod btn-gray btn-round" id="modal-cancel" data-dismiss="modal">취소</button>
+                                    <form action="{% url 'musics:delete' music.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="submit" class="btn btn-mod btn-round" value="확인"></input>
+                                    </form>
 									</div>
 									</div>
 								</div>

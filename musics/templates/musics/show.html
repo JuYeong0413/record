@@ -59,15 +59,15 @@
 						
 
 						{% if user == music.writer %}
-						<div class="kyjbox">
-							<span class="separator">&nbsp;</span>
-							<a class="btn btn-mod btn-circle btn-small kyj" href="{% url 'musics:edit' music.id %}">수정</a>
-							<!-- deleteModal -->
-							<button class="btn btn-mod btn-circle btn-small" data-toggle="modal" data-target="#deleteModal">
-								삭제
-							</button>
+							<div class="kyjbox">
+								<span class="separator">&nbsp;</span>
+								<a class="btn btn-mod btn-circle btn-small kyj" href="{% url 'musics:edit' music.id %}">수정</a>
+								<!-- deleteModal -->
+								<button class="btn btn-mod btn-circle btn-small" data-toggle="modal" data-target="#deleteModal">
+									삭제
+								</button>
 
-						</div>	
+							</div>	
 
 							<!-- deleteModal -->
 							<div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -85,7 +85,10 @@
 									</div>
 									<div class="modal-footer">
 									<button type="button" class="btn btn-mod btn-gray btn-round" id="modal-cancel" data-dismiss="modal">취소</button>
-									<a class="btn btn-mod btn-round" href="{% url 'musics:delete' music.id %}">확인</a>
+									<form action="{% url 'musics:delete' music.id %}" method="POST">
+										{% csrf_token %}
+										<input type="submit" class="btn btn-mod btn-round" value="확인"></input>
+									</form>
 									</div>
 									</div>
 								</div>

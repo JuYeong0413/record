@@ -175,7 +175,8 @@ def update(request, music_id):
 
 # 노래 게시글 삭제
 def delete(request, music_id):
-    get_object_or_404(Music, pk=music_id).delete()
+    if request.method == "POST":
+        get_object_or_404(Music, pk=music_id).delete()
     return redirect('musics:main')
 
 
