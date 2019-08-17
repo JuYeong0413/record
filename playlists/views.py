@@ -89,8 +89,9 @@ def update(request, id):
 
 # 플레이리스트 삭제하기
 def delete(request, id):
-    playlist = get_object_or_404(Playlist, pk=id)
-    playlist.delete()
+    if request.method == "POST":
+        playlist = get_object_or_404(Playlist, pk=id)
+        playlist.delete()
     return redirect('playlists:main')
 
 

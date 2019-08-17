@@ -76,7 +76,10 @@
                             <a href="{% url 'playlists:edit' playlist.pk %}" class="btn btn-mod btn-circle btn-small">수정</a>
                         </div>
                         <div class="col-xs-6 align-center section-text">
-                            <a href="{% url 'playlists:delete' playlist.pk %}" class="btn btn-mod btn-circle btn-small">삭제</a>
+                            <form action="{% url 'playlists:delete' playlist.pk %}" method="POST">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-mod btn-circle btn-small" value="삭제">
+                            </form>
                         </div>
                     </div><br><br>
                 {% endif %}
