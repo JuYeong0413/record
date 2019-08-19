@@ -2,39 +2,31 @@
 {% load staticfiles %}
 
 {% block content %}
-<!-- Home Section -->
-<section class="home-section parallax-2">
-    <div class="js-height-full">
-        
-        <!-- Hero Content -->
-        <div class="home-content container">
-            <div class="home-text">
-                <div class="hs-cont">
+    <!-- Hero Content -->
+    <div class="home-content container">
+        <div class="home-text">
+            <div class="hs-cont">
+                
+                <!-- Headings -->
+                <div class="hs-wrap">
                     
-                    <!-- Headings -->
-                    <div class="hs-wrap">
-                        
-                        <div class="hs-line-13 font-alt mb-10">
-                            404
-                        </div>
-                        
-                        <div class="hs-line-4 font-alt mb-40">
-                            The page you were looking for could not be found.
-                        </div>
-                        
-                        <div class="local-scroll">                                        
-                            <a href="{% url 'main' %}" class="btn btn-mod btn-w btn-round btn-small"><i class="fa fa-angle-left"></i> Back To Home Page</a>                                        
-                        </div>
-                        
+                    <div class="hs-line-13 font-alt mb-10">
+                        404
                     </div>
-                    <!-- End Headings -->
+                    
+                    <div class="hs-line-4 font-alt mb-40">
+                        The page you were looking for could not be found.
+                    </div>
+                    
+                    <div class="local-scroll">                                        
+                        <a href="{% url 'main' %}" class="btn btn-mod btn-w btn-round btn-small"><i class="fa fa-angle-left"></i> Back To Home Page</a>                                        
+                    </div>
                     
                 </div>
+                <!-- End Headings -->
+                
             </div>
         </div>
-        <!-- End Hero Content -->
-        
     </div>
-</section>
-<!-- End Home Section -->
+    <!-- End Hero Content -->
 {% endblock %}
